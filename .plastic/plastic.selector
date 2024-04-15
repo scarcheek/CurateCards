@@ -1,0 +1,4 @@
+repository "CurateCards@scarcheekttgm@cloud"
+  path "/"
+    br "/main"
+    co "/main"
