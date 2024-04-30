@@ -255,12 +255,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293787459}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -7.32, y: -0.65, z: 0}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -7.3820353, y: 5.295253, z: 9.982556}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 788321429}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &293787461
 MonoBehaviour:
@@ -421,6 +421,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 293787460}
   - {fileID: 84054861}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -721,10 +722,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116062b4f55d9dc4bad782712712d24d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugStartCardSlots: 6
+  DebugStartCardSlots: 0
   cardSlotPrefab: {fileID: 5765090287824418254, guid: e93587bab58f12249805e005cca5965f, type: 3}
   targetSpaceBetweenCards: 100
   canvas: {fileID: 0}
+  handReAdjustmentSpeed: 500
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1493085282
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,10 +971,9 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1493085285}
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 1093480438}
-  - {fileID: 293787460}
   - {fileID: 788321429}
   - {fileID: 1169371023}
-  - {fileID: 1493085285}
