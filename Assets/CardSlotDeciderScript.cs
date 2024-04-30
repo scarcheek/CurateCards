@@ -10,15 +10,38 @@ public class CardSlotDeciderScript : MonoBehaviour
     [SerializeField] float cardFollowSpeed;
     [SerializeField] Transform cardTransform;
     [SerializeField] BoxCollider slotCollider;
+    [SerializeField] float speed;
+
 
     bool isDragged = false;
-    Vector3 targetPos;
-    Vector3 lastSlotPos;
+    public Vector3 targetPos;
+
     // Start is called before the first frame update
     void Start()
     {
-        targetPos = transform.position;
-        lastSlotPos = transform.parent.position;
+        targetPos = transform.parent.localPosition;
+    }
+
+    private void Update()
+    {
+        // Check if the position of the cube and sphere are approximately equal.
+        if (!isDragged && Vector2.Distance(transform.parent.localPosition, targetPos) > 0.001f)
+        {
+            // Move our position a step closer to the target.
+            var step = speed * Time.deltaTime; // calculate distance to move
+            transform.parent.localPosition = Vector2.MoveTowards(transform.parent.localPosition, targetPos, step);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (isDragged)
+        {
+            CardSlotDeciderScript otherCardSlot = collision.GetComponent<CardSlotDeciderScript>();
+            Vector2 swapper = targetPos;
+            targetPos = otherCardSlot.targetPos;
+            otherCardSlot.targetPos = swapper;
+        }
     }
 
     public void FollowCursor()
@@ -28,21 +51,9 @@ public class CardSlotDeciderScript : MonoBehaviour
         isDragged = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (isDragged)
-        {
-            Debug.Log("Swapping positions with: " + collision.transform.parent.name + " " + transform.parent.localPosition + " and " + collision.transform.parent.localPosition);
-            Vector3 swapper = transform.parent.localPosition;
-            transform.parent.localPosition = collision.transform.parent.localPosition;
-            collision.transform.parent.localPosition = swapper;
-
-        }
-    }
-
     public void ReleaseCursor()
     {
-        //transform.position = new(Input.mousePosition.x, transform.position.y);
+        transform.parent.localPosition = targetPos;
         transform.position = transform.parent.position;
         cardTransform.position = transform.position;
         isDragged = false;
