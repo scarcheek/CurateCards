@@ -11,6 +11,7 @@ public class CardSlotsScript : MonoBehaviour
     [SerializeField] float targetSpaceBetweenCards;
     [SerializeField] RectTransform canvas;
     [SerializeField] float handReAdjustmentSpeed;
+    [SerializeField] float verticalSpacing = -12f;
     float spaceBetweenCards = 0;
     List<GameObject> cardSlots = new();
     [SerializeField] Vector3 targetPos;
@@ -18,9 +19,6 @@ public class CardSlotsScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        targetPos = new(transform.position.x + targetSpaceBetweenCards/2, transform.position.y);
-        
         //targetPos = new(transform.position.x + (DebugStartCardSlots % 2 == 0 ? targetSpaceBetweenCards/2 : 0) - (DebugStartCardSlots / 2 * targetSpaceBetweenCards) , transform.position.y);
         for (int i = 0; i < DebugStartCardSlots; i++)
         {
@@ -43,12 +41,13 @@ public class CardSlotsScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        targetPos = new Vector2(-(cardSlots.Count - 1) * targetSpaceBetweenCards / 2f, transform.localPosition.y);
         // Check if the position of the cube and sphere are approximately equal.
-        if (Vector3.Distance(transform.position, targetPos) > 0.001f)
+        if (Vector3.Distance(transform.localPosition, targetPos) > 0.001f)
         {
             // Move our position a step closer to the target.
             var step = handReAdjustmentSpeed * Time.deltaTime; // calculate distance to move
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPos, step);
         }
     }
 
@@ -63,7 +62,6 @@ public class CardSlotsScript : MonoBehaviour
         GameObject.Destroy(cardSlots.Last().gameObject);
         cardSlots.Remove(cardSlots.Last());
 
-        targetPos.x += targetSpaceBetweenCards / 2;
     }
 
     private void addNewCardSlot()
@@ -72,7 +70,5 @@ public class CardSlotsScript : MonoBehaviour
         cardSlot.name = cardSlotPrefab.name + cardSlots.Count;
         cardSlot.transform.localPosition = new Vector3(targetSpaceBetweenCards * cardSlots.Count, 50);
         cardSlots.Add(cardSlot);
-        
-        targetPos.x -=  targetSpaceBetweenCards / 2;
     }
 }
