@@ -6,18 +6,24 @@ using UnityEngine;
 
 public class CardSlotsScript : MonoBehaviour
 {
+    [SerializeField] public float handReAdjustmentSpeed;
     [SerializeField] private int DebugStartCardSlots = 4;
     [SerializeField] private GameObject cardSlotPrefab;
-    [SerializeField] private float targetSpaceBetweenCards;
-    [SerializeField] private float handReAdjustmentSpeed;
-    [SerializeField] private Vector3 targetPos;
+    [SerializeField] private Vector2 targetPos;
     [SerializeField] private Canvas canvas;
 
     public List<GameObject> cardSlots = new();
+    public static float targetSpaceBetweenCards = 100;
+    private static float verticalSpacing = 50;
 
     // Start is called before the first frame update
     void Start()
     {
+        EventManager.DropCardInPlayZone += RemoveCard;
+        EventManager.DropCardOutsidePlayZone += AddCardSlot;
+        EventManager.SortSlots += SortCardSlots;
+
+
         for (int i = 0; i < DebugStartCardSlots; i++)
         {
             CreateAndAddNewCardSlot();
@@ -30,11 +36,6 @@ public class CardSlotsScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             DrawCard();
-        }
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            // Removes the last card as of right now, should be done with an event fired in some card-subscript
-            RemoveCard();
         }
     }
 
@@ -57,27 +58,49 @@ public class CardSlotsScript : MonoBehaviour
         CreateAndAddNewCardSlot();
     }
 
-    private void RemoveCard()
+    private void RemoveCard(GameObject cardSlot)
     {
-        GameObject.Destroy(cardSlots.Last());
-        int posIndexOfDelCard = (int)(cardSlots.Last().transform.localPosition.x / targetSpaceBetweenCards);
-        for (int i = posIndexOfDelCard; i < posIndexOfDelCard; i++)
+        if (!cardSlots.Contains(cardSlot)) return;
+
+        cardSlots.Remove(cardSlot);
+        for (int i = 0; i < cardSlots.Count; i++)
         {
-            RepositionCardSlot(cardSlots[i]);
+            RepositionCardSlot(cardSlots[i], cardSlotPrefab.name, i);
+            //cardSlots[i].GetComponentInChildren<CardSlotDeciderScript>().targetPos = new Vector3(targetSpaceBetweenCards * i, verticalSpacing);
         }
-        cardSlots.Remove(cardSlots.Last());
+        SortCardSlots();
     }
 
     private void CreateAndAddNewCardSlot()
     {
         GameObject cardSlot = Instantiate(cardSlotPrefab, transform);
-        cardSlot.name = cardSlotPrefab.name + cardSlots.Count;
-        RepositionCardSlot(cardSlot);
-        cardSlots.Add(cardSlot);
+        AddCardSlot(cardSlot);
     }
 
-    private void RepositionCardSlot(GameObject cardSlot)
+    private void AddCardSlot(GameObject cardSlot)
     {
-        cardSlot.transform.localPosition = new Vector3(targetSpaceBetweenCards * cardSlots.Count, 50);
+        if (!cardSlots.Contains(cardSlot))
+        {
+            cardSlot.transform.SetParent(transform);
+            RepositionCardSlot(cardSlot, cardSlotPrefab.name, cardSlots.Count);
+            cardSlots.Add(cardSlot);
+        }
+    }
+
+    public static void RepositionCardSlot(GameObject cardSlot, string nameTemplate, int pos)
+    {
+        cardSlot.name = nameTemplate + pos;
+        cardSlot.transform.localPosition = new Vector3(targetSpaceBetweenCards * pos, verticalSpacing);
+
+        cardSlot.GetComponentInChildren<CardSlotDeciderScript>().targetPos = new Vector3(targetSpaceBetweenCards * pos, verticalSpacing);
+    }
+
+    private void SortCardSlots(GameObject initiator = null)
+    {
+        if (initiator == null || cardSlots.Contains(initiator))
+        {
+            cardSlots.Sort(
+                        (GameObject cardSlot, GameObject other) => cardSlot.name.CompareTo(other.name));
+        }
     }
 }

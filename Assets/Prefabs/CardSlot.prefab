@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3728121140683381701}
   - component: {fileID: 2654616308031833142}
   - component: {fileID: 4440865448140423454}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: CardSlotDecider
   m_TagString: CardSlot
   m_Icon: {fileID: 0}
@@ -56,6 +56,8 @@ MonoBehaviour:
   cardFollowSpeed: 1500
   cardTransform: {fileID: 736032296264966874}
   speed: 1000
+  cardImageCollider: {fileID: 0}
+  playZoneCollider: {fileID: 0}
   targetPos: {x: 0, y: 0, z: 0}
   transformParent: {fileID: 0}
 --- !u!114 &3728121140683381701
@@ -118,7 +120,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -135,7 +137,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.7637253}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -146,7 +148,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 50, y: 1}
+  m_Size: {x: 50, y: 13.001419}
   m_EdgeRadius: 0
 --- !u!50 &4440865448140423454
 Rigidbody2D:
@@ -173,7 +175,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &4225406153650569309
 GameObject:
@@ -377,7 +379,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

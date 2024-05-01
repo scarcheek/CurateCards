@@ -11,18 +11,26 @@ public class CardSlotDeciderScript : MonoBehaviour
     [SerializeField] private float cardFollowSpeed;
     [SerializeField] private Transform cardTransform;
     [SerializeField] private float speed;
+    [SerializeField] private BoxCollider2D cardImageCollider;
+    [SerializeField] private BoxCollider2D playZoneCollider;
 
-    public Vector3 targetPos;
-    public Transform transformParent;
+    /// <summary>
+    ///  TargetPos sets the localPosition of the gameobject it will move to with `speed`
+    /// </summary>
+    public Vector3 targetPos = Vector2.zero;
+    public bool isDragged = false;
+    [HideInInspector] public Transform transformParent;
 
     private CardSlotsScript cardSlotsScript;
-    private bool isDragged = false;
+    private BoxCollider2D cardSlotDeciderCollider;
+    private bool isInPlayZone = false;
 
     // Start is called before the first frame update
     void Start()
     {
         targetPos = transform.parent.localPosition;
         cardSlotsScript = transform.parent.parent.GetComponent<CardSlotsScript>();
+        cardSlotDeciderCollider = GetComponent<BoxCollider2D>();
         // This should save some resources
         transformParent = transform.parent;
     }
@@ -40,17 +48,32 @@ public class CardSlotDeciderScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // This prevents back and forth swapping
-        if (isDragged && collision.tag == "CardSlot")
-        { 
-            CardSlotDeciderScript otherCardSlot = collision.GetComponent<CardSlotDeciderScript>();
-            Transform otherTransformParent = otherCardSlot.transformParent;
-            // Swap the target positions of the cards that collided
-            (targetPos, otherCardSlot.targetPos) = (otherCardSlot.targetPos, targetPos);
-            // Also swap the names to enable sorting of the cardSlotsScript, resulting in easier re-sorting after removing a card
-            (transformParent.name, otherTransformParent.name) = (otherTransformParent.name, transformParent.name);
-            cardSlotsScript.cardSlots.Sort(
-                (GameObject cardSlot, GameObject other) => cardSlot.name.CompareTo(other.name));
-           
+        if (isDragged)
+        {
+            if (collision.tag == "CardSlot" && collision.gameObject.layer == gameObject.layer)
+            {
+                CardSlotDeciderScript otherCardSlot = collision.GetComponent<CardSlotDeciderScript>();
+                Transform otherTransformParent = otherCardSlot.transformParent;
+                // Swap the target positions of the cards that collided
+                (targetPos, otherCardSlot.targetPos) = (otherCardSlot.targetPos, targetPos);
+                // Also swap the names to enable sorting of the cardSlotsScript, resulting in easier re-sorting after removing a card
+                (transformParent.name, otherTransformParent.name) = (otherTransformParent.name, transformParent.name);
+                EventManager.EmitSortSlots(transformParent.gameObject);
+            }
+            else if (collision.tag == "PlayZone")
+            {
+                isInPlayZone = true;
+            }
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "PlayZone")
+        {
+            Debug.Log("Leaving PLayzone");
+            isInPlayZone = false;
         }
     }
 
@@ -65,9 +88,26 @@ public class CardSlotDeciderScript : MonoBehaviour
     public void ReleaseCursor()
     {
         // OnMouseDragRelease did not work so this is an alternative
-        transform.parent.localPosition = targetPos;
-        transform.position = transform.parent.position;
-        cardTransform.position = transform.position;
         isDragged = false;
+        ResetPosition();
+        if (isInPlayZone)
+        {
+            Debug.Log("Dropped a card in playzone!");
+            EventManager.EmitDropCardInPlayZone(transform.parent.gameObject);
+        }
+        else
+        {
+            EventManager.EmitDropCardOutsidePlayZone(transform.parent.gameObject);
+        }
+    }
+
+    public void ResetPosition()
+    {
+        //Position of cardslot
+        transform.parent.localPosition = targetPos;
+        //this position
+        transform.position = transform.parent.position;
+        //Position of card image
+        cardTransform.position = transform.position;
     }
 }
