@@ -7,6 +7,8 @@ TagManager:
   - OverlayCamera
   - Theatre
   - CardSlot
+  - PlayZone
+  - CardImage
   layers:
   - Default
   - TransparentFX

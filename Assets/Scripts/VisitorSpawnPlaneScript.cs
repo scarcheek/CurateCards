@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class VisitorSpawnPlaneScript : MonoBehaviour
 {
-    [SerializeField] int visitorCount;
-    [SerializeField] GameObject visitorPrefab;
-    [SerializeField] BoxCollider standArea;
+    [SerializeField] private int visitorCount;
+    [SerializeField] private GameObject visitorPrefab;
+    [SerializeField] private BoxCollider standArea;
 
     // Start is called before the first frame update
     void Start()

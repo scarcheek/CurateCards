@@ -6,23 +6,21 @@ using UnityEngine;
 
 public class CardSlotsScript : MonoBehaviour
 {
-    [SerializeField] int DebugStartCardSlots = 4;
-    [SerializeField] GameObject cardSlotPrefab;
-    [SerializeField] float targetSpaceBetweenCards;
-    [SerializeField] RectTransform canvas;
-    [SerializeField] float handReAdjustmentSpeed;
-    [SerializeField] float verticalSpacing = -12f;
-    float spaceBetweenCards = 0;
-    List<GameObject> cardSlots = new();
-    [SerializeField] Vector3 targetPos;
+    [SerializeField] private int DebugStartCardSlots = 4;
+    [SerializeField] private GameObject cardSlotPrefab;
+    [SerializeField] private float targetSpaceBetweenCards;
+    [SerializeField] private float handReAdjustmentSpeed;
+    [SerializeField] private Vector3 targetPos;
+    [SerializeField] private Canvas canvas;
+
+    public List<GameObject> cardSlots = new();
 
     // Start is called before the first frame update
     void Start()
     {
-        //targetPos = new(transform.position.x + (DebugStartCardSlots % 2 == 0 ? targetSpaceBetweenCards/2 : 0) - (DebugStartCardSlots / 2 * targetSpaceBetweenCards) , transform.position.y);
         for (int i = 0; i < DebugStartCardSlots; i++)
         {
-            addNewCardSlot();
+            CreateAndAddNewCardSlot();
         }
     }
 
@@ -31,18 +29,20 @@ public class CardSlotsScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            drawCard();
+            DrawCard();
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            removeCard();
+            // Removes the last card as of right now, should be done with an event fired in some card-subscript
+            RemoveCard();
         }
     }
 
     private void FixedUpdate()
     {
+        // This is done to allow dynamic resizing of the cardslots
         targetPos = new Vector2(-(cardSlots.Count - 1) * targetSpaceBetweenCards / 2f, transform.localPosition.y);
-        // Check if the position of the cube and sphere are approximately equal.
+
         if (Vector3.Distance(transform.localPosition, targetPos) > 0.001f)
         {
             // Move our position a step closer to the target.
@@ -51,24 +51,33 @@ public class CardSlotsScript : MonoBehaviour
         }
     }
 
-    private void drawCard()
+    private void DrawCard()
     {
-        // Do card handling
-        addNewCardSlot();
+        //TODO: Do card handling
+        CreateAndAddNewCardSlot();
     }
 
-    private void removeCard()
+    private void RemoveCard()
     {
-        GameObject.Destroy(cardSlots.Last().gameObject);
+        GameObject.Destroy(cardSlots.Last());
+        int posIndexOfDelCard = (int)(cardSlots.Last().transform.localPosition.x / targetSpaceBetweenCards);
+        for (int i = posIndexOfDelCard; i < posIndexOfDelCard; i++)
+        {
+            RepositionCardSlot(cardSlots[i]);
+        }
         cardSlots.Remove(cardSlots.Last());
-
     }
 
-    private void addNewCardSlot()
+    private void CreateAndAddNewCardSlot()
     {
         GameObject cardSlot = Instantiate(cardSlotPrefab, transform);
         cardSlot.name = cardSlotPrefab.name + cardSlots.Count;
-        cardSlot.transform.localPosition = new Vector3(targetSpaceBetweenCards * cardSlots.Count, 50);
+        RepositionCardSlot(cardSlot);
         cardSlots.Add(cardSlot);
+    }
+
+    private void RepositionCardSlot(GameObject cardSlot)
+    {
+        cardSlot.transform.localPosition = new Vector3(targetSpaceBetweenCards * cardSlots.Count, 50);
     }
 }

@@ -55,8 +55,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardFollowSpeed: 1500
   cardTransform: {fileID: 736032296264966874}
-  slotCollider: {fileID: 0}
   speed: 1000
+  targetPos: {x: 0, y: 0, z: 0}
+  transformParent: {fileID: 0}
 --- !u!114 &3728121140683381701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +146,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 50, y: 125}
+  m_Size: {x: 50, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &4440865448140423454
 Rigidbody2D:
@@ -260,7 +261,7 @@ GameObject:
   - component: {fileID: 8384440356594723423}
   m_Layer: 5
   m_Name: CardSlot
-  m_TagString: CardSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,9 +297,10 @@ GameObject:
   - component: {fileID: 736032296264966874}
   - component: {fileID: 8300601694058322570}
   - component: {fileID: 1844859949099066306}
+  - component: {fileID: 6617568098827488888}
   m_Layer: 5
   m_Name: CardImage
-  m_TagString: Untagged
+  m_TagString: CardImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -360,3 +362,48 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!61 &6617568098827488888
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8662714324536914222}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 61.2, y: 89}
+  m_EdgeRadius: 0

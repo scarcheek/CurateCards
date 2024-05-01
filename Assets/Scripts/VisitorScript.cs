@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class VisitorScript : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer bodySprite;
-    [SerializeField] SpriteRenderer hatSprite;
-    [SerializeField] float hatProb;
     [SerializeField] public float speed;
+    [SerializeField] private SpriteRenderer bodySprite;
+    [SerializeField] private SpriteRenderer hatSprite;
+    [SerializeField] private float hatProb;
 
     public Vector3 standPos;
 
@@ -25,7 +25,6 @@ public class VisitorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if the position of the cube and sphere are approximately equal.
         if (Vector3.Distance(transform.position, standPos) > 0.001f)
         {
             // Move our position a step closer to the target.
