@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardSlotsManager
 {
-    public static float targetSpaceBetweenCards = 100f;
+    public static float targetSpaceBetweenCards = 120f;
     public static float handReAdjustmentSpeed = 500f;
     public static float verticalSpacing = 50f;
 
