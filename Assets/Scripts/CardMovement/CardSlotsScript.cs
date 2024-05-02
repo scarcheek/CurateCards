@@ -18,7 +18,6 @@ public class CardSlotsScript : MonoBehaviour
         EventManager.DropCardOutsidePlayZone += AddCardSlot;
         EventManager.SortSlots += SortCardSlots;
 
-
         for (int i = 0; i < DebugStartCardSlots; i++)
         {
             CreateAndAddNewCardSlot();
@@ -41,30 +40,16 @@ public class CardSlotsScript : MonoBehaviour
     private void DrawCard()
     {
         //TODO: Do card handling
-
         CreateAndAddNewCardSlot();
     }
-
 
     private void CreateAndAddNewCardSlot()
     {
         GameObject cardSlot = Instantiate(cardSlotPrefab, transform);
         AddCardSlot(cardSlot);
     }
+    private void AddCardSlot(GameObject cardSlot) => CardSlotsManager.AddCardToPlayCardSlots(cardSlot, cardSlots, transform, cardSlotPrefab.name);
+    private void RemoveCard(GameObject cardSlot) => CardSlotsManager.RemoveCardFromCardSlots(cardSlot, cardSlots, cardSlotPrefab.name);
+    private void SortCardSlots(GameObject initiator = null) => CardSlotsManager.SortCardSlots(cardSlots, initiator);
 
-    private void AddCardSlot(GameObject cardSlot)
-    {
-        CardSlotsManager.AddCardToPlayCardSlots(cardSlot, cardSlots, transform, cardSlotPrefab.name);
-    }
-
-    private void RemoveCard(GameObject cardSlot)
-    {
-        CardSlotsManager.RemoveCardFromCardSlots(cardSlot, cardSlots, cardSlotPrefab.name);
-    }
-    
-
-    private void SortCardSlots(GameObject initiator = null)
-    {
-        CardSlotsManager.SortCardSlots(cardSlots, initiator);
-    }
 }
