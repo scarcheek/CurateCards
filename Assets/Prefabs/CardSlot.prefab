@@ -79,7 +79,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 6793615121658532227}
           m_TargetAssemblyTypeName: CardSlotDeciderScript, Assembly-CSharp
-          m_MethodName: FollowCursor
+          m_MethodName: DragCursor
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -225,8 +225,9 @@ GameObject:
   - component: {fileID: 8300601694058322570}
   - component: {fileID: 1844859949099066306}
   - component: {fileID: 6617568098827488888}
+  - component: {fileID: 3594986355673745663}
   m_Layer: 5
-  m_Name: CardImage
+  m_Name: PlayingCard
   m_TagString: CardImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,3 +335,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 61.2, y: 89}
   m_EdgeRadius: 0
+--- !u!114 &3594986355673745663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8662714324536914222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66895bedc8a910a4b80d4ad2af4f0fff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 0}

@@ -1,22 +1,27 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 
 public class CardSlotsScript : MonoBehaviour
 {
+    [SerializeField] public List<CardProps> cards;
     [SerializeField] private int DebugStartCardSlots = 4;
     [SerializeField] private GameObject cardSlotPrefab;
     [SerializeField] private Vector2 targetPos;
 
-    public List<GameObject> cardSlots = new();
+    [HideInInspector] public List<GameObject> cardSlots = new();
+    private List<CardProps> remainingCards = new();
 
     void Start()
     {
         EventManager.DropCardInPlayZone += RemoveCard;
         EventManager.DropCardOutsidePlayZone += AddCardSlot;
         EventManager.SortSlots += SortCardSlots;
+
+        remainingCards = cards.ToList();
 
         for (int i = 0; i < DebugStartCardSlots; i++)
         {
@@ -45,7 +50,16 @@ public class CardSlotsScript : MonoBehaviour
 
     private void CreateAndAddNewCardSlot()
     {
+        if (remainingCards.Count == 0) return;
+
         GameObject cardSlot = Instantiate(cardSlotPrefab, transform);
+
+        int cardIndex = Random.Range(0, remainingCards.Count);
+        CardProps cardProp = remainingCards[cardIndex];
+        remainingCards.RemoveAt(cardIndex);
+
+        cardSlot.GetComponentInChildren<PlayingCardScript>().card = cardProp;
+
         AddCardSlot(cardSlot);
     }
     private void AddCardSlot(GameObject cardSlot) => CardSlotsManager.AddCardToPlayCardSlots(cardSlot, cardSlots, transform, cardSlotPrefab.name);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable object/Card")]
-public class Card : ScriptableObject
+public class CardProps : ScriptableObject
 {
     [Header("Only gameplay")]
     public GameObject presentPrefab;
