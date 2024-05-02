@@ -50,6 +50,7 @@ public class CardSlotDeciderScript : MonoBehaviour
         // This prevents back and forth swapping
         if (isDragged)
         {
+            // If the cardslotDecider collides with another card, triggering a swap
             if (collision.tag == "CardSlot" && collision.gameObject.layer == gameObject.layer)
             {
                 CardSlotDeciderScript otherCardSlot = collision.GetComponent<CardSlotDeciderScript>();
@@ -58,13 +59,14 @@ public class CardSlotDeciderScript : MonoBehaviour
                 (targetPos, otherCardSlot.targetPos) = (otherCardSlot.targetPos, targetPos);
                 // Also swap the names to enable sorting of the cardSlotsScript, resulting in easier re-sorting after removing a card
                 (transformParent.name, otherTransformParent.name) = (otherTransformParent.name, transformParent.name);
+                // Force a Sort on the CardSlot List the game object belongs to, to make functionalities more consistent and increase ease of use in the lists
                 EventManager.EmitSortSlots(transformParent.gameObject);
             }
+            // If the Card is being hovered over the PlayZone collider
             else if (collision.tag == "PlayZone")
             {
                 isInPlayZone = true;
             }
-
         }
     }
 
@@ -72,12 +74,15 @@ public class CardSlotDeciderScript : MonoBehaviour
     {
         if (collision.tag == "PlayZone")
         {
-            Debug.Log("Leaving PLayzone");
             isInPlayZone = false;
         }
     }
 
-    public void FollowCursor()
+    /// <summary>
+    /// Moves the cardSlotDecider with respect of the x value of the mouse and makes the image follow the mousePosition by setting `isDragged` to true
+    /// As OnMouseDrag does not work on UI elements we have to use this workaround with the help of the event trigger component
+    /// </summary>
+    public void DragCursor()
     {
         // OnMouseDrag did not work so this is an alternative, called from the event trigger on CardSlotDecider
         transform.position = new(Input.mousePosition.x, transform.position.y);
@@ -85,14 +90,15 @@ public class CardSlotDeciderScript : MonoBehaviour
         isDragged = true;
     }
 
+    /// <summary>
+    /// Gets called if a card has been dragged and is then released, resulting in it having to be reset to the cardSlotDeciders Position
+    /// </summary>
     public void ReleaseCursor()
     {
-        // OnMouseDragRelease did not work so this is an alternative
         isDragged = false;
         ResetPosition();
         if (isInPlayZone)
         {
-            Debug.Log("Dropped a card in playzone!");
             EventManager.EmitDropCardInPlayZone(transform.parent.gameObject);
         }
         else
@@ -101,6 +107,10 @@ public class CardSlotDeciderScript : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Resets all gameobjects of a CardSlot to the targetPosition
+    /// </summary>
     public void ResetPosition()
     {
         //Position of cardslot

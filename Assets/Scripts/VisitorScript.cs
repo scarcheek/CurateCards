@@ -13,16 +13,13 @@ public class VisitorScript : MonoBehaviour
 
     private Animator anim;
     
-    // Start is called before the first frame update
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
         anim.Play("visitor_idle_default", -1, Random.value);
         hatSprite.enabled = Random.value > hatProb;
-        // standPos = transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Vector3.Distance(transform.position, standPos) > 0.001f)

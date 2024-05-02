@@ -14,7 +14,7 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
         standArea = GetComponent<BoxCollider>();
         for (int i = 0; i < visitorCount; i++)
         {
-            // The Quaternion is equal to Euler Rotation Y -90, used this as it is more efficient than always using Quternion.fromEuler
+            // This Quaternion is equal to Euler Rotation Y -90, used this as it is more efficient than always using Quternion.fromEuler
             GameObject visitor = Instantiate(
                 visitorPrefab,
                 RandomPointOutBounds(standArea.bounds),
