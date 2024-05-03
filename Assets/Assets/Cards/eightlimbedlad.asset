@@ -16,7 +16,7 @@ MonoBehaviour:
   title: Eight limbed lad
   description: At the end of the day we are all a cycle
   cardSprite: {fileID: 0}
-  cost: -1
-  baseValue: -1
+  cost: 3
+  baseValue: 3
   cardType: 0
   medium: 1

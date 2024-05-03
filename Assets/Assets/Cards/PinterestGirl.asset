@@ -16,7 +16,7 @@ MonoBehaviour:
   title: The pinterest girl hands
   description: Could we some day also touch tips?
   cardSprite: {fileID: 0}
-  cost: -1
-  baseValue: -1
+  cost: 3
+  baseValue: 3
   cardType: 0
   medium: 1

@@ -16,7 +16,7 @@ MonoBehaviour:
   title: Big Wave
   description: It sure is
   cardSprite: {fileID: 0}
-  cost: -1
-  baseValue: -1
+  cost: 3
+  baseValue: 3
   cardType: 0
   medium: 1
