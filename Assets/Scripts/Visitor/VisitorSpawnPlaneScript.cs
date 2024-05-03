@@ -17,29 +17,29 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
             // This Quaternion is equal to Euler Rotation Y -90, used this as it is more efficient than always using Quternion.fromEuler
             GameObject visitor = Instantiate(
                 visitorPrefab,
-                RandomPointOutBounds(standArea.bounds),
+                RandomPointOutBounds(standArea.bounds, transform.position.y),
                 new Quaternion(0, 0.707f, 0, 0.707f),
                 transform);
-            visitor.GetComponentInChildren<VisitorScript>().standPos = RandomPointInBounds(standArea.bounds);
+            visitor.GetComponentInChildren<VisitorScript>().standPos = RandomPointInBounds(standArea.bounds, transform.position.y + 1);
         }
     }
-    public static Vector3 RandomPointOutBounds(Bounds bounds)
+    public static Vector3 RandomPointOutBounds(Bounds bounds, float height)
     {
         Vector3 newVector;
         do
         {
             newVector = new(
             Random.Range(bounds.min.x * 5, bounds.max.x),
-            0,
+            height,
             Random.Range(bounds.min.z * 5, bounds.max.z * 5));
         } while (bounds.Contains(newVector));
         return newVector;
     }
-    public static Vector3 RandomPointInBounds(Bounds bounds)
+    public static Vector3 RandomPointInBounds(Bounds bounds, float height)
     {
         return new(
             Random.Range(bounds.min.x, bounds.max.x),
-            0,
+            height,
             Random.Range(bounds.min.z, bounds.max.z)
         );
     }

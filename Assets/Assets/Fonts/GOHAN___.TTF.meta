@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8e43957e8dd7da8429333fcca52d137b
+guid: 3fff5e6cb6200864f8326f2e24e2ccc4
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Taro Boba
+  - Gohan
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

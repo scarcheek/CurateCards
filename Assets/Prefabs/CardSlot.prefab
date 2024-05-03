@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 3}
-  m_SizeDelta: {x: -24, y: 20}
+  m_SizeDelta: {x: -24, y: 10}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &5406557754510483215
 CanvasRenderer:
@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This is the type - and medium
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 821588e11aa7cbd4981af77be9a83708, type: 2}
-  m_sharedMaterial: {fileID: -7340929008435137339, guid: 821588e11aa7cbd4981af77be9a83708, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac07de16baf224f4b85386044f931422, type: 2}
+  m_sharedMaterial: {fileID: -8559549191282595104, guid: ac07de16baf224f4b85386044f931422, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5.9
+  m_fontSize: 4.95
   m_fontSizeBase: 6
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 9.524918, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -451,10 +451,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: '3
+
+'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 821588e11aa7cbd4981af77be9a83708, type: 2}
-  m_sharedMaterial: {fileID: -7340929008435137339, guid: 821588e11aa7cbd4981af77be9a83708, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac07de16baf224f4b85386044f931422, type: 2}
+  m_sharedMaterial: {fileID: -8559549191282595104, guid: ac07de16baf224f4b85386044f931422, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -478,12 +480,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.9
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 15.72
-  m_fontSizeMax: 17.9
+  m_fontSizeMin: 15
+  m_fontSizeMax: 18
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -629,7 +631,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -35.6, y: -27}
+  m_AnchoredPosition: {x: -34.4, y: -27}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5344838566064056407
@@ -662,8 +664,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 821588e11aa7cbd4981af77be9a83708, type: 2}
-  m_sharedMaterial: {fileID: -7340929008435137339, guid: 821588e11aa7cbd4981af77be9a83708, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac07de16baf224f4b85386044f931422, type: 2}
+  m_sharedMaterial: {fileID: -8559549191282595104, guid: ac07de16baf224f4b85386044f931422, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -687,12 +689,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.8
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 21.8
+  m_fontSizeMin: 15
+  m_fontSizeMax: 18
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -797,10 +799,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 736032296264966874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -0.5, y: -46.5}
-  m_SizeDelta: {x: -17, y: 48.1}
+  m_AnchorMin: {x: 0, y: 0.35700002}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -72.53999}
+  m_SizeDelta: {x: -48, y: -65.079994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &870899353103055516
 CanvasRenderer:
@@ -834,8 +836,8 @@ MonoBehaviour:
     added until a breakpoint, so at one point it should just truncate the text entirely
     without having an overflow
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 821588e11aa7cbd4981af77be9a83708, type: 2}
-  m_sharedMaterial: {fileID: -7340929008435137339, guid: 821588e11aa7cbd4981af77be9a83708, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac07de16baf224f4b85386044f931422, type: 2}
+  m_sharedMaterial: {fileID: -8559549191282595104, guid: ac07de16baf224f4b85386044f931422, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -859,12 +861,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4.8
+  m_fontSize: 4
   m_fontSizeBase: 11.8
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 4.8
-  m_fontSizeMax: 12
+  m_fontSizeMin: 4
+  m_fontSizeMax: 10
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -895,7 +897,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 16.541779, y: 5.085266, z: 16.232574, w: 9.275772}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -968,8 +970,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This is a title
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 821588e11aa7cbd4981af77be9a83708, type: 2}
-  m_sharedMaterial: {fileID: -7340929008435137339, guid: 821588e11aa7cbd4981af77be9a83708, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac07de16baf224f4b85386044f931422, type: 2}
+  m_sharedMaterial: {fileID: -8559549191282595104, guid: ac07de16baf224f4b85386044f931422, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

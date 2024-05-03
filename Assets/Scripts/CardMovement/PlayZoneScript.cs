@@ -29,20 +29,31 @@ public class PlayZoneScript : MonoBehaviour
     public void AddCardToPlayZone(GameObject cardSlot)
     {
         CardSlotsManager.AddCardToPlayCardSlots(cardSlot, cardSlots, transform, playZoneSlotName);
+
+        animator.SetBool("CardInPlayZone", true);
+
         cardSlot.GetComponentInChildren<CardSlotDeciderScript>().ResetPosition();
     }
 
-    public void removeCardFromPlayZone(GameObject cardSlot) => CardSlotsManager.RemoveCardFromCardSlots(cardSlot, cardSlots, playZoneSlotName);
+    public void removeCardFromPlayZone(GameObject cardSlot)
+    {
+        CardSlotsManager.RemoveCardFromCardSlots(cardSlot, cardSlots, playZoneSlotName);
+
+        animator.SetBool("CardInPlayZone", cardSlots.Count > 0);
+
+
+    }
     public void SortCardSlots(GameObject initiator = null) => CardSlotsManager.SortCardSlots(cardSlots, initiator);
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "CardImage")
         {
-            Debug.Log(other.tag);
             animator.SetTrigger("HoverPlayZone");
         }
     }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "CardImage")
