@@ -14,7 +14,7 @@ public class CardProps : ScriptableObject
     public int cost;
     [Header("Both")]
     public int baseValue;
-    public CardType cardType;
+    public List<CardType> cardType;
     public Medium medium;
 }
 
@@ -35,5 +35,6 @@ public enum Medium
     food,
     music,
     videogame,
+    video,
     none
 }
