@@ -116,6 +116,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5098927967144526014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4355595075743842893}
+  m_Layer: 0
+  m_Name: VisitorGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4355595075743842893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5098927967144526014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2774191196394311877}
+  m_Father: {fileID: 5463952091971488738}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5743178024983941871
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,9 +157,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5463952091971488738}
-  - component: {fileID: 4315465586144051474}
+  - component: {fileID: 8127086601531447060}
   m_Layer: 0
-  m_Name: VisitorSpawn
+  m_Name: VisitorAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,30 +174,34 @@ Transform:
   m_GameObject: {fileID: 5743178024983941871}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2774191196394311877}
+  - {fileID: 4355595075743842893}
   m_Father: {fileID: 6264542130476496055}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4315465586144051474
-MonoBehaviour:
+--- !u!95 &8127086601531447060
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5743178024983941871}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7208a7b19fb7b41ad35004a77661ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  bodySprite: {fileID: 5457855734537654327}
-  hatSprite: {fileID: 7812629400279245895}
-  hatProb: 0.7
-  standPos: {x: 0, y: 0, z: 0}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f6ed5e2893d034459f7b81c624fa935, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7098581192587485102
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +295,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2774191196394311877}
-  - component: {fileID: 4360673752167712832}
   m_Layer: 0
   m_Name: Visitor
   m_TagString: Untagged
@@ -276,35 +311,14 @@ Transform:
   m_GameObject: {fileID: 7414971035791320778}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8563682832622035272}
   - {fileID: 4331709083508412010}
-  m_Father: {fileID: 5463952091971488738}
+  m_Father: {fileID: 4355595075743842893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &4360673752167712832
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7414971035791320778}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6f6ed5e2893d034459f7b81c624fa935, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8223413006770270513
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,8 +328,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6264542130476496055}
+  - component: {fileID: 315960637055698056}
   m_Layer: 0
-  m_Name: VisitorAnchor
+  m_Name: VisitorSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,10 +345,27 @@ Transform:
   m_GameObject: {fileID: 8223413006770270513}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5463952091971488738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &315960637055698056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223413006770270513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7208a7b19fb7b41ad35004a77661ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  bodySprite: {fileID: 5457855734537654327}
+  hatSprite: {fileID: 7812629400279245895}
+  hatProb: 0.7
+  standPos: {x: 0, y: 0, z: 0}

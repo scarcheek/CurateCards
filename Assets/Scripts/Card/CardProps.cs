@@ -15,7 +15,7 @@ public class CardProps : ScriptableObject
     [Header("Both")]
     public int baseValue;
     public List<CardType> cardType;
-    public Medium medium;
+    public List<Medium> medium;
 }
 
 public enum CardType

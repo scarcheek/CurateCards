@@ -22,6 +22,23 @@ public class VisitorScript : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            anim.SetTrigger("backflip");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            anim.SetTrigger("shakefall");
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            anim.SetTrigger("falloverback");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            anim.SetTrigger("leftright");
+        }
+
         if (Vector3.Distance(transform.position, standPos) > 0.001f)
         {
             // Move our position a step closer to the target.

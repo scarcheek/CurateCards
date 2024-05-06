@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class PlayingCardScript : MonoBehaviour
 {
+    [Header("Props")]
+    private bool isHovered = false;
     [HideInInspector] public CardProps card;
     [Header("Component References")]
     [SerializeField] private Image SplashArt;
@@ -25,19 +27,52 @@ public class PlayingCardScript : MonoBehaviour
         CostText.text = card.cost.ToString();
         BaseValueText.text = card.baseValue.ToString();
         StringBuilder sb = new StringBuilder();
-        sb.Append(card.cardType.ToString());
-        if (card.medium != Medium.none)
+
+        int i;
+        bool hasNext;
+        if (card.cardType.Count > 0)
+        {
+            i = 0;
+            do
+            {
+                sb.Append(card.cardType[i].ToString());
+                i++;
+
+                hasNext = i < card.cardType.Count;
+                if (hasNext) sb.Append(", ");
+            } while (hasNext);
+        }
+        if (card.medium.Count > 0)
         {
             sb.Append(" - ");
-            sb.Append(card.medium.ToString());
+            
+            i = 0;
+            do
+            {
+                sb.Append(card.medium[i].ToString());
+                i++;
+
+                hasNext = i < card.medium.Count;
+                if (hasNext) sb.Append(", ");
+            } while (hasNext);
         }
         TypeMediumText.text = sb.ToString();
-
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void OnPointerEnter()
     {
-        
+        if (!isHovered)
+        {
+            isHovered = true;
+        }
+    }
+
+    public void OnPointerExit()
+    {
+        if(isHovered)
+        {
+            isHovered = false;
+        }
     }
 }

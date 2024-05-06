@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class PlayZoneScript : MonoBehaviour
@@ -10,7 +11,9 @@ public class PlayZoneScript : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private string playZoneSlotName = "PlaySlot";
     private List<GameObject> cardSlots = new();
+    private List<PlayingCardScript> cards = new();
 
+    private bool isHovered = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,37 +32,49 @@ public class PlayZoneScript : MonoBehaviour
     public void AddCardToPlayZone(GameObject cardSlot)
     {
         CardSlotsManager.AddCardToPlayCardSlots(cardSlot, cardSlots, transform, playZoneSlotName);
+        cards.Add(cardSlot.GetComponentInChildren<PlayingCardScript>());
 
         animator.SetBool("CardInPlayZone", true);
 
         cardSlot.GetComponentInChildren<CardSlotDeciderScript>().ResetPosition();
     }
-
     public void removeCardFromPlayZone(GameObject cardSlot)
     {
         CardSlotsManager.RemoveCardFromCardSlots(cardSlot, cardSlots, playZoneSlotName);
+        cards.Remove(cardSlot.GetComponentInChildren<PlayingCardScript>());
 
         animator.SetBool("CardInPlayZone", cardSlots.Count > 0);
-
+        //animator.SetTrigger("EndHoverPlayZone");
 
     }
     public void SortCardSlots(GameObject initiator = null) => CardSlotsManager.SortCardSlots(cardSlots, initiator);
 
+    public void OnPlayHand()
+    {
+        Debug.Log("Trying to play hand with cards: " + cards.Count);
+        if (cards.Count > 0)
+        {
+            EventManager.EmitPlayCards(cards);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "CardImage")
+        if (!isHovered && other.tag == "CardImage")
         {
-            animator.SetTrigger("HoverPlayZone");
+            animator.SetBool("HoverPlayZone", true);
+            isHovered = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "CardImage")
+        if (isHovered && other.tag == "CardImage")
         {
             Debug.Log(other.tag);
-            animator.SetTrigger("EndHoverPlayZone");
+            isHovered = false;
+            animator.SetBool("HoverPlayZone", false);
+
         }
     }
 

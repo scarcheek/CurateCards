@@ -19,4 +19,4 @@ MonoBehaviour:
   cost: 3
   baseValue: 3
   cardType: 00000000
-  medium: 1
+  medium: 01000000

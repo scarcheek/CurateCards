@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   presentPrefab: {fileID: 0}
   title: Elite Employeeee
-  description: 'Your next Card has a guaranteed <color="yellow">crit</color>, as
-    you have been<color="red"> promoted</color> !! :OO '
+  description: 'Your next Card <color="yellow">crits</color>, as you have been<color="red">
+    promoted</color> !! :OO '
   cardSprite: {fileID: 0}
   cost: 2
   baseValue: 1
   cardType: 01000000
-  medium: 6
+  medium: 06000000

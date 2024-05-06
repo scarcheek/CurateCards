@@ -7,6 +7,7 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
     [SerializeField] private int visitorCount;
     [SerializeField] private GameObject visitorPrefab;
     [SerializeField] private BoxCollider standArea;
+    [SerializeField] private float verticalOffset;
 
     // Start is called before the first frame update
     void Start()
@@ -17,10 +18,10 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
             // This Quaternion is equal to Euler Rotation Y -90, used this as it is more efficient than always using Quternion.fromEuler
             GameObject visitor = Instantiate(
                 visitorPrefab,
-                RandomPointOutBounds(standArea.bounds, transform.position.y),
+                RandomPointOutBounds(standArea.bounds, transform.position.y + verticalOffset),
                 new Quaternion(0, 0.707f, 0, 0.707f),
                 transform);
-            visitor.GetComponentInChildren<VisitorScript>().standPos = RandomPointInBounds(standArea.bounds, transform.position.y + 1);
+            visitor.GetComponentInChildren<VisitorScript>().standPos = RandomPointInBounds(standArea.bounds, transform.position.y + verticalOffset);
         }
     }
     public static Vector3 RandomPointOutBounds(Bounds bounds, float height)
