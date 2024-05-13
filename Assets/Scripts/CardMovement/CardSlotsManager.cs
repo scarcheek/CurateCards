@@ -90,4 +90,13 @@ public class CardSlotsManager
                         (GameObject cardSlot, GameObject other) => cardSlot.name.CompareTo(other.name));
         }
     }
+
+    public static void ClearCardSlots(List<GameObject> cardslots)
+    {
+        foreach (GameObject cardslot in cardslots)
+        {
+            GameObject.Destroy(cardslot);
+        }
+        cardslots.Clear();
+    }
 }

@@ -10,6 +10,7 @@ public class PlayZoneScript : MonoBehaviour
     [SerializeField] private Vector2 targetPos;
     [SerializeField] private Animator animator;
     [SerializeField] private string playZoneSlotName = "PlaySlot";
+    [SerializeField] private GameObject button;
     private List<GameObject> cardSlots = new();
     private List<PlayingCardScript> cards = new();
 
@@ -18,6 +19,7 @@ public class PlayZoneScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        button.SetActive(false);
         targetPos = transform.localPosition;
         EventManager.DropCardInPlayZone += AddCardToPlayZone;
         EventManager.DropCardOutsidePlayZone += removeCardFromPlayZone;
@@ -34,6 +36,8 @@ public class PlayZoneScript : MonoBehaviour
         CardSlotsManager.AddCardToPlayCardSlots(cardSlot, cardSlots, transform, playZoneSlotName);
         cards.Add(cardSlot.GetComponentInChildren<PlayingCardScript>());
 
+        button.SetActive(true);
+
         animator.SetBool("CardInPlayZone", true);
 
         cardSlot.GetComponentInChildren<CardSlotDeciderScript>().ResetPosition();
@@ -44,6 +48,10 @@ public class PlayZoneScript : MonoBehaviour
         cards.Remove(cardSlot.GetComponentInChildren<PlayingCardScript>());
 
         animator.SetBool("CardInPlayZone", cardSlots.Count > 0);
+        if (cardSlots.Count == 0)
+        {
+            button.SetActive(false);
+        }
         //animator.SetTrigger("EndHoverPlayZone");
 
     }
@@ -55,7 +63,17 @@ public class PlayZoneScript : MonoBehaviour
         if (cards.Count > 0)
         {
             EventManager.EmitPlayCards(cards);
+            ClearCardSlots();
         }
+    }
+     
+    private void ClearCardSlots()
+    {
+        cards.Clear();
+        button.SetActive(false);
+        CardSlotsManager.ClearCardSlots(cardSlots);
+        animator.SetBool("CardInPlayZone", false);
+        animator.SetBool("HoverPlayZone", false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

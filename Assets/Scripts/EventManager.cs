@@ -9,6 +9,9 @@ public class EventManager : MonoBehaviour
     public static event Action<GameObject> DropCardOutsidePlayZone;
     public static event Action<GameObject> SortSlots;
     public static event Action<List<PlayingCardScript>> PlayCards;
+    public static event Action<PlayingCardScript> PresentCard;
+    public static event Action ShowVisitorDone;
+
 
     public static void EmitDropCardInPlayZone(GameObject cardSlot)
     {
@@ -28,5 +31,15 @@ public class EventManager : MonoBehaviour
     public static void EmitPlayCards(List<PlayingCardScript> cards)
     {
         PlayCards?.Invoke(cards);
+    }
+
+    public static void EmitPresentCard(PlayingCardScript card)
+    {
+        PresentCard?.Invoke(card);
+    }
+
+    public static void EmitShowVisitorDone()
+    {
+        ShowVisitorDone?.Invoke();
     }
 }
