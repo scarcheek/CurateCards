@@ -12,7 +12,6 @@ public class PlayZoneScript : MonoBehaviour
     [SerializeField] private string playZoneSlotName = "PlaySlot";
     [SerializeField] private GameObject button;
     private List<GameObject> cardSlots = new();
-    private List<PlayingCardScript> cards = new();
 
     private bool isHovered = false;
 
@@ -34,7 +33,6 @@ public class PlayZoneScript : MonoBehaviour
     public void AddCardToPlayZone(GameObject cardSlot)
     {
         CardSlotsManager.AddCardToPlayCardSlots(cardSlot, cardSlots, transform, playZoneSlotName);
-        cards.Add(cardSlot.GetComponentInChildren<PlayingCardScript>());
 
         button.SetActive(true);
 
@@ -45,7 +43,6 @@ public class PlayZoneScript : MonoBehaviour
     public void removeCardFromPlayZone(GameObject cardSlot)
     {
         CardSlotsManager.RemoveCardFromCardSlots(cardSlot, cardSlots, playZoneSlotName);
-        cards.Remove(cardSlot.GetComponentInChildren<PlayingCardScript>());
 
         animator.SetBool("CardInPlayZone", cardSlots.Count > 0);
         if (cardSlots.Count == 0)
@@ -59,9 +56,14 @@ public class PlayZoneScript : MonoBehaviour
 
     public void OnPlayHand()
     {
-        Debug.Log("Trying to play hand with cards: " + cards.Count);
-        if (cards.Count > 0)
+        Debug.Log("Trying to play hand with cards: " + cardSlots.Count);
+        if (cardSlots.Count > 0)
         {
+            List<PlayingCardScript> cards = new();
+            foreach (GameObject card in cardSlots) 
+            {
+                cards.Add(card.GetComponentInChildren<PlayingCardScript>());
+            }
             EventManager.EmitPlayCards(cards);
             ClearCardSlots();
         }
@@ -69,7 +71,6 @@ public class PlayZoneScript : MonoBehaviour
      
     private void ClearCardSlots()
     {
-        cards.Clear();
         button.SetActive(false);
         CardSlotsManager.ClearCardSlots(cardSlots);
         animator.SetBool("CardInPlayZone", false);
