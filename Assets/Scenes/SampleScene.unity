@@ -997,6 +997,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4cea82b0c3eed614cae8d27f47820644, type: 2}
   - {fileID: 11400000, guid: 0aaa06ecb651e6e4fae25752a1be769f, type: 2}
   - {fileID: 11400000, guid: 6db0b1e58c5454a428a2601b879cdb2f, type: 2}
+  - {fileID: 11400000, guid: 924314d21992e174f8b607c024f121a5, type: 2}
+  - {fileID: 11400000, guid: 69d121c14571cb44ab67eebe839493d4, type: 2}
+  - {fileID: 11400000, guid: 3f942fec8aa8be14d9679bac855c9317, type: 2}
+  - {fileID: 11400000, guid: 0c56910baa5f3be41a2ac9c66777362b, type: 2}
+  - {fileID: 11400000, guid: ca459f3803456374f94c50f3a531f76c, type: 2}
   DebugStartCardSlots: 0
   cardSlotPrefab: {fileID: 5765090287824418254, guid: e93587bab58f12249805e005cca5965f, type: 3}
   targetPos: {x: 0, y: 0}
