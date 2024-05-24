@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable object/Card")]
-public class CardProps : ScriptableObject
+public abstract class CardProps : ScriptableObject
 {
     [Header("Only gameplay")]
     public GameObject presentPrefab;
@@ -16,6 +16,18 @@ public class CardProps : ScriptableObject
     public int baseValue;
     public List<CardType> cardType;
     public List<Medium> medium;
+
+    protected void AddCounter(params Counter[] counter) => EventManager.EmitAddCounter(counter);
+
+    public abstract void OnPlay();
+
+}
+
+public enum Counter
+{
+    attack,
+    defence,
+    virus
 }
 
 public enum CardType

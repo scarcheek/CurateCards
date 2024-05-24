@@ -12,7 +12,7 @@ public class ArtSpotScript : MonoBehaviour
     private void Start()
     {
         EventManager.PresentCard += OnPresent;
-        EventManager.ShowVisitorDone += OnShowVisitorDone;
+        EventManager.AnimationVisitorDone += OnShowVisitorDone;
     }
 
     private void OnPresent(PlayingCardScript card)

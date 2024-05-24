@@ -31,6 +31,6 @@ public class mainCameraScript : MonoBehaviour
 
     public void PresentVisitorDone()
     {
-        EventManager.EmitShowVisitorDone();
+        EventManager.EmitAnimationVisitorDone();
     }
 }
