@@ -23,7 +23,7 @@ public class CardProps : ScriptableObject
 
     public virtual void Play()
     {
-        Debug.LogWarning("Play() has not been implemented for card: " + title);
+        EventManager.EmitScoreCard(this);
     }
 
 }

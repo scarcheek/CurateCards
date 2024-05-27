@@ -20,7 +20,7 @@ public class ArtSpotScript : MonoBehaviour
         smokeEffect.Play();
         if (card.card.presentPrefab)
         {
-            card.card.Play();
+            Debug.Log("presenting");
             artPiece = Instantiate(card.card.presentPrefab);
         }
     }
