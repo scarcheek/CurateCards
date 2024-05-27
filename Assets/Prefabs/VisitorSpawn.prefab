@@ -158,6 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5463952091971488738}
   - component: {fileID: 8127086601531447060}
+  - component: {fileID: 755632802245418594}
   m_Layer: 0
   m_Name: VisitorAnchor
   m_TagString: Untagged
@@ -202,6 +203,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &755632802245418594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5743178024983941871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91ec6d37189b304382f6f47f0bc14f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!1 &7098581192587485102
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +342,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6264542130476496055}
-  - component: {fileID: 315960637055698056}
+  - component: {fileID: 297920531648286656}
   m_Layer: 0
   m_Name: VisitorSpawn
   m_TagString: Untagged
@@ -352,7 +366,7 @@ Transform:
   - {fileID: 5463952091971488738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &315960637055698056
+--- !u!114 &297920531648286656
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -364,8 +378,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7208a7b19fb7b41ad35004a77661ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   bodySprite: {fileID: 5457855734537654327}
   hatSprite: {fileID: 7812629400279245895}
+  speed: 10
   hatProb: 0.7
+  neutralThreshhold: 20
+  initialMotivation: 20
   standPos: {x: 0, y: 0, z: 0}

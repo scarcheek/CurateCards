@@ -1,8 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable object/Card")]
 public class CardProps : ScriptableObject
 {
     [Header("Only gameplay")]
@@ -12,10 +12,27 @@ public class CardProps : ScriptableObject
     public string description;
     public Sprite cardSprite;
     public int cost;
+    public List<Effect> effects = new();
     [Header("Both")]
     public int baseValue;
-    public List<CardType> cardType;
-    public List<Medium> medium;
+    public List<CardType> cardType = new();
+    public List<Medium> medium = new();
+
+
+    protected void AddCounter(params Counter[] counter) => EventManager.EmitAddCounter(counter);
+
+    public virtual void Play()
+    {
+        EventManager.EmitScoreCard(this);
+    }
+
+}
+
+public enum Counter
+{
+    attack,
+    defence,
+    virus
 }
 
 public enum CardType
@@ -32,6 +49,7 @@ public enum Medium
     sculpture,
     painting,
     furniture,
+    chair,
     food,
     music,
     videogame,

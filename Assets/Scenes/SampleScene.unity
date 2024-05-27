@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -304,6 +304,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155502341}
   m_CullTransparentMesh: 1
+--- !u!1 &249896229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 249896231}
+  - component: {fileID: 249896230}
+  m_Layer: 0
+  m_Name: GameStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &249896230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249896229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55431abd023a67447a0994f4328fbf73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreToAchieve: 0
+  initialScoreFactor: 0
+--- !u!4 &249896231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249896229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 898.2672, y: 472.64273, z: -657.10657}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &293787459
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,17 +1037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 11400000, guid: e9a54104492d8a249b79080ca0ee71f6, type: 2}
-  - {fileID: 11400000, guid: ae450b05cecd9474dba3df5e804a7d61, type: 2}
-  - {fileID: 11400000, guid: fabff9aa82428c24bb3c288ef3d5e6f5, type: 2}
-  - {fileID: 11400000, guid: 4cea82b0c3eed614cae8d27f47820644, type: 2}
-  - {fileID: 11400000, guid: 0aaa06ecb651e6e4fae25752a1be769f, type: 2}
-  - {fileID: 11400000, guid: 6db0b1e58c5454a428a2601b879cdb2f, type: 2}
-  - {fileID: 11400000, guid: 924314d21992e174f8b607c024f121a5, type: 2}
-  - {fileID: 11400000, guid: 69d121c14571cb44ab67eebe839493d4, type: 2}
-  - {fileID: 11400000, guid: 3f942fec8aa8be14d9679bac855c9317, type: 2}
-  - {fileID: 11400000, guid: 0c56910baa5f3be41a2ac9c66777362b, type: 2}
-  - {fileID: 11400000, guid: ca459f3803456374f94c50f3a531f76c, type: 2}
+  - {fileID: 11400000, guid: b0111a5174c06834aa81d481d92be9c9, type: 2}
   DebugStartCardSlots: 0
   cardSlotPrefab: {fileID: 5765090287824418254, guid: e93587bab58f12249805e005cca5965f, type: 3}
   targetPos: {x: 0, y: 0}
@@ -1678,3 +1714,4 @@ SceneRoots:
   - {fileID: 788321429}
   - {fileID: 1169371023}
   - {fileID: 1963686494}
+  - {fileID: 249896231}

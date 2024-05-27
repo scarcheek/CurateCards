@@ -64,7 +64,7 @@ public class PlayZoneScript : MonoBehaviour
             {
                 cards.Add(card.GetComponentInChildren<PlayingCardScript>());
             }
-            EventManager.EmitPlayCards(cards);
+            EventManager.EmitSubmitCards(cards);
             ClearCardSlots();
         }
     }

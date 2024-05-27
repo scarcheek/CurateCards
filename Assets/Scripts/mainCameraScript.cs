@@ -7,13 +7,14 @@ public class mainCameraScript : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     private List<PlayingCardScript> remainingCards;
+    private PlayingCardScript currentlyPresenting;
     private void Start()
     {
-        EventManager.PlayCards += OnPlayCards;
+        EventManager.submitCards += OnSubmitCards;
     }
 
 
-    private void OnPlayCards(List<PlayingCardScript> cards)
+    private void OnSubmitCards(List<PlayingCardScript> cards)
     {
         Debug.Log("Wos is?");
         anim.SetTrigger("Present");
@@ -25,12 +26,20 @@ public class mainCameraScript : MonoBehaviour
     {
         PlayingCardScript cardToPlay = remainingCards[0];
         remainingCards.RemoveAt(0);
+        currentlyPresenting = cardToPlay;
         EventManager.EmitPresentCard(cardToPlay);
         anim.SetBool("AreCardsLeft", remainingCards.Count > 0);
     }
 
     public void PresentVisitorDone()
     {
-        EventManager.EmitShowVisitorDone();
+        EventManager.EmitAnimationVisitorDone();
+    }
+
+
+    public void PresentVisitorStart()
+    {
+        currentlyPresenting.card.Play();
+        currentlyPresenting = null;
     }
 }

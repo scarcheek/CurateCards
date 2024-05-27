@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
-  m_Name: SmilingLady
+  m_Script: {fileID: 11500000, guid: 8ae171aa63de6244483c52ae8d5c3bc4, type: 3}
+  m_Name: Smiling Lady
   m_EditorClassIdentifier: 
   presentPrefab: {fileID: 919132149155446097, guid: 24ab3cb9b33248e4da200bd3985cea39, type: 3}
   title: Smiling Lady
-  description: This card fucks your mom
+  description: YOOO MOANER LISAR (real). {+1 people}
   cardSprite: {fileID: 21300000, guid: f22dcec60d763004f9ce5fef2605d457, type: 3}
-  cost: 3
-  baseValue: 3
+  cost: 20
+  effects: 00000000
+  baseValue: 30
   cardType: 00000000
   medium: 01000000

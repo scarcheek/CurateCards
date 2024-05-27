@@ -12,14 +12,17 @@ public class ArtSpotScript : MonoBehaviour
     private void Start()
     {
         EventManager.PresentCard += OnPresent;
-        EventManager.ShowVisitorDone += OnShowVisitorDone;
+        EventManager.AnimationVisitorDone += OnShowVisitorDone;
     }
 
     private void OnPresent(PlayingCardScript card)
     {
         smokeEffect.Play();
-        if (card.card.presentPrefab) 
+        if (card.card.presentPrefab)
+        {
+            Debug.Log("presenting");
             artPiece = Instantiate(card.card.presentPrefab);
+        }
     }
 
     private void OnShowVisitorDone()
