@@ -9,7 +9,7 @@ public class mainCameraScript : MonoBehaviour
     private List<PlayingCardScript> remainingCards;
     private void Start()
     {
-        EventManager.PlayCards += OnPlayCards;
+        EventManager.submitCards += OnPlayCards;
     }
 
 

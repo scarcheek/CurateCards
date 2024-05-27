@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable object/Card")]
-public abstract class CardProps : ScriptableObject
+public class CardProps : ScriptableObject
 {
     [Header("Only gameplay")]
     public GameObject presentPrefab;
@@ -12,14 +12,19 @@ public abstract class CardProps : ScriptableObject
     public string description;
     public Sprite cardSprite;
     public int cost;
+    public List<Effect> effects = new();
     [Header("Both")]
     public int baseValue;
-    public List<CardType> cardType;
-    public List<Medium> medium;
+    public List<CardType> cardType = new();
+    public List<Medium> medium = new();
+
 
     protected void AddCounter(params Counter[] counter) => EventManager.EmitAddCounter(counter);
 
-    public abstract void OnPlay();
+    public virtual void Play()
+    {
+        Debug.LogWarning("Play() has not been implemented for card: " + title);
+    }
 
 }
 
@@ -44,6 +49,7 @@ public enum Medium
     sculpture,
     painting,
     furniture,
+    chair,
     food,
     music,
     videogame,

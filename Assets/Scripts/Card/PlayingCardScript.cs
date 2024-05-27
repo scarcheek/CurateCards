@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,11 +20,12 @@ public class PlayingCardScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TypeMediumText;
 
     // Start is called before the first frame update
+    
     void Start()
     {
         SplashArt.sprite = card.cardSprite;
         TitleText.text = card.title;
-        DescriptionText.text = card.description;
+        DescriptionText.text = StylizeDescription(card);
         CostText.text = card.cost.ToString();
         BaseValueText.text = card.baseValue.ToString();
         StringBuilder sb = new StringBuilder();
@@ -58,7 +60,17 @@ public class PlayingCardScript : MonoBehaviour
         }
         TypeMediumText.text = sb.ToString();
     }
-
+    
+    private string StylizeDescription(CardProps card)
+    {
+        string cardDescription = card.description;
+        foreach (Effect effect in card.effects)
+        {
+            cardDescription = cardDescription.Replace("{", CardEffectColors.effectColors[effect]);
+            cardDescription = cardDescription.Replace("}", CardEffectColors.effectColors[Effect.ENDSTYLE]);
+        }
+        return cardDescription;
+    }
 
     public void OnPointerEnter()
     {
