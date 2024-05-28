@@ -10,7 +10,7 @@ public class PlayingCardScript : MonoBehaviour
 {
     [Header("Props")]
     private bool isHovered = false;
-    [HideInInspector] public CardProps card;
+    public CardProps card;
     [Header("Component References")]
     [SerializeField] private Image SplashArt;
     [SerializeField] private TextMeshProUGUI TitleText;

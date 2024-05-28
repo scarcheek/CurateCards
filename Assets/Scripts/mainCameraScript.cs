@@ -28,7 +28,15 @@ public class mainCameraScript : MonoBehaviour
         remainingCards.RemoveAt(0);
         currentlyPresenting = cardToPlay;
         EventManager.EmitPresentCard(cardToPlay);
-        anim.SetBool("AreCardsLeft", remainingCards.Count > 0);
+        if (remainingCards.Count == 0)
+        {
+            anim.SetBool("AreCardsLeft", false);
+        }
+    }
+
+    public void OnCurationDone ()
+    {
+        EventManager.EmitCurationDone();
     }
 
     public void PresentVisitorDone()

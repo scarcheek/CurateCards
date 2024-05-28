@@ -10,6 +10,6 @@ public class SmilingLady : CardProps
     {
         Debug.Log("I am the mona lisa :)");
         base.Play();
-
+        VisitorSpawnPlaneScript.instance.SpawnAndAddVisitor();
     }
 }

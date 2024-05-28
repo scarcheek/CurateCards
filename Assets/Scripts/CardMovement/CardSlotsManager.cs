@@ -9,7 +9,7 @@ public class CardSlotsManager
     public static float verticalSpacing = 50f;
 
     /// <summary>
-    /// Calculated the targetPosition based on cardslotscount, with respect to the in-class targetSpaceBetweenCards and a transform with the handReAdjustmentSpeed
+    /// Calculates the targetPosition based on cardslotscount, with respect to the in-class targetSpaceBetweenCards and a transform with the handReAdjustmentSpeed
     /// </summary>
     /// <param name="targetPos">the reference to the targetPosition in the SlotsScript</param>
     /// <param name="transform">transform to take the localposition of</param>
@@ -55,6 +55,7 @@ public class CardSlotsManager
     {
         if (!cardSlots.Contains(cardSlot)) return;
 
+
         cardSlots.Remove(cardSlot);
         for (int i = 0; i < cardSlots.Count; i++)
         {
@@ -73,6 +74,9 @@ public class CardSlotsManager
     {
         cardSlot.name = nameTemplate + pos;
         cardSlot.transform.localPosition = new Vector3(targetSpaceBetweenCards * pos, verticalSpacing);
+
+        cardSlot.GetComponentInChildren<PlayingCardScript>().card.SetPropPos(pos);
+        Debug.Log(cardSlot.GetComponentInChildren<PlayingCardScript>().card.propPos);
 
         cardSlot.GetComponentInChildren<CardSlotDeciderScript>().targetPos = new Vector3(targetSpaceBetweenCards * pos, verticalSpacing);
     }
