@@ -1,5 +1,7 @@
+
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class VisitorScript : MonoBehaviour
@@ -7,6 +9,7 @@ public class VisitorScript : MonoBehaviour
     [Header("Components")]
     [SerializeField] private SpriteRenderer bodySprite;
     [SerializeField] private SpriteRenderer hatSprite;
+    [SerializeField] private ScoreVisualizerScript scoreVisualizer;
     [Header("Properties")]
     [SerializeField] public float speed;
     [SerializeField] private float hatProb;
@@ -14,10 +17,13 @@ public class VisitorScript : MonoBehaviour
     [SerializeField] private float initialMotivation;
     [Header("DEBUG")]
     public Vector3 standPos;
+    [SerializeField] private float currentMotivation;
+    [SerializeField] private float hatMotivation;
+    [SerializeField] private float bodyMotivation;
+    [SerializeField] private float pantsMotivation;
 
     private VisitorAnimationController animController;
     private float individualScoreFactor;
-    private float currentMotivation;
 
     private bool isLeaving = false;
     VisitorSpawnPlaneScript planeScript;
@@ -31,34 +37,28 @@ public class VisitorScript : MonoBehaviour
         EventManager.ScoreCard += OnScoreCard;
         hatSprite.enabled = Random.value > hatProb;
         currentMotivation = initialMotivation;
+        hatMotivation = Random.Range(-30, 30);
+        bodyMotivation = Random.Range(-30, 30);
+        pantsMotivation = Random.Range(-30, 30);
     }
 
-    private float calculateScore(CardProps card)
+    private float CalculateScore(CardProps card, ref float motivation)
     {
         //TODO: Calculate Score based on clothing
-        individualScoreFactor = Random.Range(-.8f, 1f);
-        individualScoreFactor += Random.Range(-.8f, 1f);
-        individualScoreFactor += Random.Range(-.8f, 1f);
-        Debug.Log("I got a score of " + card.baseValue * individualScoreFactor + " with a score factor of " + individualScoreFactor);
-        return card.baseValue * individualScoreFactor;
+        individualScoreFactor = hatMotivation + bodyMotivation + pantsMotivation + Random.Range(-5, 5);
+        motivation += individualScoreFactor;
+        //Debug.Log("I got a score of " + card.baseValue + individualScoreFactor + " with a score factor of " + individualScoreFactor);
+        return card.baseValue + individualScoreFactor;
     }
 
     public void ReactionDone()
     {
-        if(currentMotivation < 0)
+        if (currentMotivation < 0)
         {
             isLeaving = true;
             standPos = planeScript.RandomPointOutBounds();
             EventManager.ScoreCard -= OnScoreCard;
         }
-    }
-
-    private void OnScoreCard(CardProps card)
-    {
-        float calculatedScore = calculateScore(card);
-        currentMotivation += calculatedScore;
-        EventManager.EmitAddBaseValueToGamestate(calculatedScore);
-        animController.ReactToScore(neutralThreshhold, calculatedScore);
     }
 
     void Update()
@@ -74,5 +74,14 @@ public class VisitorScript : MonoBehaviour
             //TODO: Remove visitor properly 
             Destroy(gameObject);
         }
+    }
+    private void OnScoreCard(CardProps card)
+    {
+        float motivationChange = 0;
+        float calculatedScore = CalculateScore(card, ref motivationChange);
+        currentMotivation += motivationChange;
+        EventManager.EmitAddBaseValueToGamestate(calculatedScore);
+        animController.ReactToScore(neutralThreshhold, currentMotivation);
+        scoreVisualizer.showScore(System.Math.Round(calculatedScore), motivationChange);
     }
 }

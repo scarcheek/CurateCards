@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class VisitorSpawnPlaneScript : MonoBehaviour
 {
-    [SerializeField] private int visitorCount;
+    [Header("Components")]
+    public BoxCollider standArea;
     [SerializeField] private GameObject visitorPrefab;
-    [SerializeField] public BoxCollider standArea;
+    [Header("Properties")]
+    [SerializeField] private int visitorAmountToSpawn;
     [SerializeField] private float verticalOffset;
+
+    [SerializeField] private List<GameObject> visitors = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
         standArea = GetComponent<BoxCollider>();
-        for (int i = 0; i < visitorCount; i++)
+        for (int i = 0; i < visitorAmountToSpawn; i++)
         {
             // This Quaternion is equal to Euler Rotation Y -90, used this as it is more efficient than always using Quternion.fromEuler
             GameObject visitor = Instantiate(
@@ -22,6 +26,7 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
                 new Quaternion(0, 0.707f, 0, 0.707f),
                 transform);
             visitor.GetComponentInChildren<VisitorScript>().standPos = RandomPointInBounds(standArea.bounds, transform.position.y + verticalOffset);
+            visitors.Add(visitor);
         }
     }
 

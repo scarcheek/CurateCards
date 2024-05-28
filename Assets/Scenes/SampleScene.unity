@@ -395,10 +395,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2788644022b2b4aa2c72ad62f1f8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visitorCount: 30
   visitorPrefab: {fileID: 8223413006770270513, guid: ada0064a9bb10974bac475aee470c943, type: 3}
   standArea: {fileID: 293787462}
+  visitorAmountToSpawn: 5
   verticalOffset: 1.2
+  visitors: []
 --- !u!65 &293787462
 BoxCollider:
   m_ObjectHideFlags: 0

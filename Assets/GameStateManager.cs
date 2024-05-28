@@ -16,6 +16,7 @@ public class GameStateManager : MonoBehaviour
 
     public void addBaseValue(float baseVal)
     {
+        //TODO: Display the score somewhere in the UI
         currentScore += baseVal;
         Debug.Log("Current Score: " + currentScore);
     }

@@ -63,7 +63,6 @@ public class VisitorAnimationController : MonoBehaviour
         parentScript.ReactionDone();
 
     }
-
     public void OnBackFlipDone()
     {
         parentScript.ReactionDone();
