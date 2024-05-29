@@ -75,6 +75,7 @@ public class CardSlotsManager
         cardSlot.transform.localPosition = new Vector3(targetSpaceBetweenCards * pos, verticalSpacing);
 
         cardSlot.GetComponentInChildren<CardSlotDeciderScript>().targetPos = new Vector3(targetSpaceBetweenCards * pos, verticalSpacing);
+        cardSlot.GetComponentInChildren<CardBehaviour>().pos = pos;
     }
 
     /// <summary>

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Banana : CardBehaviour
 {
-    internal override bool OnAddToPlayZone()
+    internal override bool OnAddToPlayZone(List<GameObject> cardSlots)
     {
-        if (!base.OnAddToPlayZone()) return false;
+        if (!base.OnAddToPlayZone(cardSlots)) return false;
         CardEffects.MediumEffects[Medium.food].Add(MediumEffect);
         return true;
     }
@@ -48,5 +48,38 @@ public class Banana : CardBehaviour
             return true;
         }
         return false;
+    }
+
+    internal override bool OnSwapCardSlot(CardBehaviour swappedWith)
+    {
+        Debug.Log("Swapped with " + swappedWith.name);
+        if (!base.OnSwapCardSlot(swappedWith)) return false;
+        if (buffingOtherCards)
+        {
+            if (buffedMediumCards.Contains(swappedWith))
+            {
+                RevertMediumEffect(swappedWith);
+                buffedMediumCards.Remove(swappedWith);
+            } 
+            else
+            {
+                RevertMediumEffect(buffedMediumCards[0]);
+                buffedMediumCards[0].revertBuffFuncs.Remove(RevertMediumEffect);
+            }
+        }
+        else if (!buffingOtherCards && swappedWith.cardProps.medium.Contains(Medium.food))
+        {
+            MediumEffect(swappedWith);
+        }
+        if (!buffingOtherCards && pos + 1 < cardSlots.Count)
+        {
+            for (int i = pos + 1; i < cardSlots.Count; i++)
+            {
+                CardBehaviour behaviour = cardSlots[i].GetComponentInChildren<CardBehaviour>();
+                if (MediumEffect(behaviour)) return true;
+            }
+        }
+
+        return true;
     }
 }

@@ -39,7 +39,7 @@ public class PlayZoneScript : MonoBehaviour
         animator.SetBool("CardInPlayZone", true);
 
         cardSlot.GetComponentInChildren<CardSlotDeciderScript>().ResetPosition();
-        cardSlot.GetComponentInChildren<CardBehaviour>().OnAddToPlayZone();
+        cardSlot.GetComponentInChildren<CardBehaviour>().OnAddToPlayZone(cardSlots);
     }
     public void removeCardFromPlayZone(GameObject cardSlot)
     {

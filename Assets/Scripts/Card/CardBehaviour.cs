@@ -19,6 +19,8 @@ public class CardBehaviour : MonoBehaviour
     internal bool buffingOtherCards = false;
     internal List<CardBehaviour> buffedMediumCards = new();
     internal List<CardBehaviour> buffedTypeCards = new();
+    internal List<GameObject> cardSlots;
+    public int pos;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +57,7 @@ public class CardBehaviour : MonoBehaviour
         EventManager.EmitScoreCard(this);
     }
 
-    internal virtual bool OnAddToPlayZone()
+    internal virtual bool OnAddToPlayZone(List<GameObject> cardSlots)
     {
         if (wasInPlayzone) return false;
         foreach (Medium m in cardProps.medium)
@@ -74,6 +76,7 @@ public class CardBehaviour : MonoBehaviour
             }
         }
 
+        this.cardSlots = cardSlots;
         wasInPlayzone = true;
         return true;
     }
@@ -82,7 +85,31 @@ public class CardBehaviour : MonoBehaviour
     {
         if (!wasInPlayzone) return false;
 
+        RemoveEffectsFromEffectPool();
+        RevertEffectsOfBuffedCards();
 
+        foreach (Func<CardBehaviour, bool> revertFunc in revertBuffFuncs)
+        {
+            revertFunc(this);
+        }
+        revertBuffFuncs.Clear();
+        
+        cardSlots = null;
+        wasInPlayzone = false;
+        return true;
+    }
+    /// <summary>
+    /// Gets called in CardSlotDeciderScript whenever two cards are being swapped.
+    /// </summary>
+    /// <param name="swappedWith">The CardBehaviour swapped with</param>
+    /// <returns>True if the swapped card was in playzone</returns>
+    internal virtual bool OnSwapCardSlot(CardBehaviour swappedWith) 
+    {
+        return wasInPlayzone;
+    }
+
+    private void RemoveEffectsFromEffectPool()
+    {
         foreach (Medium m in cardProps.medium)
         {
             CardEffects.MediumEffects[m].Remove(this.MediumEffect);
@@ -92,7 +119,10 @@ public class CardBehaviour : MonoBehaviour
         {
             CardEffects.TypeEffects[t].Remove(TypeEffect);
         }
+    }
 
+    private void RevertEffectsOfBuffedCards()
+    {
         if (buffingOtherCards)
         {
             foreach (CardBehaviour buffedCard in buffedMediumCards)
@@ -107,14 +137,6 @@ public class CardBehaviour : MonoBehaviour
             buffedTypeCards.Clear();
             buffingOtherCards = false;
         }
-
-        foreach (Func<CardBehaviour, bool> revertFunc in revertBuffFuncs)
-        {
-            revertFunc(this);
-        }
-        revertBuffFuncs.Clear();
-        wasInPlayzone = false;
-        return true;
     }
 
     internal virtual bool MediumEffect(CardBehaviour card) { return false; }
