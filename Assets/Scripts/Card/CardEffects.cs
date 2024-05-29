@@ -1,9 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class CardEffectColors
+public static class CardEffects
 {
+    public static Dictionary<Medium, List<Func<CardBehaviour, bool>>> MediumEffects = new()
+    {
+        { Medium.chair, new()},
+        { Medium.food, new()},
+        { Medium.furniture, new()},
+        { Medium.music, new()},
+        { Medium.none, new()},
+        { Medium.painting, new()},
+        { Medium.sculpture, new()},
+        { Medium.video, new()},
+        { Medium.videogame, new()},
+    };
+    public static Dictionary<CardType, List<Func<CardBehaviour, bool>>> TypeEffects = new()
+    {
+        { CardType.ancient, new()},
+        { CardType.contemporary, new()},
+        { CardType.everyday, new()},
+        { CardType.technological, new()},
+        { CardType.traditional, new()},
+    };
+
     public static Dictionary<Effect, string> effectColors = new Dictionary<Effect, string>()
     {
         { Effect.addPeople, "<color=\"blue\">" },

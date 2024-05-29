@@ -39,6 +39,7 @@ public class PlayZoneScript : MonoBehaviour
         animator.SetBool("CardInPlayZone", true);
 
         cardSlot.GetComponentInChildren<CardSlotDeciderScript>().ResetPosition();
+        cardSlot.GetComponentInChildren<CardBehaviour>().OnAddToPlayZone();
     }
     public void removeCardFromPlayZone(GameObject cardSlot)
     {
@@ -51,12 +52,13 @@ public class PlayZoneScript : MonoBehaviour
         }
         //animator.SetTrigger("EndHoverPlayZone");
 
+        cardSlot.GetComponentInChildren<CardBehaviour>().OnRemoveFromPlayZone();
+
     }
     public void SortCardSlots(GameObject initiator = null) => CardSlotsManager.SortCardSlots(cardSlots, initiator);
 
     public void OnPlayHand()
     {
-        Debug.Log("Trying to play hand with cards: " + cardSlots.Count);
         if (cardSlots.Count > 0)
         {
             List<PlayingCardScript> cards = new();
@@ -90,7 +92,6 @@ public class PlayZoneScript : MonoBehaviour
     {
         if (isHovered && other.tag == "CardImage")
         {
-            Debug.Log(other.tag);
             isHovered = false;
             animator.SetBool("HoverPlayZone", false);
 

@@ -18,13 +18,16 @@ public class PlayingCardScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI CostText;
     [SerializeField] private TextMeshProUGUI BaseValueText;
     [SerializeField] private TextMeshProUGUI TypeMediumText;
+    private Color defaultValueColor;
+    private Color defaultCostColor;
 
     // Start is called before the first frame update
 
     void Start()
     {
         InitializeCardView();
-        
+        defaultValueColor = BaseValueText.color;
+        defaultCostColor = CostText.color;
     }
 
     public void InitializeCardView()
@@ -40,10 +43,18 @@ public class PlayingCardScript : MonoBehaviour
         DescriptionText.text = StylizeDescription(card.cardProps);
     }
 
-    public void DisplayCardStats(float cardCost, float cardValue)
+    public void DisplayCardStats(float cardCost, float cardValue, bool crits = false)
     {
         CostText.text = cardCost.ToString();
         BaseValueText.text = cardValue.ToString();
+        if (crits)
+        {
+            BaseValueText.color = Color.yellow;
+        }
+        else 
+        {
+            BaseValueText.color = defaultValueColor;
+        }
     }
 
     public void SetTypeAndMedium()
@@ -88,8 +99,8 @@ public class PlayingCardScript : MonoBehaviour
         string cardDescription = card.description;
         foreach (Effect effect in card.effects)
         {
-            cardDescription = cardDescription.Replace("{", CardEffectColors.effectColors[effect]);
-            cardDescription = cardDescription.Replace("}", CardEffectColors.effectColors[Effect.ENDSTYLE]);
+            cardDescription = cardDescription.Replace("{", CardEffects.effectColors[effect]);
+            cardDescription = cardDescription.Replace("}", CardEffects.effectColors[Effect.ENDSTYLE]);
         }
         return cardDescription;
     }

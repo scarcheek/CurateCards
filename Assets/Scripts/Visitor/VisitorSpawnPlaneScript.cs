@@ -13,21 +13,29 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
 
     [SerializeField] private List<GameObject> visitors = new List<GameObject>();
 
+    public static VisitorSpawnPlaneScript instance;
+
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         standArea = GetComponent<BoxCollider>();
         for (int i = 0; i < visitorAmountToSpawn; i++)
         {
-            // This Quaternion is equal to Euler Rotation Y -90, used this as it is more efficient than always using Quternion.fromEuler
-            GameObject visitor = Instantiate(
-                visitorPrefab,
-                RandomPointOutBounds(),
-                new Quaternion(0, 0.707f, 0, 0.707f),
-                transform);
-            visitor.GetComponentInChildren<VisitorScript>().standPos = RandomPointInBounds(standArea.bounds, transform.position.y + verticalOffset);
-            visitors.Add(visitor);
+            SpawnAndAddVisitor();
         }
+    }
+
+    public void SpawnAndAddVisitor()
+    {
+        // This Quaternion is equal to Euler Rotation Y -90, used this as it is more efficient than always using Quternion.fromEuler
+        GameObject visitor = Instantiate(
+            visitorPrefab,
+            RandomPointOutBounds(),
+            new Quaternion(0, 0.707f, 0, 0.707f),
+            transform);
+        visitor.GetComponentInChildren<VisitorScript>().standPos = RandomPointInBounds(standArea.bounds, transform.position.y + verticalOffset);
+        visitors.Add(visitor);
     }
 
     public Vector3 RandomPointOutBounds() => RandomPointOutBounds(standArea.bounds, transform.position.y + verticalOffset);

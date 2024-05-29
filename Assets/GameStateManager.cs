@@ -7,6 +7,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private float scoreToAchieve;
     [Range(0f, 1f)] [SerializeField] private float initialScoreFactor;
     private float currentScore;
+    
     // Start is called before the first frame update
     void Start()
     {

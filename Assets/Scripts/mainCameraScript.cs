@@ -16,7 +16,6 @@ public class mainCameraScript : MonoBehaviour
 
     private void OnSubmitCards(List<PlayingCardScript> cards)
     {
-        Debug.Log("Wos is?");
         anim.SetTrigger("Present");
         remainingCards = new List<PlayingCardScript>(cards);
         anim.SetBool("AreCardsLeft", true);
@@ -28,12 +27,20 @@ public class mainCameraScript : MonoBehaviour
         remainingCards.RemoveAt(0);
         currentlyPresenting = cardToPlay;
         EventManager.EmitPresentCard(cardToPlay);
-        anim.SetBool("AreCardsLeft", remainingCards.Count > 0);
+        if (remainingCards.Count == 0) 
+        { 
+            anim.SetBool("AreCardsLeft", false);
+        }
     }
 
     public void PresentVisitorDone()
     {
         EventManager.EmitAnimationVisitorDone();
+    }
+
+    public void OnCurationDone()
+    {
+        EventManager.EmitCurationDone();
     }
 
 

@@ -9,6 +9,8 @@ public class CardProps : ScriptableObject
 {
     [Header("Only gameplay")]
     public GameObject presentPrefab;
+    public float critChance = 0.1f;
+    public float critMult = 2f;
     [Header("Only UI")]
     public string title;
     public string description;

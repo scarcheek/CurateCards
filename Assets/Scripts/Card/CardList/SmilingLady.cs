@@ -9,5 +9,6 @@ public class SmilingLady : CardBehaviour
     {
         Debug.Log("I am the mona lisa :)");
         base.Play();
+        VisitorSpawnPlaneScript.instance.SpawnAndAddVisitor();
     }
 }
