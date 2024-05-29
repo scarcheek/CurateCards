@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "CardProps")]
+
 public class CardProps : ScriptableObject
 {
     [Header("Only gameplay")]
@@ -17,14 +19,6 @@ public class CardProps : ScriptableObject
     public int baseValue;
     public List<CardType> cardType = new();
     public List<Medium> medium = new();
-
-
-    protected void AddCounter(params Counter[] counter) => EventManager.EmitAddCounter(counter);
-
-    public virtual void Play()
-    {
-        EventManager.EmitScoreCard(this);
-    }
 
 }
 

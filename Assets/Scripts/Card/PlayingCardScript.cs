@@ -60,7 +60,14 @@ public class PlayingCardScript : MonoBehaviour
         }
         TypeMediumText.text = sb.ToString();
     }
-    
+
+    protected void AddCounter(params Counter[] counter) => EventManager.EmitAddCounter(counter);
+
+    public virtual void Play()
+    {
+        EventManager.EmitScoreCard(card);
+    }
+
     private string StylizeDescription(CardProps card)
     {
         string cardDescription = card.description;
