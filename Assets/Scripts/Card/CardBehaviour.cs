@@ -19,7 +19,6 @@ public class CardBehaviour : MonoBehaviour
     internal bool buffingOtherCards = false;
     internal List<CardBehaviour> buffedMediumCards = new();
     internal List<CardBehaviour> buffedTypeCards = new();
-    internal List<GameObject> cardSlots;
     public int pos;
     // Start is called before the first frame update
     void Start()
@@ -29,8 +28,10 @@ public class CardBehaviour : MonoBehaviour
         ResetCardStats();
     }
 
-    void ResetCardStats()
+    public void ResetCardStats()
     {
+        wasInPlayzone = false;
+        buffingOtherCards = false;
         cardValue = cardProps.baseValue;
         cardCost = cardProps.cost;
         guaranteedCrit = false;
@@ -57,7 +58,7 @@ public class CardBehaviour : MonoBehaviour
         EventManager.EmitScoreCard(this);
     }
 
-    internal virtual bool OnAddToPlayZone(List<GameObject> cardSlots)
+    internal virtual bool OnAddToPlayZone()
     {
         if (wasInPlayzone) return false;
         foreach (Medium m in cardProps.medium)
@@ -76,7 +77,6 @@ public class CardBehaviour : MonoBehaviour
             }
         }
 
-        this.cardSlots = cardSlots;
         wasInPlayzone = true;
         return true;
     }
@@ -94,7 +94,6 @@ public class CardBehaviour : MonoBehaviour
         }
         revertBuffFuncs.Clear();
         
-        cardSlots = null;
         wasInPlayzone = false;
         return true;
     }

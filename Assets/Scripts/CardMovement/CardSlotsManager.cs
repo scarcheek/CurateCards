@@ -83,13 +83,16 @@ public class CardSlotsManager
     /// </summary>
     /// <param name="cardSlots">List of gameobjects to be sorted</param>
     /// <param name="initiator">Default null. Set this if you want to make sure, it only sorts when the item is contained in the list</param>
-    public static void SortCardSlots(List<GameObject> cardSlots, GameObject initiator = null)
+    /// <returns>True if a sort has been done, false if the initiator is not contained in cardslots, thus not needing a sort</returns>
+    public static bool SortCardSlots(List<GameObject> cardSlots, GameObject initiator = null)
     {
         if (initiator == null || cardSlots.Contains(initiator))
         {
             cardSlots.Sort(
                         (GameObject cardSlot, GameObject other) => cardSlot.name.CompareTo(other.name));
+            return true;
         }
+        return false;
     }
 
     public static void ClearCardSlots(List<GameObject> cardslots)

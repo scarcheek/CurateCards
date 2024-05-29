@@ -22,7 +22,7 @@ public class PlayZoneScript : MonoBehaviour
         targetPos = transform.localPosition;
         EventManager.DropCardInPlayZone += AddCardToPlayZone;
         EventManager.DropCardOutsidePlayZone += removeCardFromPlayZone;
-        EventManager.SortSlots += SortCardSlots;
+        EventManager.OnSwapComplete += SortCardSlots;
     }
 
     private void FixedUpdate()
@@ -39,7 +39,7 @@ public class PlayZoneScript : MonoBehaviour
         animator.SetBool("CardInPlayZone", true);
 
         cardSlot.GetComponentInChildren<CardSlotDeciderScript>().ResetPosition();
-        cardSlot.GetComponentInChildren<CardBehaviour>().OnAddToPlayZone(cardSlots);
+        cardSlot.GetComponentInChildren<CardBehaviour>().OnAddToPlayZone();
     }
     public void removeCardFromPlayZone(GameObject cardSlot)
     {
@@ -55,7 +55,23 @@ public class PlayZoneScript : MonoBehaviour
         cardSlot.GetComponentInChildren<CardBehaviour>().OnRemoveFromPlayZone();
 
     }
-    public void SortCardSlots(GameObject initiator = null) => CardSlotsManager.SortCardSlots(cardSlots, initiator);
+    public void SortCardSlots(GameObject initiator = null)
+    {
+        //TODO: in a perfect world men like me would not exist... but this is not a perfect world...
+        // If i ever find the spark of hope in my small brain i will refactor this so next card
+        // effects will work without having to re-calculate every played card.
+        // But for now... this shall be the solution 
+        if (CardSlotsManager.SortCardSlots(cardSlots, initiator))
+        {
+            CardEffects.ClearEffects();
+            cardSlots.ForEach(slot =>
+            {
+                CardBehaviour behaviour = slot.GetComponentInChildren<CardBehaviour>();
+                behaviour.ResetCardStats();
+                behaviour.OnAddToPlayZone();
+            });
+        }
+    }
 
     public void OnPlayHand()
     {

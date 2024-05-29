@@ -61,14 +61,10 @@ public class CardSlotDeciderScript : MonoBehaviour
                 (targetPos, otherCardSlot.targetPos) = (otherCardSlot.targetPos, targetPos);
                 // Also swap the names to enable sorting of the cardSlotsScript, resulting in easier re-sorting after removing a card
                 (transformParent.name, otherTransformParent.name) = (otherTransformParent.name, transformParent.name);
-                
+
                 (cardBehaviour.pos, otherCardSlot.cardBehaviour.pos) = (otherCardSlot.cardBehaviour.pos, cardBehaviour.pos);
 
-                // Force a Sort on the CardSlot List the game object belongs to, to make functionalities more consistent and increase ease of use in the lists
-                cardBehaviour.OnSwapCardSlot(otherCardSlot.cardBehaviour);
-                otherCardSlot.cardBehaviour.OnSwapCardSlot(cardBehaviour);
-
-                EventManager.EmitSortSlots(transformParent.gameObject);
+                EventManager.EmitOnSwapComplete(transformParent.gameObject);
             }
             // If the Card is being hovered over the PlayZone collider
             else if (collision.tag == "PlayZone")

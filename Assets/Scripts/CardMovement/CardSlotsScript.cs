@@ -20,8 +20,9 @@ public class CardSlotsScript : MonoBehaviour
     {
         EventManager.DropCardInPlayZone += RemoveCard;
         EventManager.DropCardOutsidePlayZone += AddCardSlot;
-        EventManager.SortSlots += SortCardSlots;
+        EventManager.OnSwapComplete += SortCardSlots;
         EventManager.submitCards += OnSubmitCards;
+        EventManager.CurationDone += OnCurationDone;
 
         remainingCards = cards.ToList();
 
@@ -67,7 +68,10 @@ public class CardSlotsScript : MonoBehaviour
     private void AddCardSlot(GameObject cardSlot) => CardSlotsManager.AddCardToPlayCardSlots(cardSlot, cardSlots, transform, cardSlotPrefab.name);
     private void RemoveCard(GameObject cardSlot) => CardSlotsManager.RemoveCardFromCardSlots(cardSlot, cardSlots, cardSlotPrefab.name);
     private void SortCardSlots(GameObject initiator = null) => CardSlotsManager.SortCardSlots(cardSlots, initiator);
-
+    private void OnCurationDone()
+    {
+        CardEffects.ClearEffects();
+    }
     private void OnSubmitCards(List<PlayingCardScript> cards)
     {
         CardSlotsManager.ClearCardSlots(cardSlots);

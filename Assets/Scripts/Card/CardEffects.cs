@@ -41,6 +41,29 @@ public static class CardEffects
         { Effect.ENDSTYLE, "</color>" }
     };
 
+    public static void ClearEffects()
+    {
+        TypeEffects = new()
+        {
+            { CardType.ancient, new()},
+            { CardType.contemporary, new()},
+            { CardType.everyday, new()},
+            { CardType.technological, new()},
+            { CardType.traditional, new()},
+        };
+        MediumEffects = new()
+        {
+            { Medium.chair, new()},
+            { Medium.food, new()},
+            { Medium.furniture, new()},
+            { Medium.music, new()},
+            { Medium.none, new()},
+            { Medium.painting, new()},
+            { Medium.sculpture, new()},
+            { Medium.video, new()},
+            { Medium.videogame, new()},
+        };
+    }
 }
 
 public enum Effect
