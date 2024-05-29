@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardSlotsScript : MonoBehaviour
 {
-    [SerializeField] public List<CardProps> cards = new();
+    [SerializeField] public List<CardBehaviour> cards = new();
     [SerializeField] private int DebugStartCardSlots = 4;
     [SerializeField] private GameObject cardSlotPrefab;
     [SerializeField] private Vector2 targetPos;
 
     [HideInInspector] public List<GameObject> cardSlots = new();
-    private List<CardProps> remainingCards = new();
+    private List<CardBehaviour> remainingCards = new();
 
     void Start()
     {
@@ -56,11 +57,11 @@ public class CardSlotsScript : MonoBehaviour
         GameObject cardSlot = Instantiate(cardSlotPrefab, transform);
 
         int cardIndex = Random.Range(0, remainingCards.Count);
-        CardProps cardProp = remainingCards[cardIndex];
+        PlayingCardScript cardScript = cardSlot.GetComponentInChildren<PlayingCardScript>();
+        CardBehaviour cardBehaviour = Instantiate(remainingCards[cardIndex], cardScript.transform);
         remainingCards.RemoveAt(cardIndex);
 
-        cardSlot.GetComponentInChildren<PlayingCardScript>().card = cardProp;
-
+        cardScript.card = cardBehaviour;
         AddCardSlot(cardSlot);
     }
     private void AddCardSlot(GameObject cardSlot) => CardSlotsManager.AddCardToPlayCardSlots(cardSlot, cardSlots, transform, cardSlotPrefab.name);

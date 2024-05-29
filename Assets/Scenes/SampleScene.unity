@@ -395,8 +395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2788644022b2b4aa2c72ad62f1f8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visitorPrefab: {fileID: 8223413006770270513, guid: ada0064a9bb10974bac475aee470c943, type: 3}
   standArea: {fileID: 293787462}
+  visitorPrefab: {fileID: 8223413006770270513, guid: ada0064a9bb10974bac475aee470c943, type: 3}
   visitorAmountToSpawn: 5
   verticalOffset: 1.2
   visitors: []
@@ -1038,7 +1038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 11400000, guid: b0111a5174c06834aa81d481d92be9c9, type: 2}
+  - {fileID: -1185908403823623756, guid: 93abfb4bd11350f4fb51d8cee0f2f290, type: 3}
   DebugStartCardSlots: 0
   cardSlotPrefab: {fileID: 5765090287824418254, guid: e93587bab58f12249805e005cca5965f, type: 3}
   targetPos: {x: 0, y: 0}

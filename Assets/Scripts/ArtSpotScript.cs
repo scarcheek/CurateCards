@@ -18,10 +18,10 @@ public class ArtSpotScript : MonoBehaviour
     private void OnPresent(PlayingCardScript card)
     {
         smokeEffect.Play();
-        if (card.card.presentPrefab)
+        if (card.card.cardProps.presentPrefab)
         {
             Debug.Log("presenting");
-            artPiece = Instantiate(card.card.presentPrefab);
+            artPiece = Instantiate(card.card.cardProps.presentPrefab);
         }
     }
 

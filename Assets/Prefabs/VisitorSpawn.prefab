@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2661856108230820833}
   - component: {fileID: 3878489145591869716}
   - component: {fileID: 6421420132657654291}
-  - component: {fileID: 5110611179717008097}
+  - component: {fileID: 6492894842096888374}
   m_Layer: 0
   m_Name: ScoreVisualizer
   m_TagString: Untagged
@@ -68,7 +68,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.885}
+  m_AnchoredPosition: {x: 0, y: 0.715}
   m_SizeDelta: {x: 1.2, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &2661856108230820833
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7645424b4123074458f939f34ad93e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &5110611179717008097
+--- !u!95 &6492894842096888374
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0

@@ -39,7 +39,7 @@ public class mainCameraScript : MonoBehaviour
 
     public void PresentVisitorStart()
     {
-        currentlyPresenting.Play();
+        currentlyPresenting.card.Play();
         currentlyPresenting = null;
     }
 }

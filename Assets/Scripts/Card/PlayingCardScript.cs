@@ -10,7 +10,7 @@ public class PlayingCardScript : MonoBehaviour
 {
     [Header("Props")]
     private bool isHovered = false;
-    [HideInInspector] public CardProps card;
+    [HideInInspector] public CardBehaviour card;
     [Header("Component References")]
     [SerializeField] private Image SplashArt;
     [SerializeField] private TextMeshProUGUI TitleText;
@@ -20,53 +20,68 @@ public class PlayingCardScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TypeMediumText;
 
     // Start is called before the first frame update
-    
+
     void Start()
     {
-        SplashArt.sprite = card.cardSprite;
-        TitleText.text = card.title;
-        DescriptionText.text = StylizeDescription(card);
-        CostText.text = card.cost.ToString();
-        BaseValueText.text = card.baseValue.ToString();
+        InitializeCardView();
+        
+    }
+
+    public void InitializeCardView()
+    {
+        DisplayCardProps();
+        SetTypeAndMedium();
+    }
+
+    public void DisplayCardProps()
+    {
+        SplashArt.sprite = card.cardProps.cardSprite;
+        TitleText.text = card.cardProps.title;
+        DescriptionText.text = StylizeDescription(card.cardProps);
+    }
+
+    public void DisplayCardStats(float cardCost, float cardValue)
+    {
+        CostText.text = cardCost.ToString();
+        BaseValueText.text = cardValue.ToString();
+    }
+
+    public void SetTypeAndMedium()
+    {
         StringBuilder sb = new StringBuilder();
 
         int i;
         bool hasNext;
-        if (card.cardType.Count > 0)
+        if (card.cardProps.cardType.Count > 0)
         {
             i = 0;
             do
             {
-                sb.Append(card.cardType[i].ToString());
+                sb.Append(card.cardProps.cardType[i].ToString());
                 i++;
 
-                hasNext = i < card.cardType.Count;
+                hasNext = i < card.cardProps.cardType.Count;
                 if (hasNext) sb.Append(", ");
             } while (hasNext);
         }
-        if (card.medium.Count > 0)
+        if (card.cardProps.medium.Count > 0)
         {
             sb.Append(" - ");
-            
+
             i = 0;
             do
             {
-                sb.Append(card.medium[i].ToString());
+                sb.Append(card.cardProps.medium[i].ToString());
                 i++;
 
-                hasNext = i < card.medium.Count;
+                hasNext = i < card.cardProps.medium.Count;
                 if (hasNext) sb.Append(", ");
             } while (hasNext);
         }
         TypeMediumText.text = sb.ToString();
     }
 
-    protected void AddCounter(params Counter[] counter) => EventManager.EmitAddCounter(counter);
 
-    public virtual void Play()
-    {
-        EventManager.EmitScoreCard(card);
-    }
 
     private string StylizeDescription(CardProps card)
     {
@@ -89,7 +104,7 @@ public class PlayingCardScript : MonoBehaviour
 
     public void OnPointerExit()
     {
-        if(isHovered)
+        if (isHovered)
         {
             isHovered = false;
         }
