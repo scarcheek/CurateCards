@@ -23,13 +23,11 @@ public class CardSlotDeciderScript : MonoBehaviour
 
     private CardSlotsScript cardSlotsScript;
     private BoxCollider2D cardSlotDeciderCollider;
-    public CardProps cardProps;
     private bool isInPlayZone = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        cardProps = GetComponentInChildren<PlayingCardScript>().card;
         targetPos = transform.parent.localPosition;
         cardSlotsScript = transform.parent.parent.GetComponent<CardSlotsScript>();
         cardSlotDeciderCollider = GetComponent<BoxCollider2D>();
@@ -63,12 +61,6 @@ public class CardSlotDeciderScript : MonoBehaviour
                 (transformParent.name, otherTransformParent.name) = (otherTransformParent.name, transformParent.name);
                 // Force a Sort on the CardSlot List the game object belongs to, to make functionalities more consistent and increase ease of use in the lists
                 EventManager.EmitSortSlots(transformParent.gameObject);
-
-                Debug.Log(cardProps.propPos + " " + otherCardSlot.cardProps.propPos);
-                int oldPos = cardProps.propPos;
-                cardProps.SetPropPos(otherCardSlot.cardProps.propPos);
-                otherCardSlot.cardProps.SetPropPos(oldPos);
-                cardProps.OnSwapPropPos(otherCardSlot.cardProps);
             }
             // If the Card is being hovered over the PlayZone collider
             else if (collision.tag == "PlayZone")

@@ -20,7 +20,7 @@ public class CardSlotsScript : MonoBehaviour
         EventManager.DropCardInPlayZone += RemoveCard;
         EventManager.DropCardOutsidePlayZone += AddCardSlot;
         EventManager.SortSlots += SortCardSlots;
-        EventManager.CurationDone += OnCurationDone;
+        EventManager.submitCards += OnSubmitCards;
 
         remainingCards = cards.ToList();
 
@@ -56,7 +56,7 @@ public class CardSlotsScript : MonoBehaviour
         GameObject cardSlot = Instantiate(cardSlotPrefab, transform);
 
         int cardIndex = Random.Range(0, remainingCards.Count);
-        CardProps cardProp = Instantiate(remainingCards[cardIndex]);
+        CardProps cardProp = remainingCards[cardIndex];
         remainingCards.RemoveAt(cardIndex);
 
         cardSlot.GetComponentInChildren<PlayingCardScript>().card = cardProp;
@@ -67,7 +67,7 @@ public class CardSlotsScript : MonoBehaviour
     private void RemoveCard(GameObject cardSlot) => CardSlotsManager.RemoveCardFromCardSlots(cardSlot, cardSlots, cardSlotPrefab.name);
     private void SortCardSlots(GameObject initiator = null) => CardSlotsManager.SortCardSlots(cardSlots, initiator);
 
-    private void OnCurationDone()
+    private void OnSubmitCards(List<PlayingCardScript> cards)
     {
         CardSlotsManager.ClearCardSlots(cardSlots);
         remainingCards = this.cards.ToList();

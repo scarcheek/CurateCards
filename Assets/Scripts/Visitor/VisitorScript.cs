@@ -47,11 +47,8 @@ public class VisitorScript : MonoBehaviour
         //TODO: Calculate Score based on clothing
         individualScoreFactor = hatMotivation + bodyMotivation + pantsMotivation + Random.Range(-5, 5);
         motivation += individualScoreFactor;
-        
-        Debug.Log("I got a score of " + card.value + individualScoreFactor + " with a score factor of " + individualScoreFactor);
-        
-
-        return card.value + individualScoreFactor;
+        //Debug.Log("I got a score of " + card.baseValue + individualScoreFactor + " with a score factor of " + individualScoreFactor);
+        return card.baseValue + individualScoreFactor;
     }
 
     public void ReactionDone()
@@ -83,7 +80,7 @@ public class VisitorScript : MonoBehaviour
         float motivationChange = 0;
         float calculatedScore = CalculateScore(card, ref motivationChange);
         currentMotivation += motivationChange;
-        EventManager.EmitAddValueToGamestate(calculatedScore);
+        EventManager.EmitAddBaseValueToGamestate(calculatedScore);
         animController.ReactToScore(neutralThreshhold, currentMotivation);
         scoreVisualizer.showScore(System.Math.Round(calculatedScore), motivationChange);
     }

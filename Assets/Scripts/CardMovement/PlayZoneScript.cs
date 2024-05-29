@@ -32,7 +32,6 @@ public class PlayZoneScript : MonoBehaviour
 
     public void AddCardToPlayZone(GameObject cardSlot)
     {
-
         CardSlotsManager.AddCardToPlayCardSlots(cardSlot, cardSlots, transform, playZoneSlotName);
 
         button.SetActive(true);
@@ -40,24 +39,18 @@ public class PlayZoneScript : MonoBehaviour
         animator.SetBool("CardInPlayZone", true);
 
         cardSlot.GetComponentInChildren<CardSlotDeciderScript>().ResetPosition();
-        cardSlot.GetComponentInChildren<PlayingCardScript>().card.inPlayZone = true;
-
-        EventManager.EmitCardPutInPlayzone(cardSlot.GetComponentInChildren<PlayingCardScript>().card);
     }
-
     public void removeCardFromPlayZone(GameObject cardSlot)
     {
         CardSlotsManager.RemoveCardFromCardSlots(cardSlot, cardSlots, playZoneSlotName);
-        
+
         animator.SetBool("CardInPlayZone", cardSlots.Count > 0);
         if (cardSlots.Count == 0)
         {
             button.SetActive(false);
         }
         //animator.SetTrigger("EndHoverPlayZone");
-        cardSlot.GetComponentInChildren<PlayingCardScript>().card.inPlayZone = false;
 
-        EventManager.EmitCardRemoveFromPlayzone(cardSlot.GetComponentInChildren<PlayingCardScript>().card); 
     }
     public void SortCardSlots(GameObject initiator = null) => CardSlotsManager.SortCardSlots(cardSlots, initiator);
 
@@ -97,6 +90,7 @@ public class PlayZoneScript : MonoBehaviour
     {
         if (isHovered && other.tag == "CardImage")
         {
+            Debug.Log(other.tag);
             isHovered = false;
             animator.SetBool("HoverPlayZone", false);
 
