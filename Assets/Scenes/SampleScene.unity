@@ -732,8 +732,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1053008966}
   - component: {fileID: 1053008965}
-  - component: {fileID: 1053008964}
   - component: {fileID: 1053008963}
+  - component: {fileID: 1053008967}
   m_Layer: 0
   m_Name: ParkCamera
   m_TagString: Untagged
@@ -753,14 +753,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca07545f75a4bfb40b34a70f6ffa0aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!81 &1053008964
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053008962}
-  m_Enabled: 1
 --- !u!20 &1053008965
 Camera:
   m_ObjectHideFlags: 0
@@ -788,8 +780,8 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 1
+    y: 1
     width: 1
     height: 1
   near clip plane: 0.3
@@ -820,13 +812,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053008962}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9063416, y: -1.3192189, z: -2.3697605}
+  m_LocalRotation: {x: 0.07967766, y: -0.7026034, z: 0.07967764, w: 0.70260334}
+  m_LocalPosition: {x: 5.04, y: 3.6, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 12.94, y: -90, z: 0}
+--- !u!95 &1053008967
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053008962}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 967619706fb67124a8857d79e68b237b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1093480437
 GameObject:
   m_ObjectHideFlags: 0
