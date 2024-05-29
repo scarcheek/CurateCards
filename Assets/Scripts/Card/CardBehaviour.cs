@@ -24,8 +24,26 @@ public class CardBehaviour : MonoBehaviour
     void Start()
     {
         EventManager.CurationDone += ResetCardStats;
+        EventManager.AllOfMediumEffect += OnAllOfMediumEffect;
+        EventManager.AllOfTypeEffect += OnAllOfTypeEffect;
         parentScript = GetComponentInParent<PlayingCardScript>();
         ResetCardStats();
+    }
+
+    private void OnAllOfTypeEffect(CardType type, Func<CardBehaviour, bool> func)
+    {
+        if (cardProps.cardType.Contains(type))
+        {
+            func(this);
+        }
+    }
+
+    private void OnAllOfMediumEffect(Medium medium, Func<CardBehaviour, bool> func)
+    {
+        if (cardProps.medium.Contains(medium))
+        {
+            func(this);
+        }
     }
 
     public void ResetCardStats()
@@ -35,6 +53,8 @@ public class CardBehaviour : MonoBehaviour
         cardValue = cardProps.baseValue;
         cardCost = cardProps.cost;
         guaranteedCrit = false;
+        buffedTypeCards.Clear();
+        buffedMediumCards.Clear();
         currentCritMult = cardProps.critMult;
         currentCritChance = cardProps.critChance;
         DisplayCardStats();
@@ -142,4 +162,19 @@ public class CardBehaviour : MonoBehaviour
     internal virtual bool RevertMediumEffect(CardBehaviour card) { return false; }
     internal virtual bool TypeEffect(CardBehaviour card) { return false; }
     internal virtual bool RevertTypeEffect(CardBehaviour card) { return false; }
+    
+    internal bool ApplyEffect(List<CardBehaviour> buffedCards,  CardBehaviour cardToBuff) 
+    {
+        buffingOtherCards = true;
+        buffedCards.Add(cardToBuff);
+        cardToBuff.revertBuffFuncs.Add(RevertMediumEffect);
+        cardToBuff.DisplayCardStats();
+        return true;
+    }
+    internal bool ApplyRevert(CardBehaviour card)
+    {
+        buffingOtherCards = false;
+        card.DisplayCardStats();
+        return true;
+    }
 }

@@ -25,12 +25,10 @@ public class Banana : CardBehaviour
         if (!buffingOtherCards && cardToBuff.cardProps.medium.Contains(Medium.food))
         {
             Debug.Log(cardToBuff.name + " will now crit");
-            buffingOtherCards = true;
-            buffedMediumCards.Add(cardToBuff);
+            
             cardToBuff.guaranteedCrit = true;
-            cardToBuff.revertBuffFuncs.Add(RevertMediumEffect);
-            cardToBuff.DisplayCardStats();
-            return true;
+            
+            return ApplyEffect(buffedMediumCards, cardToBuff);
         }
         return false;
     }
@@ -40,12 +38,8 @@ public class Banana : CardBehaviour
         if (buffedMediumCards.Contains(card))
         {
             Debug.Log(card.name + " will now stop critting");
-
-            buffingOtherCards = false;
             card.guaranteedCrit = false;
-
-            card.DisplayCardStats();
-            return true;
+            return ApplyRevert(card);
         }
         return false;
     }

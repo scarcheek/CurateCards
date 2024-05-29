@@ -68,6 +68,11 @@ public class PlayZoneScript : MonoBehaviour
             {
                 CardBehaviour behaviour = slot.GetComponentInChildren<CardBehaviour>();
                 behaviour.ResetCardStats();
+            });
+            // We have to have this separately to ensure correct application of some effects
+            cardSlots.ForEach(slot =>
+            {
+                CardBehaviour behaviour = slot.GetComponentInChildren<CardBehaviour>();
                 behaviour.OnAddToPlayZone();
             });
         }
