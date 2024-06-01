@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
-  m_Name: Banana
+  m_Name: Uhhhmm
   m_EditorClassIdentifier: 
   presentPrefab: {fileID: 0}
   critChance: 0.1
   critMult: 2
-  title: Banana
-  description: Who only eats one banana? Please play another food. {It will even
-    crit}
-  cardSprite: {fileID: 21300000, guid: dc03119b63b01a845bb25b93c1c3cab4, type: 3}
-  cost: 20
-  effects: 06000000
-  baseValue: 10
+  title: Uhh.. uhhmmm
+  description: '{All visitors forgor...}'
+  cardSprite: {fileID: 21300000, guid: f59cbcedce2f32945bdc57f389bb3001, type: 3}
+  cost: 15
+  effects: 05000000
+  baseValue: 0
   cardType: 0100000005000000
-  medium: 010000000000000004000000
+  medium: 05000000

@@ -19,7 +19,7 @@ public class CardProps : ScriptableObject
     public List<Effect> effects = new();
     [Header("Both")]
     public int baseValue;
-    public List<CardType> cardType = new() { CardType.ANY };
+    public List<CardType> cardType = new();
     public List<Medium> medium = new();
 
 }

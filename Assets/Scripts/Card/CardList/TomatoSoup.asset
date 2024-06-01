@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
-  m_Name: Banana
+  m_Name: TomatoSoup
   m_EditorClassIdentifier: 
   presentPrefab: {fileID: 0}
   critChance: 0.1
   critMult: 2
-  title: Banana
-  description: Who only eats one banana? Please play another food. {It will even
-    crit}
-  cardSprite: {fileID: 21300000, guid: dc03119b63b01a845bb25b93c1c3cab4, type: 3}
-  cost: 20
-  effects: 06000000
+  title: Tomato soup
+  description: This is probably very deep. I wouldn't know though. Here, take {two
+    attack counters}
+  cardSprite: {fileID: 21300000, guid: 3ab2bc7f92d47a54aa54e6a49f8cc8d0, type: 3}
+  cost: 35
+  effects: 01000000
   baseValue: 10
   cardType: 0100000005000000
-  medium: 010000000000000004000000
+  medium: 0400000001000000

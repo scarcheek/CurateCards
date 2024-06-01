@@ -13,6 +13,7 @@ public class CardBehaviour : MonoBehaviour
     [HideInInspector] public float cardValue;
     [HideInInspector] public float cardCost;
     [HideInInspector] public bool guaranteedCrit;
+    [HideInInspector] public bool ignoreDislike;
 
     [HideInInspector] public List<Func<CardBehaviour, bool>> revertBuffFuncs = new();
     internal bool wasInPlayzone = false;
@@ -28,7 +29,7 @@ public class CardBehaviour : MonoBehaviour
         EventManager.AllOfMediumEffect += OnAllOfMediumEffect;
         EventManager.AllOfTypeEffect += OnAllOfTypeEffect;
         parentScript = GetComponentInParent<PlayingCardScript>();
-        cardProps.cardType.Add(CardType.ANY);
+        if(!cardProps.cardType.Contains(CardType.ANY)) cardProps.cardType.Add(CardType.ANY);
         ResetCardStats();
     }
 
@@ -55,6 +56,7 @@ public class CardBehaviour : MonoBehaviour
         cardValue = cardProps.baseValue;
         cardCost = cardProps.cost;
         guaranteedCrit = false;
+        ignoreDislike = false;
         buffedTypeCards.Clear();
         buffedMediumCards.Clear();
         currentCritMult = cardProps.critMult;

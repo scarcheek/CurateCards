@@ -16,6 +16,7 @@ public class EventManager : MonoBehaviour
     public static event Action<float> AddBaseValueToGamestate;
     public static event Action<CardBehaviour> ScoreCard;
     public static event Action CurationDone;
+    public static event Action RandomizePreferences;
     public static event Action<CardType, Func<CardBehaviour, bool>> AllOfTypeEffect;
     public static event Action<Medium, Func<CardBehaviour, bool>> AllOfMediumEffect;
 
@@ -31,6 +32,7 @@ public class EventManager : MonoBehaviour
     public static void EmitScoreCard(CardBehaviour card) => ScoreCard?.Invoke(card);
     public static void EmitAddBaseValueToGamestate(float baseValue) => AddBaseValueToGamestate?.Invoke(baseValue);
     public static void EmitCurationDone() => CurationDone?.Invoke();
+    public static void EmitRandomizePreferences() => RandomizePreferences?.Invoke();
     public static void EmitAllOfTypeEffect(CardType type, Func<CardBehaviour, bool> effect) => AllOfTypeEffect?.Invoke(type, effect);
     public static void EmitAllOfMediumEffect(Medium medium, Func<CardBehaviour, bool> effect) => AllOfMediumEffect?.Invoke(medium, effect);
 }

@@ -36,6 +36,7 @@ public class VisitorScript : MonoBehaviour
 
         animController = GetComponentInChildren<VisitorAnimationController>();
         EventManager.ScoreCard += OnScoreCard;
+        EventManager.RandomizePreferences += OnRandomizePreferences;
         hatSprite.enabled = Random.value > hatProb;
         currentMotivation = initialMotivation;
         hatMotivation = Random.Range(-30, 30);
@@ -43,25 +44,35 @@ public class VisitorScript : MonoBehaviour
         pantsMotivation = Random.Range(-30, 30);
     }
 
+    private void OnRandomizePreferences()
+    {
+        hatMotivation = Random.Range(-30, 30);
+        bodyMotivation = Random.Range(-30, 30);
+        pantsMotivation = Random.Range(-30, 30);
+    }
+
     private void OnScoreCard(CardBehaviour card)
     {
-        float scoreFactor = 0;
-        float calculatedScore = CalculateScore(card, ref scoreFactor);
-        float motivationChange = math.round(scoreFactor);
+        float motivationChange = 0;
+        float calculatedScore = CalculateScore(card, ref motivationChange);
+
+        motivationChange = math.round(motivationChange);
         currentMotivation += motivationChange;
-        Debug.Log("I got a score of " + (calculatedScore) + " with a score factor of " + scoreFactor + "\n" +
+        Debug.Log("I got a score of " + (calculatedScore) + " with a score factor of " + motivationChange + "\n" +
             "Motivation changed by " + motivationChange + " resulting in a total motivation of: " + currentMotivation);
 
         EventManager.EmitAddBaseValueToGamestate(calculatedScore);
         animController.ReactToScore(neutralThreshhold, currentMotivation);
-        scoreVisualizer.showScore(System.Math.Round(calculatedScore), scoreFactor);
+        scoreVisualizer.showScore(System.Math.Round(calculatedScore), motivationChange);
     }
 
     private float CalculateScore(CardBehaviour card, ref float motivationChange)
     {
         //TODO: Calculate Score based on clothing
         motivationChange = hatMotivation + bodyMotivation + pantsMotivation + Random.Range(-5, 5);
-        
+
+        if (card.ignoreDislike && motivationChange < 0) motivationChange = 0; 
+
         GameStateManager instance = GameStateManager.instance;
         motivationChange += instance.activeVirusCounters;
         motivationChange *= math.pow(GameStateManager.AttackCounterChange, instance.activeAttackCounters);
