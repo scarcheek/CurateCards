@@ -1156,12 +1156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: -142523352978088456, guid: 93abfb4bd11350f4fb51d8cee0f2f290, type: 3}
-  - {fileID: 1954846331921973734, guid: 87e1143974dc5074c96a9e1831d1771f, type: 3}
-  - {fileID: 1954846331921973734, guid: 87e1143974dc5074c96a9e1831d1771f, type: 3}
-  - {fileID: -3989809400451119777, guid: cfe0cc28aacbfe443ad3266f3eb2e12f, type: 3}
-  - {fileID: -3989809400451119777, guid: cfe0cc28aacbfe443ad3266f3eb2e12f, type: 3}
-  - {fileID: -3989809400451119777, guid: cfe0cc28aacbfe443ad3266f3eb2e12f, type: 3}
+  - {fileID: -645946460188607999, guid: da8f9709693aaaf40821393fadff8be2, type: 3}
+  - {fileID: -645946460188607999, guid: da8f9709693aaaf40821393fadff8be2, type: 3}
+  - {fileID: -645946460188607999, guid: da8f9709693aaaf40821393fadff8be2, type: 3}
   DebugStartCardSlots: 0
   cardSlotPrefab: {fileID: 5765090287824418254, guid: e93587bab58f12249805e005cca5965f, type: 3}
   targetPos: {x: 0, y: 0}

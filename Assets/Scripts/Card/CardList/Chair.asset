@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
+  m_Name: Chair
+  m_EditorClassIdentifier: 
+  presentPrefab: {fileID: 0}
+  critChance: 0.1
+  critMult: 2
+  title: Chair
+  description: Do not touch. Other {chairs get +5 value}
+  cardSprite: {fileID: 21300000, guid: d2f5dbee9c21cf143bb3f2091e5ec2c3, type: 3}
+  cost: 15
+  effects: 08000000
+  baseValue: 0
+  cardType: 03000000
+  medium: 000000000200000003000000
