@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class VisitorScript : MonoBehaviour
 {
@@ -23,7 +25,6 @@ public class VisitorScript : MonoBehaviour
     [SerializeField] private float pantsMotivation;
 
     private VisitorAnimationController animController;
-    private float individualScoreFactor;
 
     private bool isLeaving = false;
     VisitorSpawnPlaneScript planeScript;
@@ -42,13 +43,31 @@ public class VisitorScript : MonoBehaviour
         pantsMotivation = Random.Range(-30, 30);
     }
 
-    private float CalculateScore(CardBehaviour card, ref float motivation)
+    private void OnScoreCard(CardBehaviour card)
+    {
+        float scoreFactor = 0;
+        float calculatedScore = CalculateScore(card, ref scoreFactor);
+        float motivationChange = math.round(scoreFactor);
+        currentMotivation += motivationChange;
+        Debug.Log("I got a score of " + (calculatedScore) + " with a score factor of " + scoreFactor + "\n" +
+            "Motivation changed by " + motivationChange + " resulting in a total motivation of: " + currentMotivation);
+
+        EventManager.EmitAddBaseValueToGamestate(calculatedScore);
+        animController.ReactToScore(neutralThreshhold, currentMotivation);
+        scoreVisualizer.showScore(System.Math.Round(calculatedScore), scoreFactor);
+    }
+
+    private float CalculateScore(CardBehaviour card, ref float motivationChange)
     {
         //TODO: Calculate Score based on clothing
-        individualScoreFactor = hatMotivation + bodyMotivation + pantsMotivation + Random.Range(-5, 5);
-        motivation += individualScoreFactor;
-        Debug.Log("I got a score of " + card.cardValue + individualScoreFactor + " with a score factor of " + individualScoreFactor);
-        return card.cardValue + individualScoreFactor;
+        motivationChange = hatMotivation + bodyMotivation + pantsMotivation + Random.Range(-5, 5);
+        
+        GameStateManager instance = GameStateManager.instance;
+        motivationChange += instance.activeVirusCounters;
+        motivationChange *= math.pow(GameStateManager.AttackCounterChange, instance.activeAttackCounters);
+        motivationChange *= math.pow(GameStateManager.DefenceCounterChange, instance.activeDefenceCounters);
+
+        return card.cardValue + motivationChange;
     }
 
     public void ReactionDone()
@@ -74,14 +93,5 @@ public class VisitorScript : MonoBehaviour
             //TODO: Remove visitor properly 
             Destroy(gameObject);
         }
-    }
-    private void OnScoreCard(CardBehaviour card)
-    {
-        float motivationChange = 0;
-        float calculatedScore = CalculateScore(card, ref motivationChange);
-        currentMotivation += motivationChange;
-        EventManager.EmitAddBaseValueToGamestate(calculatedScore);
-        animController.ReactToScore(neutralThreshhold, currentMotivation);
-        scoreVisualizer.showScore(System.Math.Round(calculatedScore), motivationChange);
     }
 }

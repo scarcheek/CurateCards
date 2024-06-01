@@ -65,8 +65,9 @@ public class CardBehaviour : MonoBehaviour
         parentScript.DisplayCardStats(cardCost, cardValue, guaranteedCrit);
     }
 
-
+    // This is done via events, as other cards may activate an effect whenever a counter is added in the future.
     internal void AddCounter(params Counter[] counter) => EventManager.EmitAddCounter(counter);
+    internal void RemoveCounter(params Counter[] counter) => EventManager.EmitRemoveCounter(counter);
 
     public virtual void Play()
     {
