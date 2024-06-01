@@ -28,7 +28,7 @@ public class Chair : CardBehaviour
         if (cardToBuff != this && !buffedTypeCards.Contains(cardToBuff) && cardToBuff.cardProps.medium.Contains(Medium.chair))
         {
             cardToBuff.cardValue += valIncrease;
-            return ApplyEffect(buffedTypeCards, cardToBuff);
+            return ApplyMediumEffect(buffedTypeCards, cardToBuff);
         }
         return false;
     }

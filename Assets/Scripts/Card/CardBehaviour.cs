@@ -23,10 +23,12 @@ public class CardBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         EventManager.CurationDone += ResetCardStats;
         EventManager.AllOfMediumEffect += OnAllOfMediumEffect;
         EventManager.AllOfTypeEffect += OnAllOfTypeEffect;
         parentScript = GetComponentInParent<PlayingCardScript>();
+        cardProps.cardType.Add(CardType.ANY);
         ResetCardStats();
     }
 
@@ -114,7 +116,7 @@ public class CardBehaviour : MonoBehaviour
             revertFunc(this);
         }
         revertBuffFuncs.Clear();
-        
+
         wasInPlayzone = false;
         return true;
     }
@@ -123,7 +125,7 @@ public class CardBehaviour : MonoBehaviour
     /// </summary>
     /// <param name="swappedWith">The CardBehaviour swapped with</param>
     /// <returns>True if the swapped card was in playzone</returns>
-    internal virtual bool OnSwapCardSlot(CardBehaviour swappedWith) 
+    internal virtual bool OnSwapCardSlot(CardBehaviour swappedWith)
     {
         return wasInPlayzone;
     }
@@ -163,8 +165,15 @@ public class CardBehaviour : MonoBehaviour
     internal virtual bool RevertMediumEffect(CardBehaviour card) { return false; }
     internal virtual bool TypeEffect(CardBehaviour card) { return false; }
     internal virtual bool RevertTypeEffect(CardBehaviour card) { return false; }
-    
-    internal bool ApplyEffect(List<CardBehaviour> buffedCards,  CardBehaviour cardToBuff) 
+    internal bool ApplyTypeEffect(List<CardBehaviour> buffedCards, CardBehaviour cardToBuff)
+    {
+        buffingOtherCards = true;
+        buffedCards.Add(cardToBuff);
+        cardToBuff.revertBuffFuncs.Add(RevertTypeEffect);
+        cardToBuff.DisplayCardStats();
+        return true;
+    }
+    internal bool ApplyMediumEffect(List<CardBehaviour> buffedCards, CardBehaviour cardToBuff)
     {
         buffingOtherCards = true;
         buffedCards.Add(cardToBuff);

@@ -28,7 +28,7 @@ public class Banana : CardBehaviour
             
             cardToBuff.guaranteedCrit = true;
             
-            return ApplyEffect(buffedMediumCards, cardToBuff);
+            return ApplyMediumEffect(buffedMediumCards, cardToBuff);
         }
         return false;
     }

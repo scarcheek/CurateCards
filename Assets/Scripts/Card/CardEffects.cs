@@ -24,6 +24,7 @@ public static class CardEffects
         { CardType.everyday, new()},
         { CardType.technological, new()},
         { CardType.traditional, new()},
+        { CardType.ANY, new()},
     };
 
     public static Dictionary<Effect, string> effectColors = new Dictionary<Effect, string>()
@@ -50,6 +51,7 @@ public static class CardEffects
             { CardType.everyday, new()},
             { CardType.technological, new()},
             { CardType.traditional, new()},
+            { CardType.ANY, new()},
         };
         MediumEffects = new()
         {

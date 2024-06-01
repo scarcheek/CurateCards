@@ -28,7 +28,7 @@ public class FuckedCat : CardBehaviour
         if (cardToBuff != this && !buffedTypeCards.Contains(cardToBuff) && cardToBuff.cardProps.cardType.Contains(CardType.ancient))
         {
             cardToBuff.cardCost -= discount;
-            return ApplyEffect(buffedTypeCards, cardToBuff);
+            return ApplyTypeEffect(buffedTypeCards, cardToBuff);
         }
         return false;
     }

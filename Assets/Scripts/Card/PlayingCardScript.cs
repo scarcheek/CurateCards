@@ -51,9 +51,22 @@ public class PlayingCardScript : MonoBehaviour
         {
             BaseValueText.color = Color.yellow;
         }
-        else 
+        else
         {
             BaseValueText.color = defaultValueColor;
+        }
+
+        if (card.cardProps.cost > cardCost)
+        {
+            CostText.color = Color.yellow;
+        }
+        else if (card.cardProps.cost == cardCost)
+        {
+            CostText.color = defaultCostColor;
+        }
+        else
+        {
+            CostText.color = Color.blue;
         }
     }
 
@@ -68,7 +81,8 @@ public class PlayingCardScript : MonoBehaviour
             i = 0;
             do
             {
-                sb.Append(card.cardProps.cardType[i].ToString());
+                if (card.cardProps.cardType[i] != CardType.ANY)
+                    sb.Append(card.cardProps.cardType[i].ToString());
                 i++;
 
                 hasNext = i < card.cardProps.cardType.Count;
