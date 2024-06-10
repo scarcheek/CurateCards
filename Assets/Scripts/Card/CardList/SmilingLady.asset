@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: SmilingLady
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: 24ab3cb9b33248e4da200bd3985cea39, type: 3}
+  presentPrefab: {fileID: 919132149155446097, guid: 5f46df9c9ee4c73428a21ed5e660132f, type: 3}
   critChance: 0.1
   critMult: 2
   title: Smiling Lady
