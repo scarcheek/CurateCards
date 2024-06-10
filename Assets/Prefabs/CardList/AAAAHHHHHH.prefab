@@ -53,4 +53,4 @@ MonoBehaviour:
   ignoreDislike: 0
   leaveOnDislike: 0
   pos: 0
-  peopleCount: 3
+  peopleAmount: 3

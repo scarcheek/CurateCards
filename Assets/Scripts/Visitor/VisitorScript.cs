@@ -72,14 +72,19 @@ public class VisitorScript : MonoBehaviour
     {
         //TODO: Calculate Score based on clothing
         motivationChange = hatMotivation + bodyMotivation + pantsMotivation;
-        if (card.leaveOnDislike && motivationChange < 0) return 0;
         motivationChange += Random.Range(-5, 5);
         if (card.ignoreDislike && motivationChange < 0) motivationChange = 0;
+        if (card.leaveOnDislike && motivationChange < 0)
+        {
+            currentMotivation = 0;
+            return 0; 
+        }
 
         GameStateManager instance = GameStateManager.instance;
         motivationChange += instance.activeVirusCounters;
         motivationChange *= math.pow(GameStateManager.AttackCounterChange, instance.activeAttackCounters);
         motivationChange *= math.pow(GameStateManager.DefenceCounterChange, instance.activeDefenceCounters);
+        
 
         return card.cardValue + motivationChange;
     }
@@ -88,10 +93,15 @@ public class VisitorScript : MonoBehaviour
     {
         if (currentMotivation <= 0)
         {
-            isLeaving = true;
-            standPos = planeScript.RandomPointOutBounds();
-            EventManager.ScoreCard -= OnScoreCard;
+            Leave();
         }
+    }
+
+    private void Leave()
+    {
+        isLeaving = true;
+        standPos = planeScript.RandomPointOutBounds();
+        EventManager.ScoreCard -= OnScoreCard;
     }
 
     void Update()

@@ -113,10 +113,20 @@ public class PlayingCardScript : MonoBehaviour
         string cardDescription = card.description;
         foreach (Effect effect in card.effects)
         {
-            cardDescription = cardDescription.Replace("{", CardEffects.effectColors[effect]);
-            cardDescription = cardDescription.Replace("}", CardEffects.effectColors[Effect.ENDSTYLE]);
+            cardDescription = ReplaceFirst(cardDescription, "{", CardEffects.effectColors[effect]);
+            cardDescription = ReplaceFirst(cardDescription, "}", CardEffects.effectColors[Effect.ENDSTYLE]);
         }
         return cardDescription;
+    }
+
+    private string ReplaceFirst(string text, string search, string replace)
+    {
+        int pos = text.IndexOf(search);
+        if (pos < 0)
+        {
+            return text;
+        }
+        return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
     }
 
     public void OnPointerEnter()
