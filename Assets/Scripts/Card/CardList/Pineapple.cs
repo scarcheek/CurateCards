@@ -1,21 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
-public class MusicalChair : CardBehaviour
+public class Pineapple : CardBehaviour
 {
-    private List<Counter> counters = new();
+    [SerializeField] float discount = 5;
+    
 
-    public override void Play()
-    {
-        AddCounter(counters.ToArray());
-        base.Play();
-        counters.Clear();
-    }
     internal override bool OnAddToPlayZone()
     {
         if (!base.OnAddToPlayZone()) return false;
-        CardEffects.MediumEffects[Medium.chair].Add(MediumEffect);
+        CardEffects.MediumEffects[Medium.food].Add(MediumEffect);
         return true;
     }
 
@@ -33,7 +29,7 @@ public class MusicalChair : CardBehaviour
     {
         if (!buffedMediumCards.Contains(cardToBuff))
         {
-            counters.Add(Counter.attack);
+            cardToBuff.cardCost -= discount;
             return ApplyMediumEffect(cardToBuff);
         }
         return false;
@@ -43,7 +39,7 @@ public class MusicalChair : CardBehaviour
     {
         if (buffedMediumCards.Contains(card))
         {
-            counters.Remove(Counter.attack);
+            card.cardCost += discount;
             return ApplyRevert(card);
         }
         return false;

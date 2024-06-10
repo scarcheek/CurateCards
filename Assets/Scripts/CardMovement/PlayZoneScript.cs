@@ -66,6 +66,11 @@ public class PlayZoneScript : MonoBehaviour
             cardSlots.ForEach(slot =>
             {
                 CardBehaviour behaviour = slot.GetComponentInChildren<CardBehaviour>();
+                behaviour.ResetCardStats();
+            });
+            cardSlots.ForEach(slot =>
+            {
+                CardBehaviour behaviour = slot.GetComponentInChildren<CardBehaviour>();
                 behaviour.OnRemoveFromPlayZone();
                 behaviour.OnAddToPlayZone();
             });
