@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: LongPause
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 0}
+  presentPrefab: {fileID: 919132149155446097, guid: 5e76b3e18d86ac048a44d23db4872209, type: 3}
   critChance: 0.1
   critMult: 2
   title: Long Pause
