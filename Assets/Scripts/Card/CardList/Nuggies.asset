@@ -18,7 +18,7 @@ MonoBehaviour:
   title: Dino Nuggies
   description: Who doesnt like dino nuggies? Exactly, {no one}. The {next card is
     also un-dislikable}!
-  cardSprite: {fileID: 21300000, guid: a85eece153193ae4f82cefad6ccccc99, type: 3}
+  cardSprite: {fileID: 21300000, guid: af1d71b9e40c42f4ea5e1257f0afcc67, type: 3}
   cost: 20
   effects: 0900000009000000
   baseValue: 0

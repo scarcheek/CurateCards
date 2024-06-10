@@ -266,6 +266,7 @@ MonoBehaviour:
   speed: 1000
   cardImageCollider: {fileID: 0}
   playZoneCollider: {fileID: 0}
+  cardBehaviour: {fileID: 0}
   targetPos: {x: 0, y: 0, z: 0}
   isDragged: 0
   transformParent: {fileID: 0}

@@ -1159,16 +1159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 1954846331921973734, guid: 87e1143974dc5074c96a9e1831d1771f, type: 3}
-  - {fileID: -645946460188607999, guid: da8f9709693aaaf40821393fadff8be2, type: 3}
-  - {fileID: -3989809400451119777, guid: cfe0cc28aacbfe443ad3266f3eb2e12f, type: 3}
-  - {fileID: 5788401467318268320, guid: 54abb120bd373b942beef3eb7b1d42be, type: 3}
-  - {fileID: -5930778902498119305, guid: e44e5cc9f05739447a976bf02cd861fb, type: 3}
-  - {fileID: 8995622965782712110, guid: 2e63d06538c6c4d4eabbf0bbc7a510a6, type: 3}
-  - {fileID: -142523352978088456, guid: 93abfb4bd11350f4fb51d8cee0f2f290, type: 3}
-  - {fileID: 5916344971328126235, guid: 540ca76a5d185d04b8af82e17e41f7c5, type: 3}
-  - {fileID: 2496708445355654925, guid: 62bd325f9e503c242b65fb66cbe56967, type: 3}
-  - {fileID: 9096479823000558163, guid: b32a7908da854674f8bbe8d32d89278a, type: 3}
+  - {fileID: -1697989433240245131, guid: 9541880d6009d664aaf09386366f40bf, type: 3}
+  - {fileID: -1697989433240245131, guid: 9541880d6009d664aaf09386366f40bf, type: 3}
+  - {fileID: -1697989433240245131, guid: 9541880d6009d664aaf09386366f40bf, type: 3}
   DebugStartCardSlots: 0
   cardSlotPrefab: {fileID: 5765090287824418254, guid: e93587bab58f12249805e005cca5965f, type: 3}
   targetPos: {x: 0, y: 0}

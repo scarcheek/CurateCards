@@ -37,6 +37,8 @@ public class VisitorScript : MonoBehaviour
         animController = GetComponentInChildren<VisitorAnimationController>();
         EventManager.ScoreCard += OnScoreCard;
         EventManager.RandomizePreferences += OnRandomizePreferences;
+
+
         hatSprite.enabled = Random.value > hatProb;
         currentMotivation = initialMotivation;
         hatMotivation = Random.Range(-30, 30);
@@ -69,9 +71,10 @@ public class VisitorScript : MonoBehaviour
     private float CalculateScore(CardBehaviour card, ref float motivationChange)
     {
         //TODO: Calculate Score based on clothing
-        motivationChange = hatMotivation + bodyMotivation + pantsMotivation + Random.Range(-5, 5);
-
-        if (card.ignoreDislike && motivationChange < 0) motivationChange = 0; 
+        motivationChange = hatMotivation + bodyMotivation + pantsMotivation;
+        if (card.leaveOnDislike && motivationChange < 0) return 0;
+        motivationChange += Random.Range(-5, 5);
+        if (card.ignoreDislike && motivationChange < 0) motivationChange = 0;
 
         GameStateManager instance = GameStateManager.instance;
         motivationChange += instance.activeVirusCounters;
@@ -83,7 +86,7 @@ public class VisitorScript : MonoBehaviour
 
     public void ReactionDone()
     {
-        if (currentMotivation < 0)
+        if (currentMotivation <= 0)
         {
             isLeaving = true;
             standPos = planeScript.RandomPointOutBounds();

@@ -17,7 +17,7 @@ MonoBehaviour:
   critMult: 2
   title: Uhh.. uhhmmm
   description: '{All visitors forgor...}'
-  cardSprite: {fileID: 21300000, guid: f59cbcedce2f32945bdc57f389bb3001, type: 3}
+  cardSprite: {fileID: 21300000, guid: 8bc6a472e590bcd45894255ba0d23811, type: 3}
   cost: 15
   effects: 05000000
   baseValue: 0

@@ -17,7 +17,7 @@ MonoBehaviour:
   critMult: 2
   title: Chair
   description: Do not touch. Other {chairs get +5 value}
-  cardSprite: {fileID: 21300000, guid: d2f5dbee9c21cf143bb3f2091e5ec2c3, type: 3}
+  cardSprite: {fileID: 21300000, guid: df57add75e7f75649aa8b6b9cbe8327f, type: 3}
   cost: 15
   effects: 08000000
   baseValue: 0

@@ -17,7 +17,7 @@ MonoBehaviour:
   critMult: 2
   title: Goobnite
   description: '{Adds two defence counter} blankies for a comforting sleep <3'
-  cardSprite: {fileID: 21300000, guid: 099c0b954dde2ac4abd5fd598916d2d9, type: 3}
+  cardSprite: {fileID: 21300000, guid: 7dfdf8ff83a7ef8488fe9a2ba8e8c09f, type: 3}
   cost: 25
   effects: 02000000
   baseValue: 10

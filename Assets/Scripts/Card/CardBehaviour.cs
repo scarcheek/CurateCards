@@ -14,6 +14,8 @@ public class CardBehaviour : MonoBehaviour
     [HideInInspector] public float cardCost;
     [HideInInspector] public bool guaranteedCrit;
     [HideInInspector] public bool ignoreDislike;
+    [HideInInspector] public bool leaveOnDislike;
+
 
     [HideInInspector] public List<Func<CardBehaviour, bool>> revertBuffFuncs = new();
     internal bool wasInPlayzone = false;
@@ -61,6 +63,7 @@ public class CardBehaviour : MonoBehaviour
         cardCost = cardProps.cost;
         guaranteedCrit = false;
         ignoreDislike = false;
+        leaveOnDislike = false;
         buffedTypeCards.Clear();
         buffedMediumCards.Clear();
         currentCritMult = cardProps.critMult;

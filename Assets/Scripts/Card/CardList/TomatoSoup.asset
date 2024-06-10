@@ -18,7 +18,7 @@ MonoBehaviour:
   title: Tomato soup
   description: This is probably very deep. I wouldn't know though. Here, take {two
     attack counters}
-  cardSprite: {fileID: 21300000, guid: 3ab2bc7f92d47a54aa54e6a49f8cc8d0, type: 3}
+  cardSprite: {fileID: 21300000, guid: 591b8f245f630ea468deb436cc8e0176, type: 3}
   cost: 35
   effects: 01000000
   baseValue: 10

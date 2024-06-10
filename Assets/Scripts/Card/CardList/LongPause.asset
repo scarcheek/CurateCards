@@ -17,7 +17,7 @@ MonoBehaviour:
   critMult: 2
   title: Long Pause
   description: To break the silence, the {next card is free}
-  cardSprite: {fileID: 21300000, guid: 864c2969d18ecf74ca5f6a1cca76b619, type: 3}
+  cardSprite: {fileID: 21300000, guid: 00b2b69217f4b4b4a993d3e825cdf11f, type: 3}
   cost: 10
   effects: 07000000
   baseValue: 0
