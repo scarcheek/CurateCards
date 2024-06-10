@@ -22,7 +22,7 @@ public class ArtSpotScript : MonoBehaviour
         {
             Debug.Log("presenting");
             artPiece = Instantiate(card.card.cardProps.presentPrefab, transform, false);
-            if (card.card.cardProps.medium.Contains(Medium.painting) || card.card.cardProps.medium.Contains(Medium.music) || card.card.cardProps.medium.Contains(Medium.videogame))
+            if (card.card.cardProps.medium.Contains(Medium.painting) || card.card.cardProps.medium.Contains(Medium.music))
             {
                 artPiece.transform.localPosition = new Vector3(0.0f, 1, 0.0f); 
             }
