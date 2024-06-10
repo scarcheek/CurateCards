@@ -25,17 +25,17 @@ public class FuckedCat : AllOfBuffCard
         if (ApplyCondition(cardToBuff, CardType.ancient))
         {
             cardToBuff.cardCost -= discount;
-            return ApplyTypeEffect(cardToBuff);
+            return ApplyAllOfEffect(cardToBuff);
         }
         return false;
     }
 
     internal bool RevertAncientCostReduce(CardBehaviour card)
     {
-        if (card != this && buffedTypeCards.Contains(card))
+        if (card != this && buffedCards.Contains(card))
         {
             card.cardCost += discount;
-            return ApplyRevert(card);
+            return RevertAllOfEffect(card);
         }
         return false;
     }
