@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: Trash
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 0}
+  presentPrefab: {fileID: 919132149155446097, guid: 3e235b4e451290047808eee61d33d3f9, type: 3}
   critChance: 0.1
   critMult: 2
-  title: 
-  description: 
-  cardSprite: {fileID: 0}
+  title: Bag of trash
+  description: 'It cannot get worse from here. As a bonus: The next card has {double
+    value!}'
+  cardSprite: {fileID: 21300000, guid: c8b0dd6d8496cbb438d31cbd546d6bc5, type: 3}
   cost: 0
-  effects: 
-  baseValue: 0
-  cardType: 
-  medium: 
+  effects: 08000000
+  baseValue: -15
+  cardType: 0300000005000000
+  medium: 08000000

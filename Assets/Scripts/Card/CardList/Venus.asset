@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: Venus
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 0}
+  presentPrefab: {fileID: 919132149155446097, guid: d4e48f72899a2094f890e782a184bd6c, type: 3}
   critChance: 0.1
   critMult: 2
-  title: 
-  description: 
-  cardSprite: {fileID: 0}
-  cost: 0
-  effects: 
+  title: Voluptuous woman
+  description: Her thiccness is only amplified by other cards, making her {value
+    increase by 5} for each one
+  cardSprite: {fileID: 21300000, guid: 9b1989b139193034b96947155362f1f6, type: 3}
+  cost: 30
+  effects: 08000000
   baseValue: 0
-  cardType: 
-  medium: 
+  cardType: 0400000005000000
+  medium: 00000000
