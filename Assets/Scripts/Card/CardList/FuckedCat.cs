@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FuckedCat : CardBehaviour
+public class FuckedCat : AllOfBuffCard
 {
     [SerializeField] private float discount;
 
@@ -13,22 +13,19 @@ public class FuckedCat : CardBehaviour
         return true;
     }
 
-
-    internal override bool TypeEffect(CardBehaviour card)
+    internal override bool OnRemoveFromPlayZone()
     {
-        return AncientCostReduce(card);
-    }
-    internal override bool RevertTypeEffect(CardBehaviour card)
-    {
-        return RevertAncientCostReduce(card);
+        if (!base.OnRemoveFromPlayZone()) return false;
+        EventManager.EmitAllOfTypeEffect(CardType.ancient, RevertAncientCostReduce);
+        return true;
     }
 
     internal bool AncientCostReduce(CardBehaviour cardToBuff)
     {
-        if (cardToBuff != this && !buffedTypeCards.Contains(cardToBuff) && cardToBuff.cardProps.cardType.Contains(CardType.ancient))
+        if (ApplyCondition(cardToBuff, CardType.ancient))
         {
             cardToBuff.cardCost -= discount;
-            return ApplyTypeEffect(buffedTypeCards, cardToBuff);
+            return ApplyTypeEffect(cardToBuff);
         }
         return false;
     }

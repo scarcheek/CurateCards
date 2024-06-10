@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: Chair
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 0}
+  presentPrefab: {fileID: 919132149155446097, guid: 50c1170723051f6489880e0884ddfda0, type: 3}
   critChance: 0.1
   critMult: 2
   title: Chair
@@ -21,5 +21,5 @@ MonoBehaviour:
   cost: 15
   effects: 08000000
   baseValue: 0
-  cardType: 03000000
+  cardType: 0300000005000000
   medium: 000000000200000003000000

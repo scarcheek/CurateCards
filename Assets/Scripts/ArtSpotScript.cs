@@ -21,7 +21,7 @@ public class ArtSpotScript : MonoBehaviour
         if (card.card.cardProps.presentPrefab)
         {
             Debug.Log("presenting");
-            artPiece = Instantiate(card.card.cardProps.presentPrefab);
+            artPiece = Instantiate(card.card.cardProps.presentPrefab, transform, false);
         }
     }
 

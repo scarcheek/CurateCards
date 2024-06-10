@@ -22,14 +22,18 @@ public class CardBehaviour : MonoBehaviour
     internal List<CardBehaviour> buffedTypeCards = new();
     public int pos;
     // Start is called before the first frame update
-    void Start()
-    {
 
+    private void Awake()
+    {
         EventManager.CurationDone += ResetCardStats;
         EventManager.AllOfMediumEffect += OnAllOfMediumEffect;
         EventManager.AllOfTypeEffect += OnAllOfTypeEffect;
+        if (!cardProps.cardType.Contains(CardType.ANY)) cardProps.cardType.Add(CardType.ANY);
+    }
+
+    void Start()
+    {
         parentScript = GetComponentInParent<PlayingCardScript>();
-        if(!cardProps.cardType.Contains(CardType.ANY)) cardProps.cardType.Add(CardType.ANY);
         ResetCardStats();
     }
 
@@ -109,10 +113,11 @@ public class CardBehaviour : MonoBehaviour
     internal virtual bool OnRemoveFromPlayZone()
     {
         if (!wasInPlayzone) return false;
-
+        // Remove the effects still lingering in the effect pool by this card from the pool
         RemoveEffectsFromEffectPool();
+        // Reverts the effects already applied to other cards
         RevertEffectsOfBuffedCards();
-
+        // Reverts all effects applied to this card
         foreach (Func<CardBehaviour, bool> revertFunc in revertBuffFuncs)
         {
             revertFunc(this);
@@ -167,18 +172,18 @@ public class CardBehaviour : MonoBehaviour
     internal virtual bool RevertMediumEffect(CardBehaviour card) { return false; }
     internal virtual bool TypeEffect(CardBehaviour card) { return false; }
     internal virtual bool RevertTypeEffect(CardBehaviour card) { return false; }
-    internal bool ApplyTypeEffect(List<CardBehaviour> buffedCards, CardBehaviour cardToBuff)
+    internal bool ApplyTypeEffect(CardBehaviour cardToBuff)
     {
         buffingOtherCards = true;
-        buffedCards.Add(cardToBuff);
+        buffedTypeCards.Add(cardToBuff);
         cardToBuff.revertBuffFuncs.Add(RevertTypeEffect);
         cardToBuff.DisplayCardStats();
         return true;
     }
-    internal bool ApplyMediumEffect(List<CardBehaviour> buffedCards, CardBehaviour cardToBuff)
+    internal bool ApplyMediumEffect(CardBehaviour cardToBuff)
     {
         buffingOtherCards = true;
-        buffedCards.Add(cardToBuff);
+        buffedMediumCards.Add(cardToBuff);
         cardToBuff.revertBuffFuncs.Add(RevertMediumEffect);
         cardToBuff.DisplayCardStats();
         return true;

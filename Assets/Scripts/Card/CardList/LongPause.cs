@@ -28,7 +28,7 @@ public class LongPause : CardBehaviour
             appliedDiscount = cardToBuff.cardCost;
             cardToBuff.cardCost -= appliedDiscount;
 
-            return ApplyTypeEffect(buffedTypeCards, cardToBuff);
+            return ApplyTypeEffect(cardToBuff);
         }
         return false;
     }

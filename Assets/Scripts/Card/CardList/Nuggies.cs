@@ -28,7 +28,7 @@ public class Nuggies : CardBehaviour
             Debug.Log(cardToBuff.name + " will now ignore Dislikes");
             cardToBuff.ignoreDislike = true;
 
-            return ApplyTypeEffect(buffedTypeCards, cardToBuff);
+            return ApplyTypeEffect(cardToBuff);
         }
         return false;
     }
