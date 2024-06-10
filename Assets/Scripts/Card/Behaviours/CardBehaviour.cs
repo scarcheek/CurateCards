@@ -64,6 +64,7 @@ public class CardBehaviour : MonoBehaviour
         guaranteedCrit = false;
         ignoreDislike = false;
         leaveOnDislike = false;
+        revertBuffFuncs.Clear();
         buffedTypeCards.Clear();
         buffedMediumCards.Clear();
         currentCritMult = cardProps.critMult;
