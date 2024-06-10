@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goobnite : CardBehaviour
+public class CounterCard : CardBehaviour
 {
     [SerializeField] private Counter[] counterList;
 

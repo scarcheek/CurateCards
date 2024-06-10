@@ -17,6 +17,7 @@ public class ScoreVisualizerScript : MonoBehaviour
 
     public void showScore(double score, float motivationChange)
     {
+        scoreText.text = "";
         if (score >= 0) scoreText.text = "+";
         scoreText.text += score.ToString();
 
