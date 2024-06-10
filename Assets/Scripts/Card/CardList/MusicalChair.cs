@@ -10,6 +10,7 @@ public class MusicalChair : CardBehaviour
     {
         AddCounter(counters.ToArray());
         base.Play();
+        counters.Clear();
     }
     internal override bool OnAddToPlayZone()
     {

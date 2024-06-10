@@ -47,6 +47,7 @@ public class PlayingCardScript : MonoBehaviour
     {
         CostText.text = cardCost.ToString();
         BaseValueText.text = cardValue.ToString();
+
         if (crits)
         {
             BaseValueText.color = Color.yellow;

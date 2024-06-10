@@ -33,7 +33,7 @@ public class CardBehaviour : MonoBehaviour
         if (!cardProps.cardType.Contains(CardType.ANY)) cardProps.cardType.Add(CardType.ANY);
     }
 
-    void Start()
+    internal virtual void Start()
     {
         parentScript = GetComponentInParent<PlayingCardScript>();
         ResetCardStats();
