@@ -8,12 +8,11 @@ public class PlayZoneScript : MonoBehaviour
     [SerializeField] private float targetSpaceBetweenCards;
     [SerializeField] private float handReAdjustmentSpeed;
     [SerializeField] private Vector2 targetPos;
-    [SerializeField] private Animator animator;
+    public Animator animator;
     [SerializeField] private string playZoneSlotName = "PlaySlot";
     [SerializeField] private GameObject button;
     private List<GameObject> cardSlots = new();
 
-    private bool isHovered = false;
 
     // Start is called before the first frame update
     void Start()
@@ -95,23 +94,6 @@ public class PlayZoneScript : MonoBehaviour
         animator.SetBool("HoverPlayZone", false);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!isHovered && other.tag == "CardImage")
-        {
-            animator.SetBool("HoverPlayZone", true);
-            isHovered = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (isHovered && other.tag == "CardImage")
-        {
-            isHovered = false;
-            animator.SetBool("HoverPlayZone", false);
-
-        }
-    }
+    
 
 }

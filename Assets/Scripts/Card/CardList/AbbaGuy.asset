@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
-  m_Name: Wave
+  m_Name: AbbaGuy
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: d40001faa3a3c6a4899a12866adc0ee3, type: 3}
+  presentPrefab: {fileID: 919132149155446097, guid: 597df9bec27cbe24da2123c28996cf6a, type: 3}
   critChance: 0.1
   critMult: 2
-  title: Big Wave
-  description: It sure is
-  cardSprite: {fileID: 21300000, guid: 16f5e72bcd553284699d303177052745, type: 3}
-  cost: 25
-  effects: 
-  baseValue: 40
-  cardType: 0000000005000000
-  medium: 01000000
+  title: Guy in river
+  description: He better not sing a song from a swedish pop group,,, {Adds 3 virus
+    counters}
+  cardSprite: {fileID: 21300000, guid: ac270418fd063f241bbb2f08f3bb57d8, type: 3}
+  cost: 20
+  effects: 03000000
+  baseValue: 0
+  cardType: 01000000
+  medium: 07000000
