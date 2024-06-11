@@ -44,7 +44,7 @@ public class MusicalChair : CardBehaviour
         if (buffedMediumCards.Contains(card))
         {
             counters.Remove(Counter.attack);
-            return ApplyRevert(card);
+            return ApplyRevert(card, buffedMediumCards);
         }
         return false;
     }

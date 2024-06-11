@@ -9,7 +9,7 @@ public class Venus : CardBehaviour
     internal override bool OnAddToPlayZone()
     {
         if (!base.OnAddToPlayZone()) return false;
-        CardEffects.TypeEffects[CardType.ANY].Add(VenusValueIncreaseAfter);
+        CardEffects.TypeEffects[CardType.ANY].Add(TypeEffect);
 
         EventManager.EmitAllOfTypeEffect(CardType.ANY, VenusValueIncreaseBefore);
         return true;
@@ -18,7 +18,7 @@ public class Venus : CardBehaviour
     internal override bool OnRemoveFromPlayZone()
     {
         if (!base.OnRemoveFromPlayZone()) return false;
-        EventManager.EmitAllOfTypeEffect(CardType.ANY, RevertVenusValueIncrease);
+        EventManager.EmitAllOfTypeEffect(CardType.ANY, RevertTypeEffect);
         return true;
     }
 
@@ -60,7 +60,7 @@ public class Venus : CardBehaviour
         {
             cardValue -= valIncrease;
             DisplayCardStats();
-            return ApplyRevert(card);
+            return ApplyRevert(card, buffedTypeCards);
         }
         return false;
     }

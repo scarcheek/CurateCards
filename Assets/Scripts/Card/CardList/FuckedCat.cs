@@ -24,7 +24,7 @@ public class FuckedCat : AllOfBuffCard
     {
         if (ApplyCondition(cardToBuff, CardType.ancient))
         {
-            cardToBuff.cardCost -= discount;
+            ApplyDiscount(cardToBuff, discount);
             return ApplyAllOfEffect(cardToBuff);
         }
         return false;
@@ -34,7 +34,7 @@ public class FuckedCat : AllOfBuffCard
     {
         if (card != this && buffedCards.Contains(card))
         {
-            card.cardCost += discount;
+            RevertDiscount(card, discount);
             return RevertAllOfEffect(card);
         }
         return false;

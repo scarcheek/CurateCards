@@ -39,7 +39,7 @@ public class Nuggies : CardBehaviour
         {
             Debug.Log(card.name + " will now apply Dislikes");
             card.ignoreDislike = false;
-            return ApplyRevert(card);
+            return ApplyRevert(card, buffedTypeCards);
         }
         return false;
     }

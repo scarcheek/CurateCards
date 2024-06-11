@@ -39,7 +39,7 @@ public class Banana : CardBehaviour
         {
             Debug.Log(card.name + " will now stop critting");
             card.guaranteedCrit = false;
-            return ApplyRevert(card);
+            return ApplyRevert(card, buffedMediumCards);
         }
         return false;
     }

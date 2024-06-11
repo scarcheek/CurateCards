@@ -1,45 +1,85 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class GameStateManager : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI availableCoinsText;
     [SerializeField] private float scoreToAchieve;
+    [SerializeField] private float StartingCoinAmount = 100;
     [Range(0f, 1f)][SerializeField] private float initialScoreFactor;
-    private float currentScore;
+    private float CurrentScore;
     public int activeAttackCounters = 0;
     public int activeDefenceCounters = 0;
     public int activeVirusCounters = 0;
     public static GameStateManager instance;
     public static float AttackCounterChange = 1.2f;
     public static float DefenceCounterChange = 0.83f;
+    public static float AvailableCoins;
+
+    private Color defaultCoinColor;
+
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
-        currentScore = initialScoreFactor * scoreToAchieve;
+        CurrentScore = initialScoreFactor * scoreToAchieve;
+        AvailableCoins = StartingCoinAmount;
+        defaultCoinColor = availableCoinsText.color;
+
         EventManager.AddBaseValueToGamestate += addBaseValue;
         EventManager.AddCounter += OnAddCounter;
         EventManager.RemoveCounter += OnRemoveCounter;
-        EventManager.CurationDone += ReduceCountersByOne;
+        EventManager.CurationDone += OnCurationDone;
     }
 
-    private void ReduceCountersByOne()
+    private void OnCurationDone()
     {
-        EventManager.EmitRemoveCounter(Counter.attack, Counter.defence, Counter.virus);
+        AvailableCoins = StartingCoinAmount;
+        availableCoinsText.text = AvailableCoins.ToString();
+        ReduceCountersByOne();
+    }
+
+    /// <summary>
+    /// On Card Add for the first time: costBefore = 0, costAfter = ex. 20
+    /// 100 += 0 - 20 -> 80
+    /// On card discount: costbefore = 20, costAfter = ex. 10
+    /// 80 += 20 - 10
+    /// </summary>
+    /// <param name="costBefore">The cost before the change</param>
+    /// <param name="costAfter">The cost after the change</param>
+    public void UpdateAvailableCoins(float costBefore, float costAfter)
+    {
+        AvailableCoins += costBefore - costAfter;
+        availableCoinsText.text = AvailableCoins.ToString();
+
+        if (AvailableCoins >= 0)
+        {
+            availableCoinsText.color = defaultCoinColor;
+        }
+        else
+        {
+            availableCoinsText.color = Color.blue;
+        }
     }
 
     public void addBaseValue(float baseVal)
     {
         //TODO: Display the score somewhere in the UI
-        currentScore += baseVal;
-        Debug.Log("Current Score: " + currentScore);
+        CurrentScore += baseVal;
+        Debug.Log("Current Score: " + CurrentScore);
     }
 
+    #region counters
+    private void ReduceCountersByOne()
+    {
+        EventManager.EmitRemoveCounter(Counter.attack, Counter.defence, Counter.virus);
+    }
     private void OnAddCounter(Counter[] counters)
     {
         foreach (Counter counter in counters)
@@ -79,5 +119,5 @@ public class GameStateManager : MonoBehaviour
         activeDefenceCounters = math.max(0, activeDefenceCounters);
         activeVirusCounters = math.max(0, activeVirusCounters);
     }
-
+    #endregion
 }

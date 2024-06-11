@@ -58,12 +58,12 @@ public class CardBehaviour : MonoBehaviour
     public void ResetCardStats()
     {
         wasInPlayzone = false;
-        buffingOtherCards = false;
         cardValue = cardProps.baseValue;
         cardCost = cardProps.cost;
         guaranteedCrit = false;
         ignoreDislike = false;
         leaveOnDislike = false;
+        buffingOtherCards = false;
         revertBuffFuncs.Clear();
         buffedTypeCards.Clear();
         buffedMediumCards.Clear();
@@ -94,6 +94,8 @@ public class CardBehaviour : MonoBehaviour
     internal virtual bool OnAddToPlayZone()
     {
         if (wasInPlayzone) return false;
+        GameStateManager.instance.UpdateAvailableCoins(0, cardCost);
+
         foreach (Medium m in cardProps.medium)
         {
             foreach (Func<CardBehaviour, bool> mediumEffect in CardEffects.MediumEffects[m])
@@ -111,12 +113,14 @@ public class CardBehaviour : MonoBehaviour
         }
 
         wasInPlayzone = true;
+
         return true;
     }
 
     internal virtual bool OnRemoveFromPlayZone()
     {
         if (!wasInPlayzone) return false;
+        
         // Remove the effects still lingering in the effect pool by this card from the pool
         RemoveEffectsFromEffectPool();
         // Reverts the effects already applied to other cards
@@ -129,6 +133,8 @@ public class CardBehaviour : MonoBehaviour
         revertBuffFuncs.Clear();
 
         wasInPlayzone = false;
+
+        GameStateManager.instance.UpdateAvailableCoins(cardCost, 0);
         return true;
     }
     /// <summary>
@@ -158,24 +164,23 @@ public class CardBehaviour : MonoBehaviour
     {
         if (buffingOtherCards)
         {
-            foreach (CardBehaviour buffedCard in buffedMediumCards)
+            for (int i = 0; i < buffedMediumCards.Count;)
             {
-                RevertMediumEffect(buffedCard);
+                RevertMediumEffect(buffedMediumCards[i]);
+
             }
-            buffedMediumCards.Clear();
-            foreach (CardBehaviour buffedCard in buffedTypeCards)
+            for (int i = 0; i < buffedTypeCards.Count; ) 
             {
-                RevertTypeEffect(buffedCard);
+                RevertTypeEffect(buffedTypeCards[i]);
             }
-            buffedTypeCards.Clear();
             buffingOtherCards = false;
         }
     }
 
     internal virtual bool MediumEffect(CardBehaviour card) { return false; }
-    internal virtual bool RevertMediumEffect(CardBehaviour card) { return false; }
+    internal virtual bool RevertMediumEffect(CardBehaviour card) { return ApplyRevert(card, buffedMediumCards); }
     internal virtual bool TypeEffect(CardBehaviour card) { return false; }
-    internal virtual bool RevertTypeEffect(CardBehaviour card) { return false; }
+    internal virtual bool RevertTypeEffect(CardBehaviour card) { return ApplyRevert(card, buffedTypeCards); }
     internal bool ApplyTypeEffect(CardBehaviour cardToBuff)
     {
         buffingOtherCards = true;
@@ -192,10 +197,26 @@ public class CardBehaviour : MonoBehaviour
         cardToBuff.DisplayCardStats();
         return true;
     }
-    internal bool ApplyRevert(CardBehaviour card)
+    internal bool ApplyRevert(CardBehaviour card, List<CardBehaviour> buffedCards)
     {
         buffingOtherCards = false;
         card.DisplayCardStats();
+        buffedCards.Remove(card);
         return true;
+    }
+
+    internal float ApplyDiscount(CardBehaviour card, float discount)
+    {
+        GameStateManager.instance.UpdateAvailableCoins(card.cardCost, card.cardCost - discount);
+
+        card.cardCost -= discount;
+        return card.cardCost;
+    }
+
+    internal float RevertDiscount(CardBehaviour card, float discount)
+    {
+        GameStateManager.instance.UpdateAvailableCoins(card.cardCost, card.cardCost + discount);
+        card.cardCost += discount;
+        return card.cardCost;
     }
 }

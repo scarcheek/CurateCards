@@ -17,30 +17,30 @@ public class Pineapple : CardBehaviour
 
     internal override bool MediumEffect(CardBehaviour card)
     {
-        return AddAttackCounter(card);
+        return DiscountFoodCard(card);
     }
 
     internal override bool RevertMediumEffect(CardBehaviour card)
     {
-        return RevertAddAttackCounter(card);
+        return RevertDiscountFoodCard(card);
     }
 
-    internal bool AddAttackCounter(CardBehaviour cardToBuff)
+    internal bool DiscountFoodCard(CardBehaviour cardToBuff)
     {
         if (!buffedMediumCards.Contains(cardToBuff))
         {
-            cardToBuff.cardCost -= discount;
+            ApplyDiscount(cardToBuff, discount);
             return ApplyMediumEffect(cardToBuff);
         }
         return false;
     }
 
-    internal bool RevertAddAttackCounter(CardBehaviour card)
+    internal bool RevertDiscountFoodCard(CardBehaviour card)
     {
         if (buffedMediumCards.Contains(card))
         {
-            card.cardCost += discount;
-            return ApplyRevert(card);
+            RevertDiscount(card, discount);
+            return ApplyRevert(card, buffedMediumCards);
         }
         return false;
     }

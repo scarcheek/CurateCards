@@ -39,7 +39,7 @@ public class Trash : CardBehaviour
         if (buffedTypeCards.Contains(card))
         {
             card.cardValue = valueBeforeChange;
-            return ApplyRevert(card);
+            return ApplyRevert(card, buffedTypeCards);
         }
         return false;
     }

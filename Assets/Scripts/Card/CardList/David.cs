@@ -10,7 +10,7 @@ public class David : CardBehaviour
     internal override bool OnAddToPlayZone()
     {
         if (!base.OnAddToPlayZone()) return false;
-        CardEffects.MediumEffects[Medium.sculpture].Add(DavidValueIncreaseAfter);
+        CardEffects.MediumEffects[Medium.sculpture].Add(MediumEffect);
 
         EventManager.EmitAllOfMediumEffect(Medium.sculpture, DavidValueIncreaseBefore);
         return true;
@@ -19,15 +19,15 @@ public class David : CardBehaviour
     internal override bool OnRemoveFromPlayZone()
     {
         if (!base.OnRemoveFromPlayZone()) return false;
-        EventManager.EmitAllOfMediumEffect(Medium.sculpture, RevertDavidValueIncrease);
+        EventManager.EmitAllOfMediumEffect(Medium.sculpture, RevertMediumEffect);
         return true;
     }
-
 
     internal override bool MediumEffect(CardBehaviour card)
     {
         return DavidValueIncreaseAfter(card);
     }
+
     private bool DavidValueIncreaseBefore(CardBehaviour card)
     {
         if (card != this && !buffedMediumCards.Contains(card) && card.wasInPlayzone)
@@ -41,7 +41,7 @@ public class David : CardBehaviour
     }
     private bool DavidValueIncreaseAfter(CardBehaviour card)
     {
-        if (card != this && !card.wasInPlayzone)
+        if (card != this && !buffedMediumCards.Contains(card) && !card.wasInPlayzone)
         {
             cardValue += valIncrease;
             DisplayCardStats();
@@ -61,7 +61,7 @@ public class David : CardBehaviour
         {
             cardValue -= valIncrease;
             DisplayCardStats();
-            return ApplyRevert(card);
+            return ApplyRevert(card, buffedMediumCards);
         }
         return false;
     }

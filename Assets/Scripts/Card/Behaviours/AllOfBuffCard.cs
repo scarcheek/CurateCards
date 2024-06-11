@@ -16,8 +16,7 @@ public class AllOfBuffCard : CardBehaviour
 
     internal bool RevertAllOfEffect(CardBehaviour card)
     {
-        buffedCards.Remove(card);
-        return ApplyRevert(card);
+        return ApplyRevert(card, buffedCards);
     }
 
     internal bool ApplyCondition(CardBehaviour card, Medium m)

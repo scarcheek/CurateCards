@@ -36,7 +36,7 @@ public class EliteEmployee : CardBehaviour
         if (buffedTypeCards.Contains(card))
         {
             card.guaranteedCrit = false;
-            return ApplyRevert(card);
+            return ApplyRevert(card, buffedTypeCards);
         }
         return false;
     }

@@ -33,26 +33,29 @@ public class PlayZoneScript : MonoBehaviour
     {
         CardSlotsManager.AddCardToPlayCardSlots(cardSlot, cardSlots, transform, playZoneSlotName);
 
-        button.SetActive(true);
 
         animator.SetBool("CardInPlayZone", true);
 
         cardSlot.GetComponentInChildren<CardSlotDeciderScript>().ResetPosition();
         cardSlot.GetComponentInChildren<CardBehaviour>().OnAddToPlayZone();
+
+        button.SetActive(GameStateManager.AvailableCoins >= 0);
+    
     }
     public void removeCardFromPlayZone(GameObject cardSlot)
     {
         CardSlotsManager.RemoveCardFromCardSlots(cardSlot, cardSlots, playZoneSlotName);
 
         animator.SetBool("CardInPlayZone", cardSlots.Count > 0);
-        if (cardSlots.Count == 0)
-        {
-            button.SetActive(false);
-        }
         //animator.SetTrigger("EndHoverPlayZone");
 
         cardSlot.GetComponentInChildren<CardBehaviour>().OnRemoveFromPlayZone();
 
+        button.SetActive(GameStateManager.AvailableCoins >= 0);
+        if (cardSlots.Count == 0)
+        {
+            button.SetActive(false);
+        }
     }
     public void SortCardSlots(GameObject initiator = null)
     {
@@ -66,12 +69,11 @@ public class PlayZoneScript : MonoBehaviour
             cardSlots.ForEach(slot =>
             {
                 CardBehaviour behaviour = slot.GetComponentInChildren<CardBehaviour>();
-                behaviour.ResetCardStats();
+                behaviour.OnRemoveFromPlayZone();
             });
             cardSlots.ForEach(slot =>
             {
                 CardBehaviour behaviour = slot.GetComponentInChildren<CardBehaviour>();
-                behaviour.OnRemoveFromPlayZone();
                 behaviour.OnAddToPlayZone();
             });
         }
@@ -82,15 +84,16 @@ public class PlayZoneScript : MonoBehaviour
         if (cardSlots.Count > 0)
         {
             List<PlayingCardScript> cards = new();
-            foreach (GameObject card in cardSlots) 
+            foreach (GameObject card in cardSlots)
             {
+
                 cards.Add(card.GetComponentInChildren<PlayingCardScript>());
             }
             EventManager.EmitSubmitCards(cards);
             ClearCardSlots();
         }
     }
-     
+
     private void ClearCardSlots()
     {
         button.SetActive(false);
@@ -98,7 +101,4 @@ public class PlayZoneScript : MonoBehaviour
         animator.SetBool("CardInPlayZone", false);
         animator.SetBool("HoverPlayZone", false);
     }
-
-    
-
 }

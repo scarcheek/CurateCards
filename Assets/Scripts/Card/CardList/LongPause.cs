@@ -26,8 +26,7 @@ public class LongPause : CardBehaviour
         if (!buffingOtherCards)
         {
             appliedDiscount = cardToBuff.cardCost;
-            cardToBuff.cardCost -= appliedDiscount;
-
+            ApplyDiscount(cardToBuff, appliedDiscount);
             return ApplyTypeEffect(cardToBuff);
         }
         return false;
@@ -37,9 +36,9 @@ public class LongPause : CardBehaviour
     {
         if (buffedTypeCards.Contains(card))
         {
-            card.cardCost += appliedDiscount;
+            RevertDiscount(card, appliedDiscount);
             appliedDiscount = 0;
-            return ApplyRevert(card);
+            return ApplyRevert(card, buffedTypeCards);
         }
         return false;
     }
