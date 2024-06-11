@@ -33,7 +33,7 @@ public class CardBehaviour : MonoBehaviour
         if (!cardProps.cardType.Contains(CardType.ANY)) cardProps.cardType.Add(CardType.ANY);
     }
 
-    void Start()
+    internal virtual void Start()
     {
         parentScript = GetComponentInParent<PlayingCardScript>();
         ResetCardStats();
@@ -64,6 +64,7 @@ public class CardBehaviour : MonoBehaviour
         guaranteedCrit = false;
         ignoreDislike = false;
         leaveOnDislike = false;
+        revertBuffFuncs.Clear();
         buffedTypeCards.Clear();
         buffedMediumCards.Clear();
         currentCritMult = cardProps.critMult;

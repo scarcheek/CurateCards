@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
-  m_Name: Wave
+  m_Name: David
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: d40001faa3a3c6a4899a12866adc0ee3, type: 3}
+  presentPrefab: {fileID: 919132149155446097, guid: 7d51270d051fcdb47acb19adb96c91a0, type: 3}
   critChance: 0.1
   critMult: 2
-  title: Big Wave
-  description: It sure is
-  cardSprite: {fileID: 21300000, guid: 16f5e72bcd553284699d303177052745, type: 3}
-  cost: 25
-  effects: 
-  baseValue: 40
-  cardType: 0000000005000000
-  medium: 01000000
+  title: Dave
+  description: He's so cool and popular. All other sculptures give him {+5 value}
+  cardSprite: {fileID: 21300000, guid: 742af49ddbf99e34dab3d56b7e04267b, type: 3}
+  cost: 20
+  effects: 08000000
+  baseValue: 0
+  cardType: 0400000005000000
+  medium: 00000000

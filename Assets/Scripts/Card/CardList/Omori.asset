@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
+  m_Name: Omori
+  m_EditorClassIdentifier: 
+  presentPrefab: {fileID: 919132149155446097, guid: c05fd39d4982d9e46b15b44e5dad525b, type: 3}
+  critChance: 0.1
+  critMult: 2
+  title: Omori
+  description: Its just good. People who {dislike it can just leave >:(}. {Two fans
+    appear}, additionally bringing {a virus counter}
+  cardSprite: {fileID: 21300000, guid: 42aac8931974f1240977d143ee72f117, type: 3}
+  cost: 35
+  effects: 040000000000000003000000
+  baseValue: 0
+  cardType: 02000000
+  medium: 06000000
