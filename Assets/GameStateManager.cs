@@ -9,10 +9,9 @@ using static UnityEditor.Timeline.TimelinePlaybackControls;
 public class GameStateManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI availableCoinsText;
-    [SerializeField] private float scoreToAchieve;
+    [SerializeField] private DayScoreManager scoreManager;
     [SerializeField] private float StartingCoinAmount = 100;
     [Range(0f, 1f)][SerializeField] private float initialScoreFactor;
-    private float CurrentScore;
     public int activeAttackCounters = 0;
     public int activeDefenceCounters = 0;
     public int activeVirusCounters = 0;
@@ -28,21 +27,25 @@ public class GameStateManager : MonoBehaviour
     void Start()
     {
         instance = this;
-        CurrentScore = initialScoreFactor * scoreToAchieve;
+        
         AvailableCoins = StartingCoinAmount;
         defaultCoinColor = availableCoinsText.color;
 
-        EventManager.AddBaseValueToGamestate += addBaseValue;
         EventManager.AddCounter += OnAddCounter;
         EventManager.RemoveCounter += OnRemoveCounter;
         EventManager.CurationDone += OnCurationDone;
+        EventManager.StartTurn += OnStartTurn;
     }
 
     private void OnCurationDone()
     {
-        AvailableCoins = StartingCoinAmount;
-        availableCoinsText.text = AvailableCoins.ToString();
         ReduceCountersByOne();
+    }
+
+    private void OnStartTurn()
+    {
+        AvailableCoins += StartingCoinAmount;
+        availableCoinsText.text = AvailableCoins.ToString();
     }
 
     /// <summary>
@@ -68,12 +71,7 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-    public void addBaseValue(float baseVal)
-    {
-        //TODO: Display the score somewhere in the UI
-        CurrentScore += baseVal;
-        Debug.Log("Current Score: " + CurrentScore);
-    }
+    
 
     #region counters
     private void ReduceCountersByOne()

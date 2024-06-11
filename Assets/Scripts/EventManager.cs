@@ -17,6 +17,8 @@ public class EventManager : MonoBehaviour
     public static event Action<CardBehaviour> ScoreCard;
     public static event Action CurationDone;
     public static event Action RandomizePreferences;
+    public static event Action DayComplete;
+    public static event Action StartTurn;
     public static event Action<CardType, Func<CardBehaviour, bool>> AllOfTypeEffect;
     public static event Action<Medium, Func<CardBehaviour, bool>> AllOfMediumEffect;
 
@@ -35,4 +37,7 @@ public class EventManager : MonoBehaviour
     public static void EmitRandomizePreferences() => RandomizePreferences?.Invoke();
     public static void EmitAllOfTypeEffect(CardType type, Func<CardBehaviour, bool> effect) => AllOfTypeEffect?.Invoke(type, effect);
     public static void EmitAllOfMediumEffect(Medium medium, Func<CardBehaviour, bool> effect) => AllOfMediumEffect?.Invoke(medium, effect);
+    public static void EmitDayComplete() => DayComplete?.Invoke();
+    public static void EmitStartTurn() => StartTurn?.Invoke();
+
 }

@@ -23,18 +23,24 @@ public class CardSlotsScript : MonoBehaviour
         EventManager.OnSwapComplete += SortCardSlots;
         EventManager.submitCards += OnSubmitCards;
         EventManager.CurationDone += OnCurationDone;
+        EventManager.StartTurn += PopulateHand;
 
         remainingCards = cards.ToList();
 
-        for (int i = 0; i < DebugStartCardSlots; i++)
-        {
-            CreateAndAddNewCardSlot();
-        }
+        PopulateHand();
     }
 
-    void Update()
+    //void Update()
+    //{
+    //if (Input.GetKeyDown(KeyCode.Space))
+    //{
+    //DrawCard();
+    //}
+    //}
+
+    private void PopulateHand()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        for (int i = 0; i < DebugStartCardSlots; i++)
         {
             DrawCard();
         }
