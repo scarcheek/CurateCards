@@ -35,6 +35,14 @@ public class GameStateManager : MonoBehaviour
         EventManager.RemoveCounter += OnRemoveCounter;
         EventManager.CurationDone += OnCurationDone;
         EventManager.StartTurn += OnStartTurn;
+        EventManager.DayComplete += OnDayComplete;
+    }
+
+    private void OnDayComplete()
+    {
+        activeAttackCounters = 0;
+        activeDefenceCounters = 0;
+        activeVirusCounters = 0;
     }
 
     private void OnCurationDone()
