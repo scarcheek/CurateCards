@@ -13,16 +13,16 @@ public class ClothingManager : MonoBehaviour
 
     public ClothingProps randomHat()
     {
-        return hats[Random.Range(0, hats.Length)];
+        return Instantiate(hats[Random.Range(0, hats.Length)]);
     }
 
     public ClothingProps randomBody()
     {
-        return bodies[Random.Range(0, bodies.Length)];
+        return Instantiate(bodies[Random.Range(0, bodies.Length)]);
     }
 
     public ClothingProps randomPants()
     {
-        return pants[Random.Range(0, pants.Length)];
+        return Instantiate(pants[Random.Range(0, pants.Length)]);
     }
 }
