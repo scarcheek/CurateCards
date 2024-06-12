@@ -11,20 +11,21 @@ public class VisitorScript : MonoBehaviour
     [Header("Components")]
     [SerializeField] private SpriteRenderer bodySprite;
     [SerializeField] private SpriteRenderer hatSprite;
+    [SerializeField] private SpriteRenderer pantsSprite;
     [SerializeField] private ScoreVisualizerScript scoreVisualizer;
     [Header("Properties")]
     [SerializeField] public float speed;
-    [SerializeField] private float hatProb;
     [SerializeField] private float neutralThreshhold;
     [SerializeField] private float initialMotivation;
     [Header("DEBUG")]
     public Vector3 standPos;
     [SerializeField] private float currentMotivation;
-    [SerializeField] private float hatMotivation;
-    [SerializeField] private float bodyMotivation;
-    [SerializeField] private float pantsMotivation;
+    [SerializeField] private ClothingProps hat;
+    [SerializeField] private ClothingProps body;
+    [SerializeField] private ClothingProps pants;
 
     private VisitorAnimationController animController;
+    private ClothingManager clothingManager;
 
     private bool isLeaving = false;
     VisitorSpawnPlaneScript planeScript;
@@ -33,24 +34,30 @@ public class VisitorScript : MonoBehaviour
     void Start()
     {
         planeScript = GetComponentInParent<VisitorSpawnPlaneScript>();
+        clothingManager = GetComponentInChildren<ClothingManager>();
 
         animController = GetComponentInChildren<VisitorAnimationController>();
         EventManager.ScoreCard += OnScoreCard;
         EventManager.RandomizePreferences += OnRandomizePreferences;
 
-
-        hatSprite.enabled = Random.value > hatProb;
         currentMotivation = initialMotivation;
-        hatMotivation = Random.Range(-30, 30);
-        bodyMotivation = Random.Range(-30, 30);
-        pantsMotivation = Random.Range(-30, 30);
+        OnRandomizePreferences();
+        ClothingSpritesUpdate();
+        
     }
 
     private void OnRandomizePreferences()
     {
-        hatMotivation = Random.Range(-30, 30);
-        bodyMotivation = Random.Range(-30, 30);
-        pantsMotivation = Random.Range(-30, 30);
+        hat = clothingManager.randomHat();
+        body = clothingManager.randomBody();
+        pants = clothingManager.randomPants();
+    }
+
+    private void ClothingSpritesUpdate()
+    {
+        bodySprite.sprite = body.sprite;
+        pantsSprite.sprite = pants.sprite;
+        hatSprite.sprite = hat.sprite;
     }
 
     private void OnScoreCard(CardBehaviour card)
@@ -70,9 +77,15 @@ public class VisitorScript : MonoBehaviour
 
     private float CalculateScore(CardBehaviour card, ref float motivationChange)
     {
-        //TODO: Calculate Score based on clothing
-        motivationChange = hatMotivation + bodyMotivation + pantsMotivation;
-        motivationChange += Random.Range(-5, 5);
+
+        foreach (CardType type in card.cardProps.cardType)
+        {
+            if(type != CardType.ANY) {
+                motivationChange += hat.prefernces[type] + body.prefernces[type] + pants.prefernces[type];
+            }
+            
+        }
+        
         if (card.ignoreDislike && motivationChange < 0) motivationChange = 0;
         if (card.leaveOnDislike && motivationChange < 0)
         {
