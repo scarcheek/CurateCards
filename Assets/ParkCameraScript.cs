@@ -5,6 +5,7 @@ using UnityEngine;
 public class ParkCameraScript : MonoBehaviour
 {
     Animator anim;
+    bool forceShowVisitors = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,9 +13,28 @@ public class ParkCameraScript : MonoBehaviour
         EventManager.AnimationVisitorDone += showVisitors;
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Tab))
+        {
+            forceShowVisitors = true;
+            anim.SetBool("showVisitors", forceShowVisitors);
+        }
+        else
+        {
+            forceShowVisitors = false;
+        }
+    }
+
     void showVisitors()
     {
-        anim.SetTrigger("showVisitors");
+        anim.SetBool("showVisitors", true);
+    }
+
+    void stopShowVisitors()
+    {
+        anim.SetBool("showVisitors", forceShowVisitors);
+
     }
 
 
