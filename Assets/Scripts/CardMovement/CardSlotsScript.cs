@@ -8,13 +8,14 @@ using UnityEngine;
 
 public class CardSlotsScript : MonoBehaviour
 {
-    [SerializeField] public List<CardBehaviour> cards = new();
     [SerializeField] private int DebugStartCardSlots = 4;
     [SerializeField] private GameObject cardSlotPrefab;
     [SerializeField] private Vector2 targetPos;
 
     [HideInInspector] public List<GameObject> cardSlots = new();
-    private List<CardBehaviour> remainingCards = new();
+    [Header("DEBUG")]
+    [SerializeField] private List<CardBehaviour> remainingCards = new();
+    [SerializeField] private List<CardBehaviour> cardsInDeck = new();
 
     void Start()
     {
@@ -25,18 +26,13 @@ public class CardSlotsScript : MonoBehaviour
         EventManager.CurationDone += OnCurationDone;
         EventManager.StartTurn += PopulateHand;
 
-        remainingCards = cards.ToList();
+        cardsInDeck = DeckManager.GetRandomCardsOfAllTypes();
+        cardsInDeck.AddRange(DeckManager.GetRandomCardsOfAllTypes());
+
+        remainingCards = cardsInDeck.ToList();
 
         PopulateHand();
     }
-
-    //void Update()
-    //{
-    //if (Input.GetKeyDown(KeyCode.Space))
-    //{
-    //DrawCard();
-    //}
-    //}
 
     private void PopulateHand()
     {
@@ -81,6 +77,6 @@ public class CardSlotsScript : MonoBehaviour
     private void OnSubmitCards(List<PlayingCardScript> cards)
     {
         CardSlotsManager.ClearCardSlots(cardSlots);
-        remainingCards = this.cards.ToList();
+        remainingCards = cardsInDeck.ToList();
     }
 }
