@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -22,12 +21,11 @@ public class GameStateManager : MonoBehaviour
 
     private Color defaultCoinColor;
 
-
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
-        
+
         AvailableCoins = StartingCoinAmount;
         defaultCoinColor = availableCoinsText.color;
 
@@ -56,6 +54,10 @@ public class GameStateManager : MonoBehaviour
         availableCoinsText.text = AvailableCoins.ToString();
     }
 
+    
+
+    
+
     /// <summary>
     /// On Card Add for the first time: costBefore = 0, costAfter = ex. 20
     /// 100 += 0 - 20 -> 80
@@ -79,7 +81,7 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-    
+
 
     #region counters
     private void ReduceCountersByOne()
@@ -90,7 +92,7 @@ public class GameStateManager : MonoBehaviour
     {
         foreach (Counter counter in counters)
         {
-            switch(counter)
+            switch (counter)
             {
                 case Counter.attack:
                     activeAttackCounters++;
