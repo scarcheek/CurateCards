@@ -60,6 +60,12 @@ public class ShopScript : MonoBehaviour
     public void FinishedShopping()
     {
         animator.SetTrigger("StopShopping");
+
+        foreach (GameObject shopCardSpot in ShopCardSpots)
+        {
+            Destroy(shopCardSpot.transform.GetChild(0).gameObject);
+            
+        }
     }
 
     private void AnimationStopShoppingDone() 
