@@ -53,7 +53,9 @@ public class ShopScript : MonoBehaviour
         foreach (PlayingCardScript card in selectedCards)
         {
             DeckManager.instance.DeckList.Add(card.card);
+            card.transform.parent.SetParent(null);
             card.transform.parent.gameObject.SetActive(false);
+
         }
     }
 
