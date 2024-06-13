@@ -20,6 +20,7 @@ MonoBehaviour:
     for each chair after this
   cardSprite: {fileID: 21300000, guid: a1b35625316289d459675abd3df78d42, type: 3}
   cost: 30
+  shopCost: 30
   effects: 01000000
   baseValue: 10
   cardType: 0100000005000000

@@ -20,7 +20,8 @@ MonoBehaviour:
     counters}
   cardSprite: {fileID: 21300000, guid: ac270418fd063f241bbb2f08f3bb57d8, type: 3}
   cost: 20
+  shopCost: 35
   effects: 03000000
   baseValue: 0
-  cardType: 01000000
+  cardType: 0100000005000000
   medium: 07000000

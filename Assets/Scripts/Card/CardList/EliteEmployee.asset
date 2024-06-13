@@ -19,7 +19,8 @@ MonoBehaviour:
   description: Your {next card crits} as it has been promoted :OO
   cardSprite: {fileID: 21300000, guid: c989afe050b7c584db416ffd239518e0, type: 3}
   cost: 20
+  shopCost: 70
   effects: 06000000
   baseValue: 10
-  cardType: 01000000
+  cardType: 0100000005000000
   medium: 07000000

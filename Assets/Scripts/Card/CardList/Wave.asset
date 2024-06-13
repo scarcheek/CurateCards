@@ -19,6 +19,7 @@ MonoBehaviour:
   description: It sure is
   cardSprite: {fileID: 21300000, guid: 16f5e72bcd553284699d303177052745, type: 3}
   cost: 25
+  shopCost: 35
   effects: 
   baseValue: 40
   cardType: 0000000005000000

@@ -19,6 +19,7 @@ MonoBehaviour:
   description: Do not touch. Other {chairs get +5 value}
   cardSprite: {fileID: 21300000, guid: df57add75e7f75649aa8b6b9cbe8327f, type: 3}
   cost: 15
+  shopCost: 25
   effects: 08000000
   baseValue: 0
   cardType: 0300000005000000

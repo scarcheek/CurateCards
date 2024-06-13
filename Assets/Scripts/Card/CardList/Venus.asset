@@ -20,6 +20,7 @@ MonoBehaviour:
     increase by 5} for each one
   cardSprite: {fileID: 21300000, guid: 9b1989b139193034b96947155362f1f6, type: 3}
   cost: 30
+  shopCost: 40
   effects: 08000000
   baseValue: 0
   cardType: 0400000005000000

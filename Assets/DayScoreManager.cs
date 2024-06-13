@@ -5,7 +5,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 
-public class DayScoreManager : MonoBehaviour 
+public class DayScoreManager : MonoBehaviour
 {
     [SerializeField] private List<float> scoresToAchieve = new();
     [SerializeField] private TextMeshProUGUI scoreText;
@@ -22,12 +22,20 @@ public class DayScoreManager : MonoBehaviour
         defaultScoreTextColor = scoreText.color;
         EventManager.CurationDone += OnCurationDone;
         EventManager.AddBaseValueToGamestate += addBaseValue;
+        EventManager.StartShopping += OnStartShopping;
+        SetScoreText();
+    }
+
+    private void OnStartShopping()
+    {
+        CurrentDay++;
+        CurrentScore = 0;
         SetScoreText();
     }
 
     private void SetScoreText()
     {
-        StringBuilder sb = new StringBuilder(CurrentScore.ToString());
+        StringBuilder sb = new StringBuilder(((int)CurrentScore).ToString());
         sb.Append(" / ");
         sb.Append(GetTodaysScoreToAchieve().ToString());
         scoreText.text = sb.ToString();
@@ -47,8 +55,8 @@ public class DayScoreManager : MonoBehaviour
     {
         if (CurrentScore >= GetTodaysScoreToAchieve())
         {
-            EventManager.EmitDayComplete();
-        } 
+            EventManager.EmitCelebrateDayComplete();
+        }
         else
         {
             EventManager.EmitStartTurn();

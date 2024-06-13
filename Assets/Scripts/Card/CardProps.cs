@@ -16,6 +16,7 @@ public class CardProps : ScriptableObject
     public string description;
     public Sprite cardSprite;
     public int cost;
+    public int shopCost;
     public List<Effect> effects = new();
     [Header("Both")]
     public int baseValue;

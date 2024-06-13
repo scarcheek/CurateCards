@@ -8,8 +8,9 @@ using UnityEngine;
 public class GameStateManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI availableCoinsText;
-    [SerializeField] private DayScoreManager scoreManager;
-    [SerializeField] private float StartingCoinAmount = 100;
+    [SerializeField] private float StartingCoinAmount = 500;
+    [SerializeField] private GameObject Shop;
+    [SerializeField] private GameObject CardZones;
     [Range(0f, 1f)][SerializeField] private float initialScoreFactor;
     public int activeAttackCounters = 0;
     public int activeDefenceCounters = 0;
@@ -32,31 +33,32 @@ public class GameStateManager : MonoBehaviour
         EventManager.AddCounter += OnAddCounter;
         EventManager.RemoveCounter += OnRemoveCounter;
         EventManager.CurationDone += OnCurationDone;
-        EventManager.StartTurn += OnStartTurn;
-        EventManager.DayComplete += OnDayComplete;
+        EventManager.StartShopping += StartShopping;
+        EventManager.StartDay += OnStartDay;
     }
 
-    private void OnDayComplete()
+    private void OnStartDay()
+    {
+        Shop.SetActive(false);
+        CardZones.SetActive(true);
+        EventManager.EmitStartTurn();
+        AvailableCoins += StartingCoinAmount;
+        availableCoinsText.text = AvailableCoins.ToString();
+    }
+
+    private void StartShopping()
     {
         activeAttackCounters = 0;
         activeDefenceCounters = 0;
         activeVirusCounters = 0;
+        Shop.SetActive(true);
+        CardZones.SetActive(false);
     }
 
     private void OnCurationDone()
     {
         ReduceCountersByOne();
     }
-
-    private void OnStartTurn()
-    {
-        AvailableCoins += StartingCoinAmount;
-        availableCoinsText.text = AvailableCoins.ToString();
-    }
-
-    
-
-    
 
     /// <summary>
     /// On Card Add for the first time: costBefore = 0, costAfter = ex. 20
@@ -80,8 +82,6 @@ public class GameStateManager : MonoBehaviour
             availableCoinsText.color = Color.blue;
         }
     }
-
-
 
     #region counters
     private void ReduceCountersByOne()

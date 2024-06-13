@@ -19,7 +19,8 @@ MonoBehaviour:
   description: Grrrr. [Hello good sir, mind if i invite you to some tea?] {+1 Person}
   cardSprite: {fileID: 21300000, guid: f62993cde48d3a34eaf0de797da92c2c, type: 3}
   cost: 25
+  shopCost: 45
   effects: 00000000
   baseValue: 10
-  cardType: 04000000
+  cardType: 0400000005000000
   medium: 0000000001000000

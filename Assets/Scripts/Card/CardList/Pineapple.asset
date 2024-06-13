@@ -19,6 +19,7 @@ MonoBehaviour:
   description: Not as deep, still good tho. Food types after this {cost 5 less}
   cardSprite: {fileID: 21300000, guid: e458cc43694e9b049af30242b5c4c257, type: 3}
   cost: 20
+  shopCost: 35
   effects: 07000000
   baseValue: 10
   cardType: 0300000005000000

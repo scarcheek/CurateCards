@@ -19,6 +19,7 @@ MonoBehaviour:
   description: To break the silence, the {next card is free}
   cardSprite: {fileID: 21300000, guid: 00b2b69217f4b4b4a993d3e825cdf11f, type: 3}
   cost: 10
+  shopCost: 90
   effects: 07000000
   baseValue: 0
   cardType: 0100000005000000

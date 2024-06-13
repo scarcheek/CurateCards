@@ -20,6 +20,7 @@ MonoBehaviour:
     off who dislikes him}. He does {add 3 people} tho :)
   cardSprite: {fileID: 21300000, guid: 52f092f53e0ef8a44bc80ae267c0224d, type: 3}
   cost: 35
+  shopCost: 60
   effects: 0400000000000000
   baseValue: 0
   cardType: 0000000005000000

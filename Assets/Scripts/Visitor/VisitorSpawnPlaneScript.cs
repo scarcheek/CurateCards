@@ -20,6 +20,21 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
     {
         instance = this;
         standArea = GetComponent<BoxCollider>();
+        SpawnVisitorAmount(visitorAmountToSpawn);
+    }
+
+    private void Awake()
+    {
+        EventManager.StartDay += OnStartDay;
+    }
+
+    private void OnStartDay()
+    {
+        SpawnVisitorAmount((int)DayScoreManager.instance.GetTodaysScoreToAchieve()/10);
+    }
+
+    private void SpawnVisitorAmount(int amount)
+    {
         for (int i = 0; i < visitorAmountToSpawn; i++)
         {
             SpawnAndAddVisitor();

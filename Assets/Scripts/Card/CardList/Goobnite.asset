@@ -19,6 +19,7 @@ MonoBehaviour:
   description: '{Adds two defence counter} blankies for a comforting sleep <3'
   cardSprite: {fileID: 21300000, guid: 7dfdf8ff83a7ef8488fe9a2ba8e8c09f, type: 3}
   cost: 25
+  shopCost: 40
   effects: 02000000
   baseValue: 10
   cardType: 0000000005000000

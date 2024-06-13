@@ -13,12 +13,17 @@ public class AnnouncementsScript : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        EventManager.DayComplete += OnDayComplete;
+        EventManager.CelebrateDayComplete += OnCelebrateDayComplete;
     }
 
-    private void OnDayComplete()
+    private void OnCelebrateDayComplete()
     {
         CelebrationParticles.Play();
         anim.SetTrigger("DayComplete");
+    }
+
+    private void OnAnimationComplete()
+    {
+        EventManager.EmitStartShopping();
     }
 }

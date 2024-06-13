@@ -13,9 +13,6 @@ public class CardSlotsScript : MonoBehaviour
     [SerializeField] private Vector2 targetPos;
 
     [HideInInspector] public List<GameObject> cardSlots = new();
-    [Header("DEBUG")]
-    [SerializeField] private List<CardBehaviour> remainingCards = new();
-    [SerializeField] private List<CardBehaviour> cardsInDeck = new();
 
     void Start()
     {
@@ -25,11 +22,6 @@ public class CardSlotsScript : MonoBehaviour
         EventManager.submitCards += OnSubmitCards;
         EventManager.CurationDone += OnCurationDone;
         EventManager.StartTurn += PopulateHand;
-
-        cardsInDeck = DeckManager.GetRandomCardsOfAllTypes();
-        cardsInDeck.AddRange(DeckManager.GetRandomCardsOfAllTypes());
-
-        remainingCards = cardsInDeck.ToList();
 
         PopulateHand();
     }
@@ -55,6 +47,7 @@ public class CardSlotsScript : MonoBehaviour
 
     private void CreateAndAddNewCardSlot()
     {
+        List<CardBehaviour> remainingCards = DeckManager.instance.remainingCards;
         if (remainingCards.Count == 0) return;
 
         GameObject cardSlot = Instantiate(cardSlotPrefab, transform);
@@ -77,6 +70,6 @@ public class CardSlotsScript : MonoBehaviour
     private void OnSubmitCards(List<PlayingCardScript> cards)
     {
         CardSlotsManager.ClearCardSlots(cardSlots);
-        remainingCards = cardsInDeck.ToList();
+        DeckManager.RepopulateRemainingCards();
     }
 }

@@ -20,6 +20,7 @@ MonoBehaviour:
     attack counters}
   cardSprite: {fileID: 21300000, guid: 591b8f245f630ea468deb436cc8e0176, type: 3}
   cost: 35
+  shopCost: 45
   effects: 01000000
   baseValue: 10
   cardType: 0100000005000000

@@ -19,6 +19,7 @@ MonoBehaviour:
   description: YOOO MOANER LISAR (real). {+1 People}
   cardSprite: {fileID: 21300000, guid: f22dcec60d763004f9ce5fef2605d457, type: 3}
   cost: 20
+  shopCost: 50
   effects: 00000000
   baseValue: 30
   cardType: 0000000005000000

@@ -19,6 +19,7 @@ MonoBehaviour:
   description: You think he is compensating for something?
   cardSprite: {fileID: 21300000, guid: dd4e930fa5b8f584cb5429481e0209d6, type: 3}
   cost: 60
+  shopCost: 45
   effects: 
   baseValue: 80
   cardType: 0400000005000000

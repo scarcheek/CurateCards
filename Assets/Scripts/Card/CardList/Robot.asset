@@ -20,6 +20,7 @@ MonoBehaviour:
     each active virus}
   cardSprite: {fileID: 21300000, guid: 91fdafbcf43cb194087522766e080bd2, type: 3}
   cost: 20
+  shopCost: 35
   effects: 08000000
   baseValue: 10
   cardType: 0200000005000000

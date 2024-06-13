@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
+using System.Linq;
 using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
-    [SerializeField] private List<CardBehaviour> cards = new();
+    public List<CardBehaviour> CardList = new();
+    [Header("DEBUG")]
+    public List<CardBehaviour> DeckList = new();
+    public List<CardBehaviour> remainingCards = new();
 
     public static DeckManager instance;
-    private void Start()
+    void Awake()
     {
         instance = this;
+        DeckList.AddRange(GetRandomCardsOfAllTypes());
+        remainingCards = DeckList.ToList();
     }
+
     public static List<CardBehaviour> GetRandomCardsOfAllTypes()
     {
         List<CardBehaviour> retCards = new()
@@ -27,20 +33,29 @@ public class DeckManager : MonoBehaviour
 
     public static CardBehaviour GetCardOfRandomType()
     {
-        switch (Random.Range(0, 5))
-        {
-            case 0: return GetRandomCardOfType(CardType.ancient);
-            case 1: return GetRandomCardOfType(CardType.contemporary);
-            case 2: return GetRandomCardOfType(CardType.technological);
-            case 3: return GetRandomCardOfType(CardType.traditional);
-            case 4: return GetRandomCardOfType(CardType.everyday);
-            default: return GetRandomCardOfType(CardType.ANY);
-        }
+        return GetRandomCardOfType(CardType.ANY);
     }
 
-    private static CardBehaviour GetRandomCardOfType(CardType type)
+    public static CardBehaviour GetRandomCardOfType(CardType type)
     {
-        List<CardBehaviour> typeCards = instance.cards.FindAll(card => card.cardProps.cardType.Contains(type));
+        List<CardBehaviour> typeCards = instance.CardList.FindAll(card => card.cardProps.cardType.Contains(type));
         return typeCards[Random.Range(0, typeCards.Count)];
+    }
+
+    internal static List<CardBehaviour> GetRandomCardsFromDeck(int amount)
+    {
+        List<CardBehaviour> retCards = new();
+        for (int i = 0; i < amount; i++)
+        {
+            int indexRemoved = Random.Range(0, instance.remainingCards.Count);
+            retCards.Add(instance.remainingCards[indexRemoved]);
+            instance.remainingCards.RemoveAt(indexRemoved);
+        }
+        return retCards;
+    }
+
+    internal static void RepopulateRemainingCards()
+    {
+        instance.remainingCards = instance.DeckList.ToList();
     }
 }
