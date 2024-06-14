@@ -128,4 +128,12 @@ public class GameStateManager : MonoBehaviour
         activeVirusCounters = math.max(0, activeVirusCounters);
     }
     #endregion
+    void Update()
+    {
+        if (Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
+        }
+    }
+
 }
