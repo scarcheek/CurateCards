@@ -86,7 +86,7 @@ public class PlayingCardScript : MonoBehaviour
                     sb.Append(card.cardProps.cardType[i].ToString());
                 i++;
 
-                hasNext = i < card.cardProps.cardType.Count;
+                hasNext = i < card.cardProps.cardType.Count -1;
                 if (hasNext) sb.Append(", ");
             } while (hasNext);
         }
