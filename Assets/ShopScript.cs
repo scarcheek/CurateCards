@@ -8,7 +8,8 @@ public class ShopScript : MonoBehaviour
 {
     private List<CardBehaviour> allCards;
     [SerializeField] private GameObject shopCardPrefab;
-    [SerializeField] private List<GameObject> ShopCardSpots;
+    [SerializeField] private GameObject removalCardSpot;
+    [SerializeField] private List<GameObject> shopCardSpots;
     private List<PlayingCardScript> selectedCards;
     private Animator animator;
     // Start is called before the first frame update
@@ -20,10 +21,10 @@ public class ShopScript : MonoBehaviour
     private void OnEnable()
     {
         selectedCards = new();
-        if(allCards == null) allCards = DeckManager.instance.CardList;
+        allCards ??= DeckManager.instance.CardList; // Ok now this is epic
 
         if (allCards != null)
-            foreach (GameObject shopCardSpot in ShopCardSpots)
+            foreach (GameObject shopCardSpot in shopCardSpots)
             {
                 GameObject shopCardObject = Instantiate(shopCardPrefab, shopCardSpot.transform);
 
@@ -55,19 +56,20 @@ public class ShopScript : MonoBehaviour
             DeckManager.instance.DeckList.Add(card.card);
             card.transform.parent.SetParent(null);
             card.transform.parent.gameObject.SetActive(false);
-
         }
     }
 
     public void FinishedShopping()
     {
-        animator.SetTrigger("StopShopping");
-
-        foreach (GameObject shopCardSpot in ShopCardSpots)
+        foreach (GameObject shopCardSpot in shopCardSpots)
         {
-            Destroy(shopCardSpot.transform.GetChild(0).gameObject);
-            
+            for (int i = 0; i < shopCardSpot.transform.childCount; i++)
+            {
+                Destroy(shopCardSpot.transform.GetChild(i).gameObject);
+            }
         }
+
+        animator.SetTrigger("StopShopping");
     }
 
     private void AnimationStopShoppingDone() 

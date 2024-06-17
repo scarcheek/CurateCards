@@ -8,6 +8,9 @@ using UnityEngine;
 public class GameStateManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI availableCoinsText;
+    [SerializeField] private TextMeshProUGUI AttackCounterText;
+    [SerializeField] private TextMeshProUGUI DefenceCounterText;
+    [SerializeField] private TextMeshProUGUI VirusCounterText;
     [SerializeField] private float StartingCoinAmount = 500;
     [SerializeField] private GameObject Shop;
     [SerializeField] private GameObject CardZones;
@@ -32,9 +35,10 @@ public class GameStateManager : MonoBehaviour
 
         EventManager.AddCounter += OnAddCounter;
         EventManager.RemoveCounter += OnRemoveCounter;
-        EventManager.CurationDone += OnCurationDone;
         EventManager.StartShopping += StartShopping;
         EventManager.StartDay += OnStartDay;
+
+        UpdateCounterText();
     }
 
     private void OnStartDay()
@@ -44,21 +48,20 @@ public class GameStateManager : MonoBehaviour
         EventManager.EmitStartTurn();
         AvailableCoins += StartingCoinAmount;
         availableCoinsText.text = AvailableCoins.ToString();
+        UpdateCounterText();
     }
 
     private void StartShopping()
     {
+        Shop.SetActive(true);
+        CardZones.SetActive(false);
+
         activeAttackCounters = 0;
         activeDefenceCounters = 0;
         activeVirusCounters = 0;
-        Shop.SetActive(true);
-        CardZones.SetActive(false);
+        UpdateCounterText();
     }
 
-    private void OnCurationDone()
-    {
-        ReduceCountersByOne();
-    }
 
     /// <summary>
     /// On Card Add for the first time: costBefore = 0, costAfter = ex. 20
@@ -105,6 +108,7 @@ public class GameStateManager : MonoBehaviour
                     break;
             }
         }
+        UpdateCounterText();
     }
     private void OnRemoveCounter(Counter[] counters)
     {
@@ -126,6 +130,27 @@ public class GameStateManager : MonoBehaviour
         activeAttackCounters = math.max(0, activeAttackCounters);
         activeDefenceCounters = math.max(0, activeDefenceCounters);
         activeVirusCounters = math.max(0, activeVirusCounters);
+        UpdateCounterText();
+    }
+        
+    private void UpdateCounterText()
+    {
+        SetSpecificCounterText(AttackCounterText, activeAttackCounters);
+        SetSpecificCounterText(DefenceCounterText, activeDefenceCounters);
+        SetSpecificCounterText(VirusCounterText, activeVirusCounters);
+
+    }
+    private void SetSpecificCounterText(TextMeshProUGUI text, int counterAmount)
+    {
+        if (counterAmount == 0)
+        {
+            text.transform.parent.gameObject.SetActive(false);
+        }
+        else
+        {
+            text.transform.parent.gameObject.SetActive(true);
+            text.text = counterAmount.ToString();
+        }
     }
     #endregion
     void Update()
