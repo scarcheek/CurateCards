@@ -23,14 +23,21 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
         SpawnVisitorAmount(visitorAmountToSpawn);
     }
 
+    private void CheckVisitorAmount()
+    {
+        if (visitors.Count == 0)
+            EventManager.EmitRunFailed("All visitors left the park :(");
+    }
+
     private void Awake()
     {
+        EventManager.CurationDone += CheckVisitorAmount;
         EventManager.StartDay += OnStartDay;
     }
 
     private void OnStartDay()
     {
-        SpawnVisitorAmount((int)DayScoreManager.instance.GetTodaysScoreToAchieve()/10);
+        if (DayScoreManager.instance != null) SpawnVisitorAmount((int)DayScoreManager.instance.GetTodaysScoreToAchieve()/10);
     }
 
     private void SpawnVisitorAmount(int amount)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CardBehaviour : MonoBehaviour
@@ -23,6 +24,7 @@ public class CardBehaviour : MonoBehaviour
     internal List<CardBehaviour> buffedMediumCards = new();
     internal List<CardBehaviour> buffedTypeCards = new();
     public int pos;
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -31,6 +33,7 @@ public class CardBehaviour : MonoBehaviour
         EventManager.AllOfMediumEffect += OnAllOfMediumEffect;
         EventManager.AllOfTypeEffect += OnAllOfTypeEffect;
         if (!cardProps.cardType.Contains(CardType.ANY)) cardProps.cardType.Add(CardType.ANY);
+        InitializeCardStats();
     }
 
     internal virtual void Start()
@@ -57,6 +60,12 @@ public class CardBehaviour : MonoBehaviour
 
     public void ResetCardStats()
     {
+        InitializeCardStats();
+        DisplayCardStats();
+    }
+
+    private void InitializeCardStats()
+    {
         wasInPlayzone = false;
         cardValue = cardProps.baseValue;
         cardCost = cardProps.cost;
@@ -69,7 +78,6 @@ public class CardBehaviour : MonoBehaviour
         buffedMediumCards.Clear();
         currentCritMult = cardProps.critMult;
         currentCritChance = cardProps.critChance;
-        DisplayCardStats();
     }
 
     internal void DisplayCardStats()
@@ -120,7 +128,7 @@ public class CardBehaviour : MonoBehaviour
     internal virtual bool OnRemoveFromPlayZone()
     {
         if (!wasInPlayzone) return false;
-        
+
         // Remove the effects still lingering in the effect pool by this card from the pool
         RemoveEffectsFromEffectPool();
         // Reverts the effects already applied to other cards
@@ -169,7 +177,7 @@ public class CardBehaviour : MonoBehaviour
                 RevertMediumEffect(buffedMediumCards[i]);
 
             }
-            for (int i = 0; i < buffedTypeCards.Count; ) 
+            for (int i = 0; i < buffedTypeCards.Count;)
             {
                 RevertTypeEffect(buffedTypeCards[i]);
             }

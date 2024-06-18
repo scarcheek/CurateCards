@@ -8,18 +8,20 @@ public class ShopCardScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI salesTagText;
 
     [HideInInspector] public CardBehaviour behaviour;
-    PlayingCardScript playingCard;
-    ShopScript parentScript;
-    [SerializeField] bool selected;
+    protected PlayingCardScript playingCard;
+    protected ShopScript parentScript;
+    protected bool selected;
+    protected Animator anim;
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         playingCard = GetComponentInChildren<PlayingCardScript>();
         parentScript = GetComponentInParent<ShopScript>();
         CardBehaviour cardBehaviour = Instantiate(behaviour, playingCard.transform);
-
-        salesTagText.text = behaviour.cardProps.shopCost.ToString();
         playingCard.card = cardBehaviour;    
+
+        if (salesTagText != null ) salesTagText.text = behaviour.cardProps.shopCost.ToString();
     }
 
 
@@ -29,7 +31,13 @@ public class ShopCardScript : MonoBehaviour
         HandleSelect();
     }
 
-    private void HandleSelect()
+    public virtual void HandleSelect()
+    {
+        VisualizeSelect();
+        parentScript.OnSelectCard(playingCard, selected);
+    }
+
+    internal void VisualizeSelect()
     {
         if (selected)
         {
@@ -39,6 +47,5 @@ public class ShopCardScript : MonoBehaviour
         {
             transform.localRotation = Quaternion.identity;
         }
-        parentScript.OnSelectCard(playingCard, selected);
     }
 }

@@ -8,11 +8,15 @@ using UnityEngine;
 public class ShopScript : MonoBehaviour
 {
     private List<CardBehaviour> allCards;
+    private List<CardBehaviour> deckCards;
     [SerializeField] private GameObject shopCardPrefab;
-    [SerializeField] private GameObject removalCardSpot;
+    [SerializeField] private GameObject removalCardPrefab;
     [SerializeField] private List<GameObject> shopCardSpots;
+    [SerializeField] private GameObject removalCardSpot;
     private List<PlayingCardScript> selectedCards;
     private Animator animator;
+    private PlayingCardScript cardToRemove;
+    private int cardToRemoveIndex;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -36,6 +40,17 @@ public class ShopScript : MonoBehaviour
                     shopCard.behaviour = DeckManager.GetCardOfRandomType();
                 }
             }
+
+        deckCards ??= DeckManager.instance.DeckList;
+        if (deckCards != null && removalCardSpot.transform.childCount == 0)
+        {
+            GameObject removalCardObject = Instantiate(removalCardPrefab, removalCardSpot.transform);
+            
+            RemovalCardScript shopCard = removalCardObject.GetComponentInChildren<RemovalCardScript>();
+            cardToRemoveIndex = UnityEngine.Random.Range(0, deckCards.Count);
+            shopCard.behaviour = DeckManager.instance.DeckList[cardToRemoveIndex];
+        }
+
         animator.SetTrigger("StartShopping");
     }
 
@@ -53,6 +68,17 @@ public class ShopScript : MonoBehaviour
 
         }
         Debug.Log("Selected cards: " + selectedCards.Count);
+    }
+
+    public void OnRemovalCardClicked(PlayingCardScript removalCard,  bool selected)
+    {
+        if (selected)
+        {
+            cardToRemove = removalCard;
+        } else
+        {
+            cardToRemove = null;
+        }
     }
 
     public void BuyCards()
@@ -74,7 +100,11 @@ public class ShopScript : MonoBehaviour
                 Destroy(shopCardSpot.transform.GetChild(i).gameObject);
             }
         }
-
+        if (cardToRemove != null)
+        {
+            DeckManager.RemoveCardFromDeckListAtIndex(cardToRemoveIndex);
+        }
+        Destroy(removalCardSpot.transform.GetChild(0).gameObject);
         animator.SetTrigger("StopShopping");
     }
 

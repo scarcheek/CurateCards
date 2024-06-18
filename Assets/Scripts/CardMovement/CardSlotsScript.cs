@@ -13,6 +13,7 @@ public class CardSlotsScript : MonoBehaviour
     [SerializeField] private Vector2 targetPos;
 
     [HideInInspector] public List<GameObject> cardSlots = new();
+    float lowestCost = float.MaxValue;
     private void Awake()
     {
         EventManager.DropCardInPlayZone += RemoveCard;
@@ -23,14 +24,20 @@ public class CardSlotsScript : MonoBehaviour
         EventManager.StartTurn += PopulateHand;
     }
 
-
-
     private void PopulateHand()
     {
+        if (DeckManager.instance.DeckList.Count == 0)
+        {
+            EventManager.EmitRunFailed("There are no cards left in the deck! :(");
+            return;
+        }
         for (int i = 0; i < DebugStartCardSlots; i++)
         {
             DrawCard();
         }
+
+        if (lowestCost > GameStateManager.AvailableCoins) 
+            EventManager.EmitRunFailed("You can't afford running another curation...");
     }
 
     private void FixedUpdate()
@@ -55,6 +62,8 @@ public class CardSlotsScript : MonoBehaviour
         PlayingCardScript cardScript = cardSlot.GetComponentInChildren<PlayingCardScript>();
         CardBehaviour cardBehaviour = Instantiate(remainingCards[cardIndex], cardScript.transform);
         remainingCards.RemoveAt(cardIndex);
+
+        lowestCost = lowestCost > cardBehaviour.cardProps.cost ? cardBehaviour.cardProps.cost : lowestCost;
 
         cardScript.card = cardBehaviour;
         AddCardSlot(cardSlot);

@@ -19,7 +19,6 @@ public class ClothingProps : ScriptableObject
 
     private void Awake()
     {
-        Debug.Log("Awake clothing");
         prefernces = new Dictionary<CardType, float>() {
             {CardType.traditional, traditional},
             {CardType.contemporary, contemporary},

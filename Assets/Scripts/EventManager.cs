@@ -18,6 +18,7 @@ public class EventManager : MonoBehaviour
     public static event Action CurationDone;
     public static event Action RandomizePreferences;
     public static event Action CelebrateDayComplete;
+    public static event Action<string> RunFailed;
     public static event Action StartTurn;
     public static event Action StartDay;
     public static event Action StartShopping;
@@ -40,6 +41,7 @@ public class EventManager : MonoBehaviour
     public static void EmitAllOfTypeEffect(CardType type, Func<CardBehaviour, bool> effect) => AllOfTypeEffect?.Invoke(type, effect);
     public static void EmitAllOfMediumEffect(Medium medium, Func<CardBehaviour, bool> effect) => AllOfMediumEffect?.Invoke(medium, effect);
     public static void EmitCelebrateDayComplete() => CelebrateDayComplete?.Invoke();
+    public static void EmitRunFailed(string reason) => RunFailed?.Invoke(reason);
     public static void EmitStartShopping() => StartShopping?.Invoke();
     public static void EmitStartTurn() => StartTurn?.Invoke();
     public static void EmitStartDay() => StartDay?.Invoke();

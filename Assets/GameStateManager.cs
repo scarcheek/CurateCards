@@ -41,14 +41,21 @@ public class GameStateManager : MonoBehaviour
         EventManager.RemoveCounter += OnRemoveCounter;
         EventManager.StartShopping += StartShopping;
         EventManager.StartDay += OnStartDay;
+        EventManager.RunFailed += OnRunFailed;
+    }
+
+    private void OnRunFailed(string obj)
+    {
+        Shop.SetActive(false);
+        CardZones.SetActive(false);
     }
 
     private void OnStartDay()
     {
-        EventManager.EmitStartTurn();
         AvailableCoins += StartingCoinAmount;
         availableCoinsText.text = AvailableCoins.ToString();
         UpdateCounterText();
+        EventManager.EmitStartTurn();
     }
 
     private void StartShopping()
@@ -58,6 +65,7 @@ public class GameStateManager : MonoBehaviour
         activeVirusCounters = 0;
         UpdateCounterText();
     }
+
 
 
     /// <summary>
