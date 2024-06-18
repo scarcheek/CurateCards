@@ -13,8 +13,7 @@ public class CardSlotsScript : MonoBehaviour
     [SerializeField] private Vector2 targetPos;
 
     [HideInInspector] public List<GameObject> cardSlots = new();
-
-    void Start()
+    private void Awake()
     {
         EventManager.DropCardInPlayZone += RemoveCard;
         EventManager.DropCardOutsidePlayZone += AddCardSlot;
@@ -22,9 +21,9 @@ public class CardSlotsScript : MonoBehaviour
         EventManager.submitCards += OnSubmitCards;
         EventManager.CurationDone += OnCurationDone;
         EventManager.StartTurn += PopulateHand;
-
-        PopulateHand();
     }
+
+
 
     private void PopulateHand()
     {

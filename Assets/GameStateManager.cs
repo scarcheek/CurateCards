@@ -28,23 +28,23 @@ public class GameStateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        EventManager.EmitStartDay();
+    }
+
+    private void Awake()
+    {
         instance = this;
 
-        AvailableCoins = StartingCoinAmount;
         defaultCoinColor = availableCoinsText.color;
 
         EventManager.AddCounter += OnAddCounter;
         EventManager.RemoveCounter += OnRemoveCounter;
         EventManager.StartShopping += StartShopping;
         EventManager.StartDay += OnStartDay;
-
-        UpdateCounterText();
     }
 
     private void OnStartDay()
     {
-        Shop.SetActive(false);
-        CardZones.SetActive(true);
         EventManager.EmitStartTurn();
         AvailableCoins += StartingCoinAmount;
         availableCoinsText.text = AvailableCoins.ToString();
@@ -53,9 +53,6 @@ public class GameStateManager : MonoBehaviour
 
     private void StartShopping()
     {
-        Shop.SetActive(true);
-        CardZones.SetActive(false);
-
         activeAttackCounters = 0;
         activeDefenceCounters = 0;
         activeVirusCounters = 0;

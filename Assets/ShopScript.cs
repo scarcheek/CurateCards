@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,12 +14,13 @@ public class ShopScript : MonoBehaviour
     private List<PlayingCardScript> selectedCards;
     private Animator animator;
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
+        EventManager.StartShopping += OnStartShopping;
     }
 
-    private void OnEnable()
+    private void OnStartShopping()
     {
         selectedCards = new();
         allCards ??= DeckManager.instance.CardList; // Ok now this is epic
@@ -26,11 +28,15 @@ public class ShopScript : MonoBehaviour
         if (allCards != null)
             foreach (GameObject shopCardSpot in shopCardSpots)
             {
-                GameObject shopCardObject = Instantiate(shopCardPrefab, shopCardSpot.transform);
+                if (shopCardSpot.transform.childCount == 0)
+                {
+                    GameObject shopCardObject = Instantiate(shopCardPrefab, shopCardSpot.transform);
 
-                ShopCardScript shopCard = shopCardObject.GetComponentInChildren<ShopCardScript>();
-                shopCard.behaviour = DeckManager.GetCardOfRandomType();
+                    ShopCardScript shopCard = shopCardObject.GetComponentInChildren<ShopCardScript>();
+                    shopCard.behaviour = DeckManager.GetCardOfRandomType();
+                }
             }
+        animator.SetTrigger("StartShopping");
     }
 
     public void OnSelectCard(PlayingCardScript shopCard, bool selected)
