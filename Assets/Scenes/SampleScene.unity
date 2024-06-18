@@ -686,7 +686,7 @@ MonoBehaviour:
   AttackCounterText: {fileID: 949821692}
   DefenceCounterText: {fileID: 108673545}
   VirusCounterText: {fileID: 967269474}
-  StartingCoinAmount: 30
+  StartingCoinAmount: 500
   Shop: {fileID: 1556377503}
   CardZones: {fileID: 1570739775}
   initialScoreFactor: 0
