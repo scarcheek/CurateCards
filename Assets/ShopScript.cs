@@ -91,6 +91,11 @@ public class ShopScript : MonoBehaviour
         }
     }
 
+    public void RerollCards()
+    {
+
+    }
+
     public void FinishedShopping()
     {
         foreach (GameObject shopCardSpot in shopCardSpots)
