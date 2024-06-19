@@ -21,7 +21,20 @@ public class GameStateManager : MonoBehaviour
     public static GameStateManager instance;
     public static float AttackCounterChange = 1.2f;
     public static float DefenceCounterChange = 0.83f;
-    public static float AvailableCoins;
+    private static float _availableCoins;
+    public static float AvailableCoins
+    {
+        get => _availableCoins;
+        set
+        {
+            _availableCoins = value;
+            instance.availableCoinsText.text = value.ToString();
+            if (_availableCoins < -instance.StartingCoinAmount)
+            {
+                EventManager.EmitRunFailed("You definitely have a spending issue...");
+            }
+        }
+    }
 
     private Color defaultCoinColor;
 
@@ -53,7 +66,6 @@ public class GameStateManager : MonoBehaviour
     private void OnStartDay()
     {
         AvailableCoins += StartingCoinAmount;
-        availableCoinsText.text = AvailableCoins.ToString();
         UpdateCounterText();
         EventManager.EmitStartTurn();
     }
@@ -79,7 +91,6 @@ public class GameStateManager : MonoBehaviour
     public void UpdateAvailableCoins(float costBefore, float costAfter)
     {
         AvailableCoins += costBefore - costAfter;
-        availableCoinsText.text = AvailableCoins.ToString();
 
         if (AvailableCoins >= 0)
         {
@@ -137,7 +148,7 @@ public class GameStateManager : MonoBehaviour
         activeVirusCounters = math.max(0, activeVirusCounters);
         UpdateCounterText();
     }
-        
+
     private void UpdateCounterText()
     {
         SetSpecificCounterText(AttackCounterText, activeAttackCounters);
