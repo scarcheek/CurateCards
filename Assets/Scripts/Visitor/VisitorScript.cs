@@ -77,14 +77,19 @@ public class VisitorScript : MonoBehaviour
 
     private float CalculateScore(CardBehaviour card, ref float motivationChange)
     {
-
+        int typeCount = 0;
         foreach (CardType type in card.cardProps.cardType)
         {
             if(type != CardType.ANY) {
+                typeCount++;
                 motivationChange += hat.prefernces[type] + body.prefernces[type] + pants.prefernces[type];
             }
             
         }
+        if (typeCount > 1) {
+            motivationChange = motivationChange / typeCount;
+        }
+        
         
         if (card.ignoreDislike && motivationChange < 0) motivationChange = 0;
         if (card.leaveOnDislike && motivationChange < 0)
