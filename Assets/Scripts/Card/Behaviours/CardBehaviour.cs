@@ -215,7 +215,7 @@ public class CardBehaviour : MonoBehaviour
 
     internal float ApplyDiscount(CardBehaviour card, float discount)
     {
-        GameStateManager.instance.UpdateAvailableCoins(card.cardCost, card.cardCost - discount);
+        if (card.wasInPlayzone) GameStateManager.instance.UpdateAvailableCoins(card.cardCost, card.cardCost - discount);
 
         card.cardCost -= discount;
         return card.cardCost;
@@ -223,7 +223,8 @@ public class CardBehaviour : MonoBehaviour
 
     internal float RevertDiscount(CardBehaviour card, float discount)
     {
-        GameStateManager.instance.UpdateAvailableCoins(card.cardCost, card.cardCost + discount);
+        if (card.wasInPlayzone) GameStateManager.instance.UpdateAvailableCoins(card.cardCost, card.cardCost + discount);
+
         card.cardCost += discount;
         return card.cardCost;
     }

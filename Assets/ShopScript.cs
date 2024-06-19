@@ -9,10 +9,18 @@ public class ShopScript : MonoBehaviour
 {
     private List<CardBehaviour> allCards;
     private List<CardBehaviour> deckCards;
+    [SerializeField] public float RerollCost = 50;
+
+
     [SerializeField] private GameObject shopCardPrefab;
     [SerializeField] private GameObject removalCardPrefab;
     [SerializeField] private List<GameObject> shopCardSpots;
     [SerializeField] private GameObject removalCardSpot;
+    [SerializeField] private TextMeshProUGUI spentCoinsText;
+    [SerializeField] private TextMeshProUGUI rerollCostText;
+    private float spentCoins = 0;
+
+
     private List<PlayingCardScript> selectedCards;
     private Animator animator;
     private PlayingCardScript cardToRemove;
@@ -22,17 +30,31 @@ public class ShopScript : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         EventManager.StartShopping += OnStartShopping;
+        rerollCostText.text = RerollCost.ToString();
     }
-
+    
     private void OnStartShopping()
     {
+        PopulateCardSlots();
+
+        animator.SetTrigger("StartShopping");
+    }
+
+    private void PopulateCardSlots(bool repopulate = false)
+    {
+        spentCoins = 0;
+        UpdateSpentCoinsText();
         selectedCards = new();
         allCards ??= DeckManager.instance.CardList; // Ok now this is epic
 
         if (allCards != null)
             foreach (GameObject shopCardSpot in shopCardSpots)
             {
-                if (shopCardSpot.transform.childCount == 0)
+                if (repopulate && shopCardSpot.transform.childCount > 0)
+                {
+                    Destroy(shopCardSpot.transform.GetChild(0).gameObject);
+                }
+                if (repopulate || shopCardSpot.transform.childCount == 0)
                 {
                     GameObject shopCardObject = Instantiate(shopCardPrefab, shopCardSpot.transform);
 
@@ -42,16 +64,15 @@ public class ShopScript : MonoBehaviour
             }
 
         deckCards ??= DeckManager.instance.DeckList;
-        if (deckCards != null && removalCardSpot.transform.childCount == 0)
+        if (repopulate && removalCardSpot.transform.childCount > 0) Destroy(removalCardSpot.transform.GetChild(0).gameObject);
+        if (deckCards != null && (repopulate || removalCardSpot.transform.childCount == 0))
         {
             GameObject removalCardObject = Instantiate(removalCardPrefab, removalCardSpot.transform);
-            
+
             RemovalCardScript shopCard = removalCardObject.GetComponentInChildren<RemovalCardScript>();
             cardToRemoveIndex = UnityEngine.Random.Range(0, deckCards.Count);
             shopCard.behaviour = DeckManager.instance.DeckList[cardToRemoveIndex];
         }
-
-        animator.SetTrigger("StartShopping");
     }
 
     public void OnSelectCard(PlayingCardScript shopCard, bool selected)
@@ -59,23 +80,25 @@ public class ShopScript : MonoBehaviour
         if (!selected && selectedCards.Contains(shopCard))
         {
             selectedCards.Remove(shopCard);
-            GameStateManager.instance.UpdateAvailableCoins(shopCard.card.cardProps.shopCost, 0);
+            spentCoins += shopCard.card.cardProps.shopCost;
         }
         else if (selected && !selectedCards.Contains(shopCard))
         {
             selectedCards.Add(shopCard);
-            GameStateManager.instance.UpdateAvailableCoins(0, shopCard.card.cardProps.shopCost);
-
+            spentCoins -= shopCard.card.cardProps.shopCost;
         }
-        Debug.Log("Selected cards: " + selectedCards.Count);
+
+        UpdateSpentCoinsText();
+        Debug.Log("Spent coins: " + spentCoins);
     }
 
-    public void OnRemovalCardClicked(PlayingCardScript removalCard,  bool selected)
+    public void OnRemovalCardClicked(PlayingCardScript removalCard, bool selected)
     {
         if (selected)
         {
             cardToRemove = removalCard;
-        } else
+        }
+        else
         {
             cardToRemove = null;
         }
@@ -83,6 +106,11 @@ public class ShopScript : MonoBehaviour
 
     public void BuyCards()
     {
+        GameStateManager.instance.UpdateAvailableCoins(spentCoins, 0);
+        spentCoins = 0;
+
+        UpdateSpentCoinsText();
+
         foreach (PlayingCardScript card in selectedCards)
         {
             DeckManager.instance.DeckList.Add(card.card);
@@ -93,6 +121,9 @@ public class ShopScript : MonoBehaviour
 
     public void RerollCards()
     {
+        GameStateManager.AvailableCoins -= RerollCost;
+
+        PopulateCardSlots(true);
 
     }
 
@@ -113,10 +144,11 @@ public class ShopScript : MonoBehaviour
         animator.SetTrigger("StopShopping");
     }
 
-    private void AnimationStopShoppingDone() 
-    {
-        EventManager.EmitStartDay();
-        
-    }
+    private void AnimationStopShoppingDone() => EventManager.EmitStartDay();
 
+    private void UpdateSpentCoinsText()
+    {
+        spentCoinsText.gameObject.SetActive(spentCoins < 0);
+        spentCoinsText.text = spentCoins.ToString();
+    }
 }
