@@ -67,8 +67,8 @@ public class VisitorScript : MonoBehaviour
 
         motivationChange = math.round(motivationChange);
         currentMotivation += motivationChange;
-        Debug.Log("I got a score of " + (calculatedScore) + " with a score factor of " + motivationChange + "\n" +
-            "Motivation changed by " + motivationChange + " resulting in a total motivation of: " + currentMotivation);
+        //Debug.Log("I got a score of " + (calculatedScore) + " with a score factor of " + motivationChange + "\n" +
+        //    "Motivation changed by " + motivationChange + " resulting in a total motivation of: " + currentMotivation);
 
         EventManager.EmitAddBaseValueToGamestate(calculatedScore);
         animController.ReactToScore(neutralThreshhold, currentMotivation);
