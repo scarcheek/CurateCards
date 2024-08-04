@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: TomatoSoup
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: a7896a53f72d7da408c9ed087f844996, type: 3}
+  presentPrefab: {fileID: 3847420962700725894, guid: 509f59e85f67b9e47903ab1daac48843, type: 3}
   critChance: 0.1
   critMult: 2
   title: Tomato soup

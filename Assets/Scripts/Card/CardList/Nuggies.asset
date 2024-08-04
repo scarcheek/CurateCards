@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: Nuggies
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: d5f8818ac6e166042b64a695fe89a917, type: 3}
+  presentPrefab: {fileID: 3847420962700725894, guid: b9d9b038d4573554e88efb00bb54c187, type: 3}
   critChance: 0.1
   critMult: 2
   title: Dino Nuggies

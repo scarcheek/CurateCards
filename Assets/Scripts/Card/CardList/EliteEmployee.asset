@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: EliteEmployee
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: f1479fe9ad8a70b4fb9aa2f7c5af9519, type: 3}
+  presentPrefab: {fileID: 3847420962700725894, guid: 00d9487b44f303e4a817610d86e42a1c, type: 3}
   critChance: 0.1
   critMult: 2
   title: Elite Employee

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: Goobnite
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: 97617b8e5ee724e41b8bb2f198364898, type: 3}
+  presentPrefab: {fileID: 3847420962700725894, guid: cc96968349c713d4c897aace15fcfa47, type: 3}
   critChance: 0.1
   critMult: 2
   title: Goobnite

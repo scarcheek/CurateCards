@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: FuckedCat
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: 6912ca82d6006244d848fc2cdbbb7f2c, type: 3}
+  presentPrefab: {fileID: 3847420962700725894, guid: 66e7fbd16e90a2b44909d6e98fc7422b, type: 3}
   critChance: 0.1
   critMult: 2
   title: Fucked Cat
