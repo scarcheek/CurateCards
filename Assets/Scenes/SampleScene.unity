@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -902,7 +902,8 @@ MonoBehaviour:
   - {fileID: 654521266959840061, guid: 36ce1042404590441a716ae8a06805ce, type: 3}
   - {fileID: -6791305997529696879, guid: 02f0cde6f4c3e294abe57e1c3c8226d0, type: 3}
   - {fileID: 9096479823000558163, guid: b32a7908da854674f8bbe8d32d89278a, type: 3}
-  DeckList: []
+  DeckList:
+  - {fileID: 916146032991733882, guid: 8499e169eb978f541914381fe9bff616, type: 3}
   remainingCards: []
 --- !u!1 &293787459
 GameObject:
@@ -1331,6 +1332,32 @@ RectTransform:
   m_AnchoredPosition: {x: -57.6, y: 0}
   m_SizeDelta: {x: 100, y: 119.47}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &657734422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
+  m_PrefabInstance: {fileID: 803650740}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &657734424
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657734422}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 30, y: 1, z: 60}
+  m_Center: {x: 0, y: -0.9, z: 30}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,7 +1748,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 8582293574316785276, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 657734424}
   m_SourcePrefab: {fileID: 100100000, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
 --- !u!1 &907473923
 GameObject:
@@ -2796,6 +2826,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smokeEffect: {fileID: 1517373705}
+  throwChance: 100
+  throwDriection: {x: -6, y: 4, z: 0}
 --- !u!1 &1053008962
 GameObject:
   m_ObjectHideFlags: 0

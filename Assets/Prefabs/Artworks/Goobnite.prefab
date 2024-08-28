@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7529527789263481830}
   m_Layer: 0
   m_Name: Goobnite
-  m_TagString: Untagged
+  m_TagString: ArtPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

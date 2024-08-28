@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1216035363757424300}
   m_Layer: 0
   m_Name: Trash
-  m_TagString: Untagged
+  m_TagString: ArtPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,7 +83,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: 3e235b4e451290047808eee61d33d3f9, type: 3}
 --- !u!64 &3830848065181325917
@@ -105,7 +105,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7728889569950785246, guid: 3e235b4e451290047808eee61d33d3f9, type: 3}
 --- !u!64 &157999206693080983
@@ -127,7 +127,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7150223073144554228, guid: 3e235b4e451290047808eee61d33d3f9, type: 3}
 --- !u!64 &1216035363757424300
@@ -149,7 +149,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5556417888224445173, guid: 3e235b4e451290047808eee61d33d3f9, type: 3}
 --- !u!1001 &125445424237195895

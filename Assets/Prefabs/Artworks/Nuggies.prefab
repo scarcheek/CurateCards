@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 886901488859194262}
   m_Layer: 0
   m_Name: Nuggies
-  m_TagString: Untagged
+  m_TagString: ArtPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8302339382472173894, guid: d5f8818ac6e166042b64a695fe89a917, type: 3}
 --- !u!64 &886901488859194262
@@ -103,7 +103,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2259096914186397461, guid: d5f8818ac6e166042b64a695fe89a917, type: 3}
 --- !u!1001 &6099561564991491226

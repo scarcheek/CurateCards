@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 109639965988719979}
   m_Layer: 0
   m_Name: David
-  m_TagString: Untagged
+  m_TagString: ArtPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +80,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 438092822475766303, guid: 7d51270d051fcdb47acb19adb96c91a0, type: 3}
 --- !u!1001 &8750685664433371984

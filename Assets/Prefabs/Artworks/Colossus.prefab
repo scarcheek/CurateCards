@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 109639965988719979}
   m_Layer: 0
   m_Name: Colossus
-  m_TagString: Untagged
+  m_TagString: ArtPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,7 +83,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7245791068791502387, guid: 55d90796d2db27c49878c3a9a17614c5, type: 3}
 --- !u!64 &5179655201101975021
@@ -105,7 +105,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5063692272378400288, guid: 55d90796d2db27c49878c3a9a17614c5, type: 3}
 --- !u!64 &122769356772684058
@@ -127,7 +127,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2542112853833809232, guid: 55d90796d2db27c49878c3a9a17614c5, type: 3}
 --- !u!64 &109639965988719979
@@ -149,7 +149,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 833050831044947862, guid: 55d90796d2db27c49878c3a9a17614c5, type: 3}
 --- !u!1001 &3005214763402179939

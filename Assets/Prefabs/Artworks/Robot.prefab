@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2037286911273193985}
   m_Layer: 0
   m_Name: Robot
-  m_TagString: Untagged
+  m_TagString: ArtPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,7 +84,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1550514412580984892, guid: ed3073c25c660eb4994da96db723e93a, type: 3}
 --- !u!64 &3830848065181325917
@@ -106,7 +106,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8678823145569952518, guid: ed3073c25c660eb4994da96db723e93a, type: 3}
 --- !u!64 &157999206693080983
@@ -128,7 +128,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5053925668127403250, guid: ed3073c25c660eb4994da96db723e93a, type: 3}
 --- !u!64 &1216035363757424300
@@ -150,7 +150,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2212009239438826721, guid: ed3073c25c660eb4994da96db723e93a, type: 3}
 --- !u!64 &2037286911273193985
@@ -172,7 +172,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2228417370725966487, guid: ed3073c25c660eb4994da96db723e93a, type: 3}
 --- !u!1001 &39234350444590981

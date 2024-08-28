@@ -28,6 +28,7 @@ public class VisitorScript : MonoBehaviour
     private ClothingManager clothingManager;
 
     private bool isLeaving = false;
+    private bool beenHit = false;
     VisitorSpawnPlaneScript planeScript;
 
 
@@ -66,17 +67,26 @@ public class VisitorScript : MonoBehaviour
         float calculatedScore = CalculateScore(card, ref motivationChange);
 
         motivationChange = math.round(motivationChange);
-        currentMotivation += motivationChange;
         //Debug.Log("I got a score of " + (calculatedScore) + " with a score factor of " + motivationChange + "\n" +
         //    "Motivation changed by " + motivationChange + " resulting in a total motivation of: " + currentMotivation);
 
         EventManager.EmitAddBaseValueToGamestate(calculatedScore);
-        animController.ReactToScore(neutralThreshhold, currentMotivation);
-        scoreVisualizer.showScore(System.Math.Round(calculatedScore), motivationChange);
+
+        if (!beenHit)
+        {
+            animController.ReactToScore(neutralThreshhold, currentMotivation);
+            scoreVisualizer.showScore(System.Math.Round(calculatedScore), motivationChange);
+        }
     }
 
     private float CalculateScore(CardBehaviour card, ref float motivationChange)
     {
+        if (beenHit)
+        {
+            currentMotivation = 0;
+            return 0;
+        }
+
         int typeCount = 0;
         foreach (CardType type in card.cardProps.cardType)
         {
@@ -109,7 +119,7 @@ public class VisitorScript : MonoBehaviour
 
     public void ReactionDone()
     {
-        if (currentMotivation <= 0)
+        if (currentMotivation <= 0 || beenHit)
         {
             Leave();
         }
@@ -134,6 +144,16 @@ public class VisitorScript : MonoBehaviour
         {
             //TODO: Remove visitor properly 
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "ArtPiece")
+        {
+            Debug.Log("collision with artpiece");
+            beenHit = true;
+            animController.anim.SetTrigger("falloverback");
         }
     }
 }
