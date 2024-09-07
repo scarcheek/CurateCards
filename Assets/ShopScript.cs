@@ -129,6 +129,7 @@ public class ShopScript : MonoBehaviour
 
     public void FinishedShopping()
     {
+        BuyCards();
         foreach (GameObject shopCardSpot in shopCardSpots)
         {
             for (int i = 0; i < shopCardSpot.transform.childCount; i++)

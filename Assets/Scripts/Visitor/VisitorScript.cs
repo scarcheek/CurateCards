@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -27,6 +28,7 @@ public class VisitorScript : MonoBehaviour
     private VisitorAnimationController animController;
     private ClothingManager clothingManager;
 
+    private float calculatedScore = 0f;
     private bool isLeaving = false;
     private bool beenHit = false;
     VisitorSpawnPlaneScript planeScript;
@@ -40,11 +42,17 @@ public class VisitorScript : MonoBehaviour
         animController = GetComponentInChildren<VisitorAnimationController>();
         EventManager.ScoreCard += OnScoreCard;
         EventManager.RandomizePreferences += OnRandomizePreferences;
+        EventManager.AnimationVisitorDone += ResetCalculatedScore;
 
         currentMotivation = initialMotivation;
         OnRandomizePreferences();
         ClothingSpritesUpdate();
         
+    }
+
+    private void ResetCalculatedScore()
+    {
+        calculatedScore = 0;
     }
 
     private void OnRandomizePreferences()
@@ -64,7 +72,7 @@ public class VisitorScript : MonoBehaviour
     private void OnScoreCard(CardBehaviour card)
     {
         float motivationChange = 0;
-        float calculatedScore = CalculateScore(card, ref motivationChange);
+        calculatedScore = CalculateScore(card, ref motivationChange);
 
         motivationChange = math.round(motivationChange);
         //Debug.Log("I got a score of " + (calculatedScore) + " with a score factor of " + motivationChange + "\n" +
@@ -128,6 +136,13 @@ public class VisitorScript : MonoBehaviour
     private void Leave()
     {
         isLeaving = true;
+        
+
+        if (beenHit)
+        {
+            EventManager.EmitAddBaseValueToGamestate(-calculatedScore);
+            scoreVisualizer.showScore(System.Math.Round(-calculatedScore), -1);
+        }
         standPos = planeScript.RandomPointOutBounds();
         EventManager.ScoreCard -= OnScoreCard;
     }
@@ -149,7 +164,7 @@ public class VisitorScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "ArtPiece")
+        if (!beenHit && other.gameObject.tag == "ArtPiece")
         {
             Debug.Log("collision with artpiece");
             beenHit = true;
