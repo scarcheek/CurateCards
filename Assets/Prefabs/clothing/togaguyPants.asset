@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adfb2c213a97b24a8d4d594580291d5, type: 3}
   m_Name: togaguyPants
   m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: b2d5fee1af3a3a84d9ed628129991339, type: 2}
   clothingType: 1
   traditional: 5
   contemporary: -5
   technological: -10
   everyday: -5
   ancient: 15
-  sprite: {fileID: 21300000, guid: 83ebb95b0595acc41906f997b0d1dfe2, type: 3}

@@ -10,9 +10,9 @@ using Random = UnityEngine.Random;
 public class VisitorScript : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private SpriteRenderer bodySprite;
-    [SerializeField] private SpriteRenderer hatSprite;
-    [SerializeField] private SpriteRenderer pantsSprite;
+    [SerializeField] private MeshRenderer bodyRenderer;
+    [SerializeField] private MeshRenderer hatRenderer;
+    [SerializeField] private MeshRenderer pantsRenderer;
     [SerializeField] private ScoreVisualizerScript scoreVisualizer;
     [Header("Properties")]
     [SerializeField] public float speed;
@@ -37,7 +37,7 @@ public class VisitorScript : MonoBehaviour
     void Start()
     {
         planeScript = GetComponentInParent<VisitorSpawnPlaneScript>();
-        clothingManager = GetComponentInChildren<ClothingManager>();
+        clothingManager = GameStateManager.instance.GetComponent<ClothingManager>();
 
         animController = GetComponentInChildren<VisitorAnimationController>();
         EventManager.ScoreCard += OnScoreCard;
@@ -67,9 +67,9 @@ public class VisitorScript : MonoBehaviour
 
     private void ClothingSpritesUpdate()
     {
-        bodySprite.sprite = body.sprite;
-        pantsSprite.sprite = pants.sprite;
-        hatSprite.sprite = hat.sprite;
+        bodyRenderer.material = body.material;
+        pantsRenderer.material = pants.material;
+        hatRenderer.material = hat.material;
     }
 
     private void OnScoreCard(CardBehaviour card)
