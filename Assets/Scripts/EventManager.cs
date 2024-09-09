@@ -21,6 +21,7 @@ public class EventManager : MonoBehaviour
     public static event Action<string> RunFailed;
     public static event Action StartTurn;
     public static event Action StartDay;
+    public static event Action CheckThrow;
     public static event Action StartShopping;
     public static event Action<CardType, Func<CardBehaviour, bool>> AllOfTypeEffect;
     public static event Action<Medium, Func<CardBehaviour, bool>> AllOfMediumEffect;
@@ -45,5 +46,6 @@ public class EventManager : MonoBehaviour
     public static void EmitStartShopping() => StartShopping?.Invoke();
     public static void EmitStartTurn() => StartTurn?.Invoke();
     public static void EmitStartDay() => StartDay?.Invoke();
+    public static void EmitCheckThrow() => CheckThrow?.Invoke();
 
 }

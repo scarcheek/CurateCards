@@ -51,4 +51,9 @@ public class mainCameraScript : MonoBehaviour
         currentlyPresenting.card.Play();
         currentlyPresenting = null;
     }
+
+    public void CheckThrow()
+    {
+        EventManager.EmitCheckThrow();
+    }
 }

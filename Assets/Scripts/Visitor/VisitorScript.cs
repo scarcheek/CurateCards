@@ -42,7 +42,7 @@ public class VisitorScript : MonoBehaviour
         animController = GetComponentInChildren<VisitorAnimationController>();
         EventManager.ScoreCard += OnScoreCard;
         EventManager.RandomizePreferences += OnRandomizePreferences;
-        EventManager.AnimationVisitorDone += ResetCalculatedScore;
+        EventManager.PresentCard += ResetCalculatedScore;
 
         currentMotivation = initialMotivation;
         OnRandomizePreferences();
@@ -50,10 +50,13 @@ public class VisitorScript : MonoBehaviour
         
     }
 
-    private void ResetCalculatedScore()
+
+
+    private void ResetCalculatedScore(PlayingCardScript card)
     {
         calculatedScore = 0;
     }
+
 
     private void OnRandomizePreferences()
     {
@@ -80,7 +83,7 @@ public class VisitorScript : MonoBehaviour
 
         EventManager.EmitAddBaseValueToGamestate(calculatedScore);
 
-        if (!beenHit)
+        if (!isLeaving && !beenHit)
         {
             animController.ReactToScore(neutralThreshhold, currentMotivation);
             scoreVisualizer.showScore(System.Math.Round(calculatedScore), motivationChange);
@@ -89,11 +92,6 @@ public class VisitorScript : MonoBehaviour
 
     private float CalculateScore(CardBehaviour card, ref float motivationChange)
     {
-        if (beenHit)
-        {
-            currentMotivation = 0;
-            return 0;
-        }
 
         int typeCount = 0;
         foreach (CardType type in card.cardProps.cardType)
@@ -120,18 +118,25 @@ public class VisitorScript : MonoBehaviour
         motivationChange += instance.activeVirusCounters;
         motivationChange *= math.pow(GameStateManager.AttackCounterChange, instance.activeAttackCounters);
         motivationChange *= math.pow(GameStateManager.DefenceCounterChange, instance.activeDefenceCounters);
-        
 
         return card.cardValue + motivationChange;
     }
 
     public void ReactionDone()
     {
-        if (currentMotivation <= 0 || beenHit)
+        if (!isLeaving && currentMotivation <= 0) 
         {
+            Debug.Log("Leaving with: " + currentMotivation + " " + beenHit);
             Leave();
         }
     }
+
+    public void OnFallOverBackDone()
+    {
+        Debug.Log("Dei´mama is so fett doss i geh");
+        if (!isLeaving) Leave();
+    }
+
 
     private void Leave()
     {
@@ -145,6 +150,8 @@ public class VisitorScript : MonoBehaviour
         }
         standPos = planeScript.RandomPointOutBounds();
         EventManager.ScoreCard -= OnScoreCard;
+        EventManager.RandomizePreferences -= OnRandomizePreferences;
+        EventManager.PresentCard -= ResetCalculatedScore;
     }
 
     void Update()
@@ -164,11 +171,16 @@ public class VisitorScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!beenHit && other.gameObject.tag == "ArtPiece")
+        if (!beenHit && !isLeaving && other.gameObject.tag == "ArtPiece")
         {
             Debug.Log("collision with artpiece");
             beenHit = true;
             animController.anim.SetTrigger("falloverback");
+
+            // detracting the score if artpiece has been score already
+            
+            EventManager.EmitAddBaseValueToGamestate(-calculatedScore);
+            scoreVisualizer.showScore(System.Math.Round(-calculatedScore), 0);
         }
     }
 }

@@ -60,7 +60,8 @@ public class VisitorAnimationController : MonoBehaviour
 
     public void OnFallOverDone()
     {
-        parentScript.ReactionDone();
+        Debug.Log("OnFallOverDone called");
+        parentScript.OnFallOverBackDone();
 
     }
     public void OnBackFlipDone()
