@@ -13,7 +13,7 @@ public class PlayZoneScript : MonoBehaviour
     [SerializeField] private GameObject button;
     private List<GameObject> cardSlots = new();
 
-    [SerializeField] private AudioManager audioManager;
+ 
 
 
     // Start is called before the first frame update
@@ -93,8 +93,6 @@ public class PlayZoneScript : MonoBehaviour
             }
             EventManager.EmitSubmitCards(cards);
             ClearCardSlots();
-
-            audioManager.PlaySong("score", true);
         }
     }
 

@@ -176,9 +176,9 @@ public class VisitorScript : MonoBehaviour
             Debug.Log("collision with artpiece");
             beenHit = true;
             animController.anim.SetTrigger("falloverback");
+            animController.ThudSound();
 
             // detracting the score if artpiece has been score already
-            
             EventManager.EmitAddBaseValueToGamestate(-calculatedScore);
             scoreVisualizer.showScore(System.Math.Round(-calculatedScore), 0);
         }

@@ -8,6 +8,8 @@ public class mainCameraScript : MonoBehaviour
     [SerializeField] private Animator anim;
     private List<PlayingCardScript> remainingCards;
     private PlayingCardScript currentlyPresenting;
+
+    [SerializeField] private AudioManager audioManager;
     private void Start()
     {
         EventManager.submitCards += OnSubmitCards;
@@ -19,6 +21,7 @@ public class mainCameraScript : MonoBehaviour
         anim.SetTrigger("Present");
         remainingCards = new List<PlayingCardScript>(cards);
         anim.SetBool("AreCardsLeft", true);
+        audioManager.PlaySong("score", true);
     }
 
     public void OnPresent()
@@ -41,6 +44,8 @@ public class mainCameraScript : MonoBehaviour
     public void OnCurationDone()
     {
         EventManager.EmitCurationDone();
+        Debug.Log("end of presentation");
+        audioManager.PlaySong("thinking", true);
     }
 
     /// <summary>
