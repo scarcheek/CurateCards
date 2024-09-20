@@ -52,7 +52,6 @@ public class AudioManager : MonoBehaviour
         if (playing != null) playing.source.Stop();
         playing = s;
         playing.source.Play();
-       
     }
 
 
