@@ -51,6 +51,15 @@ public class VisitorAnimationController : MonoBehaviour
             source.clip = sounds.randomNeutral();
             source.Play();
         }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            anim.speed = 0;
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            anim.speed = 1;
+        }
+    
     }
     internal void ReactToScore(float threshhold, float score)
     {

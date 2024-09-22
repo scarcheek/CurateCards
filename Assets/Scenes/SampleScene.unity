@@ -2967,7 +2967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smokeEffect: {fileID: 1517373705}
-  throwChance: 100
+  throwChance: 1
   throwDriection: {x: -6, y: 4, z: 0}
   directionVariation: 3
 --- !u!1 &1053008962
