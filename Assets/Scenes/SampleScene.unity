@@ -937,6 +937,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ff93d01c4579cf4a947658878e567e4, type: 2}
   - {fileID: 11400000, guid: 8b1b434443d9b324d87a7c4ed57f2f65, type: 2}
   - {fileID: 11400000, guid: 0fb470a68ff329f45a1add18400b18b8, type: 2}
+  randomizeClothes: 0
 --- !u!114 &249896235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4588,7 +4589,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.99993896, y: 0}
+  m_AnchoredPosition: {x: -1, y: 0}
   m_SizeDelta: {x: -2, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556377505

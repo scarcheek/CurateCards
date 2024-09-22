@@ -18,8 +18,6 @@ public class VisitorAnimationController : MonoBehaviour
         anim = GetComponent<Animator>();
         source = GetComponentInParent<AudioSource>();
 
-        Debug.Log("this is the source: " + source);
-
         sounds = GameStateManager.instance.GetComponent<VisitorSounds>();
 
         anim.Play("visitor_idle_default", -1, Random.value);
