@@ -25,7 +25,7 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
 
     private void CheckVisitorAmount()
     {
-        if (visitors.Count == 0)
+        if (transform.childCount == 0)
             EventManager.EmitRunFailed("All visitors left the park :(");
     }
 

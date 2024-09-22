@@ -114,6 +114,8 @@ public class VisitorScript : MonoBehaviour
             return 0; 
         }
 
+        currentMotivation += motivationChange;
+
         GameStateManager instance = GameStateManager.instance;
         motivationChange += instance.activeVirusCounters;
         motivationChange *= math.pow(GameStateManager.AttackCounterChange, instance.activeAttackCounters);
@@ -142,6 +144,7 @@ public class VisitorScript : MonoBehaviour
     {
         isLeaving = true;
         
+        transform.SetParent(null);
 
         if (beenHit)
         {
