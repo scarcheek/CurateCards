@@ -52,6 +52,18 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         }
 
+        foreach (Sound s in sfx)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = uiGroup;
+
+            s.source.priority = 0;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+        }
+
         PlaySong("thinking", true);
     }
     

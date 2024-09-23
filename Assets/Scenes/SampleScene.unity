@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -937,7 +937,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ff93d01c4579cf4a947658878e567e4, type: 2}
   - {fileID: 11400000, guid: 8b1b434443d9b324d87a7c4ed57f2f65, type: 2}
   - {fileID: 11400000, guid: 0fb470a68ff329f45a1add18400b18b8, type: 2}
-  randomizeClothes: 0
+  randomizeClothes: 1
 --- !u!114 &249896235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,6 +1172,7 @@ GameObject:
   - component: {fileID: 514713829}
   - component: {fileID: 514713828}
   - component: {fileID: 514713827}
+  - component: {fileID: 514713830}
   m_Layer: 5
   m_Name: BuyButton
   m_TagString: Untagged
@@ -1255,6 +1256,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 514713830}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &514713828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,6 +1306,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514713825}
   m_CullTransparentMesh: 1
+--- !u!82 &514713830
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514713825}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 563789331167254907, guid: c9a01df7db95c734197c6a38df1be02b, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 74316745f868aa74195480947dff3010, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &547653115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,7 +1752,37 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  sfx: []
+  sfx:
+  - name: button1
+    clip: {fileID: 8300000, guid: 321a3f88a0ec1e340a32f5e956eb3c1d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: button2
+    clip: {fileID: 8300000, guid: 74316745f868aa74195480947dff3010, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: pickup
+    clip: {fileID: 8300000, guid: d9feabe596cd9c147bbba9f46ee2cdb9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: swap
+    clip: {fileID: 8300000, guid: 11cec2c9a7864614282b6adda6c8e543, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: putdown
+    clip: {fileID: 8300000, guid: 7f72069a10e1c3149ab25f3ffd97e1da, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   mixer: {fileID: 24100000, guid: c9a01df7db95c734197c6a38df1be02b, type: 2}
   endGroup: {fileID: -897256032163875253, guid: c9a01df7db95c734197c6a38df1be02b, type: 2}
   playGroup: {fileID: -3986838823783648510, guid: c9a01df7db95c734197c6a38df1be02b, type: 2}
