@@ -97,16 +97,17 @@ public class AudioManager : MonoBehaviour
 
     public void muteSong()
     {
-        if(fading == null) mixer.SetFloat("PlayingVolume", -80);
+        StopCoroutine(fading);
+        fading = StartCoroutine(StartFade(mixer, "PlayingVolume", fadeTime/3, 0));
         muted = true;
     }
 
 
     private void OnPresent(PlayingCardScript card)
     { 
-        if(fading == null && muted) 
+        if(muted) 
         { 
-            mixer.SetFloat("PlayingVolume", 0);
+            fading = StartCoroutine(StartFade(mixer, "PlayingVolume", fadeTime/3, 100));
         }
     }
 
