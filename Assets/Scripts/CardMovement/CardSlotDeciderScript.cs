@@ -37,8 +37,6 @@ public class CardSlotDeciderScript : MonoBehaviour
         cardSlotDeciderCollider = GetComponent<BoxCollider2D>();
         // This should save some resources
         transformParent = transform.parent;
-
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -68,7 +66,7 @@ public class CardSlotDeciderScript : MonoBehaviour
 
                 (cardBehaviour.pos, otherCardSlot.cardBehaviour.pos) = (otherCardSlot.cardBehaviour.pos, cardBehaviour.pos);
 
-                audioManager.PlaySFX("swap");
+                AudioManager.instance.PlaySFX("swap");
                 EventManager.EmitOnSwapComplete(transformParent.gameObject);
             }
             // If the Card is being hovered over the PlayZone collider
@@ -114,7 +112,7 @@ public class CardSlotDeciderScript : MonoBehaviour
         {
             EventManager.EmitDropCardOutsidePlayZone(transform.parent.gameObject);
         }
-        audioManager.PlaySFX("putdown");
+        AudioManager.instance.PlaySFX("putdown");
     }
 
 

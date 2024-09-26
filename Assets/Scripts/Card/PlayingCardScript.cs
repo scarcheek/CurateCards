@@ -145,4 +145,9 @@ public class PlayingCardScript : MonoBehaviour
             isHovered = false;
         }
     }
+
+    public void OnPointerClick()
+    {
+        AudioManager.instance.PlaySFX("pickup");
+    }
 }
