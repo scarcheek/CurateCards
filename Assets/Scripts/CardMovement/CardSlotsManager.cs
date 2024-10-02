@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardSlotsManager
+public static class CardSlotsManager
 {
     public static float targetSpaceBetweenCards = 150f;
     public static float handReAdjustmentSpeed = 500f;
     public static float verticalSpacing = 50f;
+    public static float OffsetFactor = 75f;
+    public static int OffsetStartingCount = 6;
 
     /// <summary>
     /// Calculated the targetPosition based on cardslotscount, with respect to the in-class targetSpaceBetweenCards and a transform with the handReAdjustmentSpeed
@@ -14,17 +16,47 @@ public class CardSlotsManager
     /// <param name="targetPos">the reference to the targetPosition in the SlotsScript</param>
     /// <param name="transform">transform to take the localposition of</param>
     /// <param name="cardSlotsCount">How often to apply targetSpaceBetweenCards (Should always be CardSlots.Count)</param>
-    public static void moveToAndRecalculateTargetPos(ref Vector2 targetPos, Transform transform, int cardSlotsCount)
+    /// <returns>The applied offset</returns>
+    public static float moveToAndRecalculateTargetPos(ref Vector2 targetPos, Transform transform, int cardSlotsCount, float scrollOffset = 0)
     {
+        float appliedOffset = scrollOffset;
         // This is done to allow dynamic resizing of the cardslots
-        targetPos = new Vector2(-(cardSlotsCount - 1) * targetSpaceBetweenCards / 2f, transform.localPosition.y);
+        targetPos = new Vector2((-(cardSlotsCount - 1) * targetSpaceBetweenCards / 2f), transform.localPosition.y);
+        Debug.Log("targetPos before offset: " + targetPos.x);
+        if (cardSlotsCount > OffsetStartingCount)
+        {
+            // If a card would go out of bounds check if the offset needs to be clamped
+            if (Mathf.Abs(scrollOffset) > OffsetFactor)
+            {
+                Debug.Log("Clamping offset to max value");
+                // If its the first card above the starting count, the offset has to be decreased by 15 as the middle point of a 16:9 screen fucks everything heheheha
+                if (cardSlotsCount == OffsetStartingCount + 1)
+                {
+                    appliedOffset = scrollOffset > 0 ? OffsetFactor - 15 : -OffsetFactor + 15;
+                }
+                else
+                {
+                    appliedOffset = scrollOffset > 0 ? OffsetFactor * (cardSlotsCount - OffsetStartingCount) : -(OffsetFactor * (cardSlotsCount - OffsetStartingCount));
 
-        if (Vector3.Distance(transform.localPosition, targetPos) > 0.001f)
+                }
+            }
+        }
+        else
+        {
+            // This route is if there is no need to apply an offset yet, as the screensize is big enough to support all cards
+            appliedOffset = 0;
+        }
+
+        Vector2 targetPosWithOffset = new(targetPos.x + appliedOffset, targetPos.y);
+
+        if (Vector3.Distance(transform.localPosition, targetPosWithOffset) > 0.001f)
         {
             // Move our position a step closer to the target.
             var step = handReAdjustmentSpeed * Time.deltaTime; // calculate distance to move
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPos, step);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPosWithOffset, step);
         }
+
+        return appliedOffset;
     }
 
     /// <summary>

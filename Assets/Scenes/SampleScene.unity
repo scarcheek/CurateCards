@@ -904,7 +904,30 @@ MonoBehaviour:
   - {fileID: -6791305997529696879, guid: 02f0cde6f4c3e294abe57e1c3c8226d0, type: 3}
   - {fileID: 9096479823000558163, guid: b32a7908da854674f8bbe8d32d89278a, type: 3}
   DeckList:
+  - {fileID: -1697989433240245131, guid: 9541880d6009d664aaf09386366f40bf, type: 3}
+  - {fileID: 7452825288171500378, guid: 7da6913fb4bdf99428efd49a2b45b0f9, type: 3}
+  - {fileID: 1954846331921973734, guid: 87e1143974dc5074c96a9e1831d1771f, type: 3}
+  - {fileID: 3952636531417901397, guid: be07a86d6cb882f429b7ce132e2401c0, type: 3}
+  - {fileID: -645946460188607999, guid: da8f9709693aaaf40821393fadff8be2, type: 3}
   - {fileID: 916146032991733882, guid: 8499e169eb978f541914381fe9bff616, type: 3}
+  - {fileID: -8359743086259373893, guid: c03f9d4cee21e2c4a9512e7207fad1de, type: 3}
+  - {fileID: 7727928220600361443, guid: 0971b3bd436f3984cb565c8c16b84442, type: 3}
+  - {fileID: -3989809400451119777, guid: cfe0cc28aacbfe443ad3266f3eb2e12f, type: 3}
+  - {fileID: 5788401467318268320, guid: 54abb120bd373b942beef3eb7b1d42be, type: 3}
+  - {fileID: 5916776091524602237, guid: f63a9d8271d834e4bb45f6c055a9bc8c, type: 3}
+  - {fileID: -5930778902498119305, guid: e44e5cc9f05739447a976bf02cd861fb, type: 3}
+  - {fileID: -1080332932313264877, guid: 5841df5e3539eb54fa058acf81691768, type: 3}
+  - {fileID: -1356262394907642497, guid: 2ac3a1b7415950c429e2b70af99b8459, type: 3}
+  - {fileID: 8995622965782712110, guid: 2e63d06538c6c4d4eabbf0bbc7a510a6, type: 3}
+  - {fileID: -9213548504536500049, guid: e640dd93c7107424695f516833c10412, type: 3}
+  - {fileID: -6932766194382996704, guid: 73b58fd35db3f284a98abd6ab6cef5bc, type: 3}
+  - {fileID: -142523352978088456, guid: 93abfb4bd11350f4fb51d8cee0f2f290, type: 3}
+  - {fileID: 5916344971328126235, guid: 540ca76a5d185d04b8af82e17e41f7c5, type: 3}
+  - {fileID: 781336365338663310, guid: 7bcc72acf80d6e346bf0d2a16c691d0a, type: 3}
+  - {fileID: 2496708445355654925, guid: 62bd325f9e503c242b65fb66cbe56967, type: 3}
+  - {fileID: 654521266959840061, guid: 36ce1042404590441a716ae8a06805ce, type: 3}
+  - {fileID: -6791305997529696879, guid: 02f0cde6f4c3e294abe57e1c3c8226d0, type: 3}
+  - {fileID: 9096479823000558163, guid: b32a7908da854674f8bbe8d32d89278a, type: 3}
   remainingCards: []
 --- !u!114 &249896234
 MonoBehaviour:
@@ -4078,9 +4101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116062b4f55d9dc4bad782712712d24d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugStartCardSlots: 5
   cardSlotPrefab: {fileID: 5765090287824418254, guid: e93587bab58f12249805e005cca5965f, type: 3}
+  DebugStartCardSlots: 5
   targetPos: {x: 0, y: 0}
+  scrollOffset: 0
   cardSlots: []
 --- !u!222 &1476087255
 CanvasRenderer:
@@ -4458,7 +4482,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1556377504
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4480,7 +4504,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.99993896, y: 0}
+  m_AnchoredPosition: {x: -0.9998779, y: 0}
   m_SizeDelta: {x: -2, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556377505
@@ -4717,7 +4741,7 @@ GameObject:
   - component: {fileID: 1631858444}
   - component: {fileID: 1631858443}
   m_Layer: 5
-  m_Name: Button
+  m_Name: PlayHandButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

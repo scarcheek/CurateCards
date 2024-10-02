@@ -8,9 +8,11 @@ using UnityEngine;
 
 public class CardSlotsScript : MonoBehaviour
 {
-    [SerializeField] private int DebugStartCardSlots = 4;
     [SerializeField] private GameObject cardSlotPrefab;
+    [Header("DEBUG")]
+    [SerializeField] private int DebugStartCardSlots = 4;
     [SerializeField] private Vector2 targetPos;
+    [SerializeField] private float scrollOffset = 0;
 
     [HideInInspector] public List<GameObject> cardSlots = new();
     float lowestCost = float.MaxValue;
@@ -42,12 +44,18 @@ public class CardSlotsScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CardSlotsManager.moveToAndRecalculateTargetPos(ref targetPos, transform, cardSlots.Count);
+        scrollOffset = CardSlotsManager.moveToAndRecalculateTargetPos(ref targetPos, transform, cardSlots.Count, scrollOffset);
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) DrawCard();
+        //TODO implement scrolling feature to allow hand viewing
     }
 
     private void DrawCard()
     {
-        //TODO: Do card handling
         CreateAndAddNewCardSlot();
     }
 
