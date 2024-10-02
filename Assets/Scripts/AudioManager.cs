@@ -45,35 +45,18 @@ public class AudioManager : MonoBehaviour
 
         foreach (Sound s in songs)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-
-            s.source.priority = 0;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
-
-            sounds[s.name] = s;
+            sounds[s.name] = InitializeSound(s, gameObject.AddComponent<AudioSource>(), playGroup);
         }
 
         foreach (Sound s in UI)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.outputAudioMixerGroup = uiGroup;
-
-            s.source.priority = 0;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
-
-            sounds[s.name] = s;
+            sounds[s.name] = InitializeSound(s, gameObject.AddComponent<AudioSource>(), uiGroup);
         }
 
         PlaySong("thinking", true);
     }
 
-    public Sound initializeSound(Sound s, AudioSource source, AudioMixerGroup mixerGroup)
+    public Sound InitializeSound(Sound s, AudioSource source, AudioMixerGroup mixerGroup)
     {
         s.source = source;
         s.source.clip = s.clip;
