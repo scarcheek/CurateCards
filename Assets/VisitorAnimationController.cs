@@ -8,7 +8,7 @@ public class VisitorAnimationController : MonoBehaviour
     private VisitorScript parentScript;
     private AudioSource source;
 
-    private VisitorSounds sounds;
+    private VisitorSounds visitorSounds;
 
 
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class VisitorAnimationController : MonoBehaviour
         anim = GetComponent<Animator>();
         source = GetComponentInParent<AudioSource>();
 
-        sounds = GameStateManager.instance.GetComponent<VisitorSounds>();
+        visitorSounds = AudioManager.instance.GetComponent<VisitorSounds>();
 
         anim.Play("visitor_idle_default", -1, Random.value);
     }
@@ -29,24 +29,26 @@ public class VisitorAnimationController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             anim.SetTrigger("backflip");
-            
+            source.clip = visitorSounds.randomHappy();
+            source.Play();
+
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             anim.SetTrigger("shakefall");
-            source.clip = sounds.randomAngry();
+            source.clip = visitorSounds.randomAngry();
             source.Play();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             anim.SetTrigger("falloverback");
-            source.clip = sounds.randomThud();
+            source.clip = visitorSounds.randomThud();
             source.Play();
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             anim.SetTrigger("leftright");
-            source.clip = sounds.randomNeutral();
+            source.clip = visitorSounds.randomNeutral();
             source.Play();
         }
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -64,26 +66,26 @@ public class VisitorAnimationController : MonoBehaviour
         if (score < -threshhold)
         {
             anim.SetTrigger("shakefall");
-            source.clip = sounds.randomAngry();
+            source.clip = visitorSounds.randomAngry();
             source.Play();
         }
         else if (score > threshhold)
         {
             anim.SetTrigger("backflip");
-            source.clip = sounds.randomHappy();
+            source.clip = visitorSounds.randomHappy();
             source.Play();
         }
         else
         {
             anim.SetTrigger("leftright");
-            source.clip = sounds.randomNeutral();
+            source.clip = visitorSounds.randomNeutral();
             source.Play();
         }
     }
 
     public void ThudSound()
     {
-        source.clip = sounds.randomThud();
+        source.clip = visitorSounds.randomThud();
         source.Play();
     }
     public void OnShakeAndFallDone()

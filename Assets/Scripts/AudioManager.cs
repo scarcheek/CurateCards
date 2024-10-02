@@ -6,9 +6,10 @@ using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
-
     public Sound[] songs;
-    public Sound[] sfx;
+    public Sound[] UI;
+
+    public Dictionary<string, Sound> sounds = new();
 
     private Sound playing;
     private Sound ending;
@@ -17,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public AudioMixerGroup endGroup;
     public AudioMixerGroup playGroup;
     public AudioMixerGroup uiGroup;
+    public AudioMixerGroup playingCardGroup;
 
     private Coroutine fading;
     private bool muted = false;
@@ -50,9 +52,11 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+
+            sounds[s.name] = s;
         }
 
-        foreach (Sound s in sfx)
+        foreach (Sound s in UI)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -62,15 +66,31 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+
+            sounds[s.name] = s;
         }
 
         PlaySong("thinking", true);
+    }
+
+    public Sound initializeSound(Sound s, AudioSource source, AudioMixerGroup mixerGroup)
+    {
+        s.source = source;
+        s.source.clip = s.clip;
+        s.source.outputAudioMixerGroup = mixerGroup;
+
+        s.source.priority = 0;
+        s.source.volume = s.volume;
+        s.source.pitch = s.pitch;
+        s.source.loop = s.loop;
+
+        return s;
     }
     
     public void PlaySong(string name, bool fade)  
     {
         Debug.Log("does at least try");
-        Sound s = Array.Find(songs, s => s.name == name);
+        Sound s = sounds[name];
         if (s == null || s == playing)
         {
             Debug.Log("couldnt find audio: " + name + " or this song is playing rn");
@@ -114,7 +134,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(string name)
     {
-        Sound s = Array.Find(sfx, s => s.name == name);
+        Sound s = sounds[name];
         if (s == null) 
         {
             Debug.Log("couldnt find audio: " + name);

@@ -9,6 +9,21 @@ public class VisitorSounds : MonoBehaviour
     [SerializeField] private AudioClip[] neutral;
     [SerializeField] private AudioClip[] thud;
 
+    public static VisitorSounds instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     public AudioClip randomHappy()
     {
         return happy[Random.Range(0, happy.Length)];

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -798,7 +798,6 @@ GameObject:
   - component: {fileID: 249896232}
   - component: {fileID: 249896233}
   - component: {fileID: 249896234}
-  - component: {fileID: 249896235}
   m_Layer: 0
   m_Name: GameStateManager
   m_TagString: Untagged
@@ -938,47 +937,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b1b434443d9b324d87a7c4ed57f2f65, type: 2}
   - {fileID: 11400000, guid: 0fb470a68ff329f45a1add18400b18b8, type: 2}
   randomizeClothes: 1
---- !u!114 &249896235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249896229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bfd8c3e66f046f4c82035e99f9d7a78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  happy:
-  - {fileID: 8300000, guid: ee7ed4ca902c2b34f99ed5da91097e1c, type: 3}
-  - {fileID: 8300000, guid: 7cbc424e913bc69458c61ef03233be1e, type: 3}
-  - {fileID: 8300000, guid: 94f3ba608c513a044a48ec71293bbf43, type: 3}
-  - {fileID: 8300000, guid: 195a85eee2dd25e40ad4fade862b77f1, type: 3}
-  - {fileID: 8300000, guid: 1e95888563c6c7341baea06d13ec2926, type: 3}
-  - {fileID: 8300000, guid: f3382ae7757d22b4090d14f6effb70ec, type: 3}
-  - {fileID: 8300000, guid: ff9ae8d9488156f459f628dc10104bfa, type: 3}
-  - {fileID: 8300000, guid: 45103b0e94e04fa4bb45991ecce53a20, type: 3}
-  - {fileID: 8300000, guid: 74eb7c7a198b7be448b5d5398f4c46cc, type: 3}
-  - {fileID: 8300000, guid: b78af342000bf2848b5c2a2910688fb0, type: 3}
-  - {fileID: 8300000, guid: ad57f44a39c5f1043bff492a236ae60d, type: 3}
-  angry:
-  - {fileID: 8300000, guid: 4dde96dbccbe503428f57855cc1620c8, type: 3}
-  - {fileID: 8300000, guid: b9d57e156b9bd9343bc0462c4eb364cf, type: 3}
-  - {fileID: 8300000, guid: 27233db66790496479001a4bdb86cf89, type: 3}
-  - {fileID: 8300000, guid: ac7c5aaa6b61c314eb437bd5168f30af, type: 3}
-  - {fileID: 8300000, guid: afab13345fa9bb0428c8fdbc6eb7b233, type: 3}
-  - {fileID: 8300000, guid: a7644832c8863eb4cba220c11c5c8eff, type: 3}
-  neutral:
-  - {fileID: 8300000, guid: 6c8593aff528f6e47856fc4673a52eae, type: 3}
-  - {fileID: 8300000, guid: 483535cdf1b741a41991f1656f3c1519, type: 3}
-  - {fileID: 8300000, guid: 45fec0d1ab204aa4592bbe44ba141752, type: 3}
-  - {fileID: 8300000, guid: f2dd6293ece81ca44bd51d231a4743a8, type: 3}
-  - {fileID: 8300000, guid: bcf7bbed1de611345b28999221ce66cd, type: 3}
-  - {fileID: 8300000, guid: d695023574706a042a5d0096e365f5b5, type: 3}
-  - {fileID: 8300000, guid: 1b832c32d759b4044866794417c8d33b, type: 3}
-  - {fileID: 8300000, guid: 662b8072300dba44aa5ac721e0e3f6eb, type: 3}
-  thud: []
 --- !u!1 &293787459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,6 +1581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 724836846}
   - component: {fileID: 724836845}
+  - component: {fileID: 724836847}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -1655,7 +1614,7 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  sfx:
+  UI:
   - name: button1
     clip: {fileID: 8300000, guid: 321a3f88a0ec1e340a32f5e956eb3c1d, type: 3}
     volume: 1
@@ -1674,14 +1633,14 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: swap
-    clip: {fileID: 8300000, guid: 11cec2c9a7864614282b6adda6c8e543, type: 3}
+  - name: putdown
+    clip: {fileID: 8300000, guid: 7f72069a10e1c3149ab25f3ffd97e1da, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: putdown
-    clip: {fileID: 8300000, guid: 7f72069a10e1c3149ab25f3ffd97e1da, type: 3}
+  - name: swap
+    clip: {fileID: 8300000, guid: 11cec2c9a7864614282b6adda6c8e543, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -1690,6 +1649,7 @@ MonoBehaviour:
   endGroup: {fileID: -897256032163875253, guid: c9a01df7db95c734197c6a38df1be02b, type: 2}
   playGroup: {fileID: -3986838823783648510, guid: c9a01df7db95c734197c6a38df1be02b, type: 2}
   uiGroup: {fileID: 563789331167254907, guid: c9a01df7db95c734197c6a38df1be02b, type: 2}
+  playingCardGroup: {fileID: 0}
   SongVolume: 0
   SfxVolume: 0
   fadeTime: 2
@@ -1708,6 +1668,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &724836847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724836844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bfd8c3e66f046f4c82035e99f9d7a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  happy:
+  - {fileID: 8300000, guid: ee7ed4ca902c2b34f99ed5da91097e1c, type: 3}
+  - {fileID: 8300000, guid: 7cbc424e913bc69458c61ef03233be1e, type: 3}
+  - {fileID: 8300000, guid: 94f3ba608c513a044a48ec71293bbf43, type: 3}
+  - {fileID: 8300000, guid: 195a85eee2dd25e40ad4fade862b77f1, type: 3}
+  - {fileID: 8300000, guid: 1e95888563c6c7341baea06d13ec2926, type: 3}
+  - {fileID: 8300000, guid: f3382ae7757d22b4090d14f6effb70ec, type: 3}
+  - {fileID: 8300000, guid: ff9ae8d9488156f459f628dc10104bfa, type: 3}
+  - {fileID: 8300000, guid: 45103b0e94e04fa4bb45991ecce53a20, type: 3}
+  - {fileID: 8300000, guid: 74eb7c7a198b7be448b5d5398f4c46cc, type: 3}
+  - {fileID: 8300000, guid: b78af342000bf2848b5c2a2910688fb0, type: 3}
+  - {fileID: 8300000, guid: ad57f44a39c5f1043bff492a236ae60d, type: 3}
+  angry:
+  - {fileID: 8300000, guid: 4dde96dbccbe503428f57855cc1620c8, type: 3}
+  - {fileID: 8300000, guid: b9d57e156b9bd9343bc0462c4eb364cf, type: 3}
+  - {fileID: 8300000, guid: 27233db66790496479001a4bdb86cf89, type: 3}
+  - {fileID: 8300000, guid: ac7c5aaa6b61c314eb437bd5168f30af, type: 3}
+  - {fileID: 8300000, guid: afab13345fa9bb0428c8fdbc6eb7b233, type: 3}
+  - {fileID: 8300000, guid: a7644832c8863eb4cba220c11c5c8eff, type: 3}
+  neutral:
+  - {fileID: 8300000, guid: 6c8593aff528f6e47856fc4673a52eae, type: 3}
+  - {fileID: 8300000, guid: 483535cdf1b741a41991f1656f3c1519, type: 3}
+  - {fileID: 8300000, guid: 45fec0d1ab204aa4592bbe44ba141752, type: 3}
+  - {fileID: 8300000, guid: f2dd6293ece81ca44bd51d231a4743a8, type: 3}
+  - {fileID: 8300000, guid: bcf7bbed1de611345b28999221ce66cd, type: 3}
+  - {fileID: 8300000, guid: d695023574706a042a5d0096e365f5b5, type: 3}
+  - {fileID: 8300000, guid: 1b832c32d759b4044866794417c8d33b, type: 3}
+  - {fileID: 8300000, guid: 662b8072300dba44aa5ac721e0e3f6eb, type: 3}
+  thud: []
 --- !u!1 &745998403
 GameObject:
   m_ObjectHideFlags: 0

@@ -146,8 +146,4 @@ public class PlayingCardScript : MonoBehaviour
         }
     }
 
-    public void OnPointerClick()
-    {
-        AudioManager.instance.PlaySFX("pickup");
-    }
 }

@@ -15,7 +15,10 @@ public class CardSlotDeciderScript : MonoBehaviour
     [SerializeField] private BoxCollider2D playZoneCollider;
     public CardBehaviour cardBehaviour;
 
+    private AudioSource audioSource;
     private AudioManager audioManager;
+
+
 
     /// <summary>
     ///  TargetPos sets the localPosition of the gameobject it will move to with `speed`
@@ -24,19 +27,17 @@ public class CardSlotDeciderScript : MonoBehaviour
     public bool isDragged = false;
     [HideInInspector] public Transform transformParent;
 
-    private CardSlotsScript cardSlotsScript;
-    private BoxCollider2D cardSlotDeciderCollider;
     private bool isInPlayZone = false;
 
     // Start is called before the first frame update
     void Start()
     {
         cardBehaviour = GetComponentInChildren<CardBehaviour>();
+        audioSource = GetComponentInChildren<AudioSource>();
         targetPos = transform.parent.localPosition;
-        cardSlotsScript = transform.parent.parent.GetComponent<CardSlotsScript>();
-        cardSlotDeciderCollider = GetComponent<BoxCollider2D>();
         // This should save some resources
         transformParent = transform.parent;
+        audioManager = AudioManager.instance;
     }
 
     private void Update()
@@ -66,7 +67,10 @@ public class CardSlotDeciderScript : MonoBehaviour
 
                 (cardBehaviour.pos, otherCardSlot.cardBehaviour.pos) = (otherCardSlot.cardBehaviour.pos, cardBehaviour.pos);
 
-                AudioManager.instance.PlaySFX("swap");
+
+
+                PlaySFX("swap");
+
                 EventManager.EmitOnSwapComplete(transformParent.gameObject);
             }
             // If the Card is being hovered over the PlayZone collider
@@ -112,7 +116,13 @@ public class CardSlotDeciderScript : MonoBehaviour
         {
             EventManager.EmitDropCardOutsidePlayZone(transform.parent.gameObject);
         }
-        AudioManager.instance.PlaySFX("putdown");
+        PlaySFX("putdown");
+    }
+
+
+    public void OnPointerDown()
+    {
+        PlaySFX("pickup");
     }
 
 
@@ -127,5 +137,11 @@ public class CardSlotDeciderScript : MonoBehaviour
         transform.position = transform.parent.position;
         //Position of card image
         cardTransform.position = transform.position;
+    }
+
+    private void PlaySFX(string soundName)
+    {
+        audioSource.clip = AudioManager.instance.sounds[soundName].clip;
+        audioSource.Play();
     }
 }
