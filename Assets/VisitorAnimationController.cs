@@ -53,11 +53,11 @@ public class VisitorAnimationController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            anim.SetTrigger("stopmoving");
+            anim.speed = 0;
         }
         else if (Input.GetKeyUp(KeyCode.Tab))
         {
-            anim.SetTrigger("startmoving");
+            anim.speed = 1;
         }
     
     }
