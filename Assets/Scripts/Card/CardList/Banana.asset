@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: Banana
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: 1a305431438c49a43805a988965af2ec, type: 3}
+  presentPrefab: {fileID: 3847420962700725894, guid: e1e396305820ac24cadb01393f8de678, type: 3}
   critChance: 0.1
   critMult: 2
   title: Banana

@@ -8,11 +8,15 @@ public class ArtSpotScript : MonoBehaviour
     [Header("Component References")]
     [SerializeField] private ParticleSystem smokeEffect;
     private GameObject artPiece;
+    [SerializeField]private int throwChance = 0; // in %
+    [SerializeField] private Vector3 throwDriection = new Vector3(-5, 7, 0);
+    [SerializeField] private float directionVariation = 0f;
 
     private void Start()
     {
         EventManager.PresentCard += OnPresent;
         EventManager.AnimationVisitorDone += OnShowVisitorDone;
+        EventManager.CheckThrow += OnCheckThrow;
     }
 
     private void OnPresent(PlayingCardScript card)
@@ -22,7 +26,31 @@ public class ArtSpotScript : MonoBehaviour
         {
             Debug.Log("presenting");
             artPiece = Instantiate(card.card.cardProps.presentPrefab, transform, false);
-            
+            Debug.Log("name: "+artPiece.name + ",  is kinematic: " + artPiece.GetComponent<Rigidbody>().isKinematic);
+        }
+    }
+
+    private void OnCheckThrow()
+    {
+        int throwRN = Random.Range(0, 100);
+        Debug.Log("ThrowRN = " + throwRN + " < " + throwChance + ": " + (throwRN < throwChance));
+        if (throwRN < throwChance)
+        {
+            Debug.Log("Throw");
+            ThrowArtpiece();
+        }
+    }
+    private void ThrowArtpiece()
+    {
+
+        if (artPiece != null)
+        {
+            Rigidbody rb = artPiece.GetComponent<Rigidbody>();
+            rb.isKinematic = false;
+            Vector3 randomThrow = new Vector3((Random.value - 0.5f)*2 * directionVariation, (Random.value - 0.5f)*2 * directionVariation, (Random.value - 0.5f)*2 * directionVariation);
+            rb.velocity = throwDriection + randomThrow;
+            rb.AddTorque(new Vector3(0,0,10));
+            Debug.Log(throwDriection + " " + randomThrow);
         }
     }
 

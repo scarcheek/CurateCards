@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: Bear
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: 8c0d991cd0bf1c144be5ef5c60c3ca13, type: 3}
+  presentPrefab: {fileID: 3847420962700725894, guid: 1c1960597e88e18409128d8e6f964cb4, type: 3}
   critChance: 0.1
   critMult: 2
   title: Bear on a fucking rock

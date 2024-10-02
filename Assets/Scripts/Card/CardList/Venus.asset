@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: Venus
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: d4e48f72899a2094f890e782a184bd6c, type: 3}
+  presentPrefab: {fileID: 3847420962700725894, guid: 9fcb54cbe6f75574c87802233d62bdf5, type: 3}
   critChance: 0.1
   critMult: 2
   title: Voluptuous woman

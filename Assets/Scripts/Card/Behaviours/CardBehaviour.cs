@@ -92,6 +92,7 @@ public class CardBehaviour : MonoBehaviour
     public virtual void Play()
     {
         //This is commented for debugging purposes, TODO: remove the comment when releasing for random crits
+
         if (guaranteedCrit /*|| UnityEngine.Random.value < currentCritChance*/)
         {
             cardValue *= currentCritMult;

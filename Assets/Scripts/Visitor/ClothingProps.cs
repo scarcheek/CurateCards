@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ClothingProp")]
 public class ClothingProps : ScriptableObject
 {
-    public Sprite sprite;
+    public Material material;
     public ClothingType clothingType;
     [Header("Preferences")]
     [SerializeField] private float traditional = 0.0f;

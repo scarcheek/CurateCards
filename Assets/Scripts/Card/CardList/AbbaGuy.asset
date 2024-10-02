@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: AbbaGuy
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: 597df9bec27cbe24da2123c28996cf6a, type: 3}
+  presentPrefab: {fileID: 3847420962700725894, guid: 146692fc181f1184583526d2ad216528, type: 3}
   critChance: 0.1
   critMult: 2
   title: Guy in river

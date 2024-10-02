@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adfb2c213a97b24a8d4d594580291d5, type: 3}
   m_Name: techbroPants
   m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: d491656bc3517934c882bceafe014750, type: 2}
   clothingType: 1
   traditional: -5
   contemporary: 5
   technological: 15
   everyday: -5
   ancient: -10
-  sprite: {fileID: 21300000, guid: dd78c2c519a7a3141b900fc2068eef45, type: 3}

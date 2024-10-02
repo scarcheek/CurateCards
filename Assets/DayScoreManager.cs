@@ -68,6 +68,6 @@ public class DayScoreManager : MonoBehaviour
         //TODO: Display the score somewhere in the UI
         CurrentScore += baseVal;
         SetScoreText();
-        Debug.Log("Current Score: " + CurrentScore);
+        //Debug.Log("Current Score: " + CurrentScore);
     }
 }

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adfb2c213a97b24a8d4d594580291d5, type: 3}
   m_Name: childHat
   m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: ee2c2ff4e814c584c872b4c68aa7b028, type: 2}
   clothingType: 0
   traditional: -10
   contemporary: -10
   technological: 10
   everyday: 30
   ancient: -20
-  sprite: {fileID: 21300000, guid: 4e676716908871844b2c7a7de123393a, type: 3}

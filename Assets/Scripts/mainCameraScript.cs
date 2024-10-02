@@ -43,10 +43,17 @@ public class mainCameraScript : MonoBehaviour
         EventManager.EmitCurationDone();
     }
 
-
+    /// <summary>
+    /// start when show visitors animation is run :)
+    /// </summary>
     public void PresentVisitorStart()
     {
         currentlyPresenting.card.Play();
         currentlyPresenting = null;
+    }
+
+    public void CheckThrow()
+    {
+        EventManager.EmitCheckThrow();
     }
 }

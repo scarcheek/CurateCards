@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fdff0864aee3e4fab3b3921427de2a, type: 3}
   m_Name: Trash
   m_EditorClassIdentifier: 
-  presentPrefab: {fileID: 919132149155446097, guid: 3e235b4e451290047808eee61d33d3f9, type: 3}
+  presentPrefab: {fileID: 3847420962700725894, guid: 8246db7197ac0d6429dbac8dc40cbb97, type: 3}
   critChance: 0.1
   critMult: 2
   title: Bag of trash

@@ -9,6 +9,7 @@ TagManager:
   - CardSlot
   - PlayZone
   - CardImage
+  - ArtPiece
   layers:
   - Default
   - TransparentFX

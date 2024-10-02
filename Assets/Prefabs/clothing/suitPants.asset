@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adfb2c213a97b24a8d4d594580291d5, type: 3}
   m_Name: suitPants
   m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 0cbd4c998c6aab64cac6f74e440a196a, type: 2}
   clothingType: 1
   traditional: 15
   contemporary: -10
   technological: -5
   everyday: -5
   ancient: 5
-  sprite: {fileID: 21300000, guid: 17a9bc8035726fc4890f82560b5e2762, type: 3}
