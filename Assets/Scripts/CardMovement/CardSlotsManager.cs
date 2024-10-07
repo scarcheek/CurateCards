@@ -22,23 +22,24 @@ public static class CardSlotsManager
         float appliedOffset = scrollOffset;
         // This is done to allow dynamic resizing of the cardslots
         targetPos = new Vector2((-(cardSlotsCount - 1) * targetSpaceBetweenCards / 2f), transform.localPosition.y);
-        Debug.Log("targetPos before offset: " + targetPos.x);
+
         if (cardSlotsCount > OffsetStartingCount)
         {
             // If a card would go out of bounds check if the offset needs to be clamped
-            if (Mathf.Abs(scrollOffset) > OffsetFactor)
+            if (Mathf.Abs(scrollOffset) > OffsetFactor * (cardSlotsCount - OffsetStartingCount))
             {
-                Debug.Log("Clamping offset to max value");
-                // If its the first card above the starting count, the offset has to be decreased by 15 as the middle point of a 16:9 screen fucks everything heheheha
-                if (cardSlotsCount == OffsetStartingCount + 1)
-                {
-                    appliedOffset = scrollOffset > 0 ? OffsetFactor - 15 : -OffsetFactor + 15;
-                }
-                else
-                {
-                    appliedOffset = scrollOffset > 0 ? OffsetFactor * (cardSlotsCount - OffsetStartingCount) : -(OffsetFactor * (cardSlotsCount - OffsetStartingCount));
 
-                }
+                appliedOffset = scrollOffset > 0 ?
+                    OffsetFactor * (cardSlotsCount - OffsetStartingCount) :
+                    -(OffsetFactor * (cardSlotsCount - OffsetStartingCount));
+
+            }
+            // Handle the first out of bounds check (offsetstartingcount+1) differently as it has a slighlty different offset
+            // If its the first card above the starting count, the offset has to be decreased by 15 as the middle point of a 16:9 screen fucks everything heheheha
+            else if (cardSlotsCount == OffsetStartingCount + 1 && Mathf.Abs(scrollOffset) > OffsetFactor - 15)
+            {
+                appliedOffset = scrollOffset > 0 ? OffsetFactor - 15 : -OffsetFactor + 15;
+
             }
         }
         else

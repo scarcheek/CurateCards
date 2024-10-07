@@ -5,10 +5,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class CardSlotsScript : MonoBehaviour
 {
     [SerializeField] private GameObject cardSlotPrefab;
+    [SerializeField] private float mouseSpeed = 5f;
     [Header("DEBUG")]
     [SerializeField] private int DebugStartCardSlots = 4;
     [SerializeField] private Vector2 targetPos;
@@ -38,7 +40,7 @@ public class CardSlotsScript : MonoBehaviour
             DrawCard();
         }
 
-        if (lowestCost > GameStateManager.AvailableCoins) 
+        if (lowestCost > GameStateManager.AvailableCoins)
             EventManager.EmitRunFailed("You can't afford running another curation...");
     }
 
@@ -50,8 +52,13 @@ public class CardSlotsScript : MonoBehaviour
 
     private void Update()
     {
+        //TODO: Remove for release
         if (Input.GetKeyDown(KeyCode.Space)) DrawCard();
-        //TODO implement scrolling feature to allow hand viewing
+    }
+
+    private void OnGUI()
+    {
+        scrollOffset += Input.mouseScrollDelta.y * mouseSpeed;
     }
 
     private void DrawCard()
