@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
@@ -13,6 +14,8 @@ public class PlayZoneScript : MonoBehaviour
     [SerializeField] private GameObject button;
     private List<GameObject> cardSlots = new();
 
+    [SerializeField] private float scrollOffset = 0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +23,13 @@ public class PlayZoneScript : MonoBehaviour
         button.SetActive(false);
         targetPos = transform.localPosition;
         EventManager.DropCardInPlayZone += AddCardToPlayZone;
-        EventManager.DropCardOutsidePlayZone += removeCardFromPlayZone;
+        EventManager.DropCardOutsidePlayZone += RemoveCardFromPlayZone;
         EventManager.OnSwapComplete += SortCardSlots;
     }
 
     private void FixedUpdate()
     {
-        CardSlotsManager.moveToAndRecalculateTargetPos(ref targetPos, transform, cardSlots.Count);
+        scrollOffset = CardSlotsManager.moveToAndRecalculateTargetPos(ref targetPos, transform, cardSlots.Count, scrollOffset);
     }
 
     public void AddCardToPlayZone(GameObject cardSlot)
@@ -42,12 +45,11 @@ public class PlayZoneScript : MonoBehaviour
         button.SetActive(GameStateManager.AvailableCoins >= 0);
     
     }
-    public void removeCardFromPlayZone(GameObject cardSlot)
+    public void RemoveCardFromPlayZone(GameObject cardSlot)
     {
         CardSlotsManager.RemoveCardFromCardSlots(cardSlot, cardSlots, playZoneSlotName);
 
         animator.SetBool("CardInPlayZone", cardSlots.Count > 0);
-        //animator.SetTrigger("EndHoverPlayZone");
 
         cardSlot.GetComponentInChildren<CardBehaviour>().OnRemoveFromPlayZone();
 
@@ -100,5 +102,10 @@ public class PlayZoneScript : MonoBehaviour
         CardSlotsManager.ClearCardSlots(cardSlots);
         animator.SetBool("CardInPlayZone", false);
         animator.SetBool("HoverPlayZone", false);
+    }
+
+    internal void SetScrollOffset(float offset)
+    {
+        scrollOffset += offset;
     }
 }

@@ -55,9 +55,9 @@ public class CardSlotsScript : MonoBehaviour
         if (Input.GetKeyDown(ConfigManagerScript.instance.DrawCard)) DrawCard();
     }
 
-    private void OnGUI()
+    public void SetScrollOffset(float offset)
     {
-        scrollOffset += Input.mouseScrollDelta.y * ConfigManagerScript.instance.CardPanSpeed;
+        scrollOffset += offset;
     }
 
     private void DrawCard()
