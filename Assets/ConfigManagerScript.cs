@@ -19,7 +19,7 @@ public class ConfigManagerScript : MonoBehaviour
 
     public static ConfigManagerScript instance;
 
-    void Awake()
+    void Start()
     {
         if (instance == null)
         {
@@ -34,9 +34,4 @@ public class ConfigManagerScript : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

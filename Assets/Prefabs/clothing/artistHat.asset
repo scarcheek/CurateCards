@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: a17c5b2c3f804a44099ac96a94285973, type: 2}
   clothingType: 0
-  traditional: -15
-  contemporary: 30
-  technological: -15
-  everyday: 5
-  ancient: -5
+  traditional: -20
+  contemporary: 20
+  technological: 10
+  everyday: 10
+  ancient: -20

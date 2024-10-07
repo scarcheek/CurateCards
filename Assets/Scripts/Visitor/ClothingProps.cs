@@ -15,7 +15,7 @@ public class ClothingProps : ScriptableObject
     [SerializeField] private float technological = 0.0f;
     [SerializeField] private float everyday = 0.0f;
     [SerializeField] private float ancient = 0.0f;
-    public Dictionary<CardType, float> prefernces = new Dictionary<CardType, float>();
+    public Dictionary<CardType, float> prefernces = new();
 
     private void Awake()
     {

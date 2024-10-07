@@ -15,7 +15,7 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: c0c1b12d19ca13a4a96a5a8f76c603df, type: 2}
   clothingType: 2
   traditional: -20
-  contemporary: 10
-  technological: 20
-  everyday: 10
+  contemporary: 5
+  technological: 30
+  everyday: 5
   ancient: -20

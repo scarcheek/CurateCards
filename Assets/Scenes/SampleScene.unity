@@ -942,17 +942,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hats:
+  - {fileID: 11400000, guid: fbe59e867bc31644295ee1093e64b2cc, type: 2}
+  - {fileID: 11400000, guid: 9775b73daa5ca3a42a3bffceae94be29, type: 2}
+  - {fileID: 11400000, guid: c8b97814ae6b0ac41be3e3114d978ee6, type: 2}
+  - {fileID: 11400000, guid: 4006b55871b15ae49b4face330be91af, type: 2}
+  - {fileID: 11400000, guid: aea717c6b3ee02e43be9f0845e463aef, type: 2}
+  bodies:
   - {fileID: 11400000, guid: 410d238dd6d2c9846807d22814be5c65, type: 2}
   - {fileID: 11400000, guid: bb47b9193d1599f4d8754b7c8f8b762c, type: 2}
   - {fileID: 11400000, guid: 598848d29d2ba9745a7e5c5c78436adc, type: 2}
   - {fileID: 11400000, guid: 73eb9ab57aee8d14e837081781cd2c16, type: 2}
   - {fileID: 11400000, guid: 11f7cd3bc490aba408551577d140c6c3, type: 2}
-  bodies:
-  - {fileID: 11400000, guid: c8b97814ae6b0ac41be3e3114d978ee6, type: 2}
-  - {fileID: 11400000, guid: 9775b73daa5ca3a42a3bffceae94be29, type: 2}
-  - {fileID: 11400000, guid: fbe59e867bc31644295ee1093e64b2cc, type: 2}
-  - {fileID: 11400000, guid: 4006b55871b15ae49b4face330be91af, type: 2}
-  - {fileID: 11400000, guid: aea717c6b3ee02e43be9f0845e463aef, type: 2}
   pants:
   - {fileID: 11400000, guid: bc9d638283ba93541a97a683f8242368, type: 2}
   - {fileID: 11400000, guid: 7a8cb8f513734174b958330b76bf34e0, type: 2}
