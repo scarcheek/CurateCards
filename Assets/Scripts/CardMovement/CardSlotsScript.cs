@@ -10,7 +10,6 @@ using static UnityEngine.ParticleSystem;
 public class CardSlotsScript : MonoBehaviour
 {
     [SerializeField] private GameObject cardSlotPrefab;
-    [SerializeField] private float mouseSpeed = 5f;
     [Header("DEBUG")]
     [SerializeField] private int DebugStartCardSlots = 4;
     [SerializeField] private Vector2 targetPos;
@@ -52,13 +51,13 @@ public class CardSlotsScript : MonoBehaviour
 
     private void Update()
     {
-        //TODO: Remove for release
-        if (Input.GetKeyDown(KeyCode.Space)) DrawCard();
+        //TODO: Make this function substract some money
+        if (Input.GetKeyDown(ConfigManagerScript.instance.DrawCard)) DrawCard();
     }
 
     private void OnGUI()
     {
-        scrollOffset += Input.mouseScrollDelta.y * mouseSpeed;
+        scrollOffset += Input.mouseScrollDelta.y * ConfigManagerScript.instance.CardPanSpeed;
     }
 
     private void DrawCard()

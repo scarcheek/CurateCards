@@ -41,7 +41,7 @@ public class DayScoreManager : MonoBehaviour
         scoreText.text = sb.ToString();
         if (CurrentScore > GetTodaysScoreToAchieve())
         {
-            scoreText.color = Color.yellow;
+            scoreText.color = ConfigManagerScript.instance.posEffectColor;
         }
         else
         {
@@ -65,7 +65,6 @@ public class DayScoreManager : MonoBehaviour
 
     public void addBaseValue(float baseVal)
     {
-        //TODO: Display the score somewhere in the UI
         CurrentScore += baseVal;
         SetScoreText();
         //Debug.Log("Current Score: " + CurrentScore);

@@ -21,8 +21,8 @@ public class ScoreVisualizerScript : MonoBehaviour
         if (score >= 0) scoreText.text = "+";
         scoreText.text += score.ToString();
 
-        if (motivationChange >= 0) scoreText.color = Color.green;
-        else scoreText.color = Color.blue;
+        if (motivationChange >= 0) scoreText.color = ConfigManagerScript.instance.positiveColor;
+        else scoreText.color = ConfigManagerScript.instance.negativeColor;
 
         anim.SetTrigger("showScore");
     }

@@ -164,8 +164,7 @@ public class VisitorScript : MonoBehaviour
         }
         else if (isLeaving)
         {
-            //TODO: Remove visitor properly 
-            Destroy(gameObject);
+            planeScript.RemoveVisitor(gameObject);
         }
     }
 

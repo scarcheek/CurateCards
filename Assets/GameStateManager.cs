@@ -98,7 +98,7 @@ public class GameStateManager : MonoBehaviour
         }
         else
         {
-            availableCoinsText.color = Color.blue;
+            availableCoinsText.color = ConfigManagerScript.instance.negativeColor;
         }
     }
 
@@ -171,7 +171,7 @@ public class GameStateManager : MonoBehaviour
     #endregion
     void Update()
     {
-        if (Input.GetKeyDown("escape"))
+        if (Input.GetKeyDown(ConfigManagerScript.instance.QuitGame))
         {
             Application.Quit();
         }
