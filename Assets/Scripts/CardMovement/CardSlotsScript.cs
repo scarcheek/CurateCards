@@ -11,7 +11,7 @@ public class CardSlotsScript : MonoBehaviour
 {
     [SerializeField] private GameObject cardSlotPrefab;
     [Header("DEBUG")]
-    [SerializeField] private int DebugStartCardSlots = 4;
+    [SerializeField] private int DebugStartCardSlots;
     [SerializeField] private Vector2 targetPos;
     [SerializeField] private float scrollOffset = 0;
 
@@ -67,7 +67,7 @@ public class CardSlotsScript : MonoBehaviour
 
     private void CreateAndAddNewCardSlot()
     {
-        List<CardBehaviour> remainingCards = DeckManager.instance.remainingCards;
+        List<CardBehaviour> remainingCards = DeckManager.instance?.remainingCards;
         if (remainingCards.Count == 0) return;
 
         GameObject cardSlot = Instantiate(cardSlotPrefab, transform);
@@ -92,6 +92,6 @@ public class CardSlotsScript : MonoBehaviour
     private void OnSubmitCards(List<PlayingCardScript> cards)
     {
         CardSlotsManager.ClearCardSlots(cardSlots);
-        DeckManager.RepopulateRemainingCards();
+
     }
 }

@@ -13,10 +13,21 @@ public class DeckManager : MonoBehaviour
     public static DeckManager instance;
     void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+
         DeckList.AddRange(GetRandomCardsOfAllTypes());
         remainingCards = DeckList.ToList();
-        EventManager.StartDay += RepopulateRemainingCards;
+        EventManager.StartTurn += RepopulateRemainingCards;
     }
 
 
@@ -59,11 +70,11 @@ public class DeckManager : MonoBehaviour
     public static void RemoveCardFromDeckListAtIndex(int index)
     {
         instance.DeckList.RemoveAt(index);
-        RepopulateRemainingCards();
     }
 
     internal static void RepopulateRemainingCards()
     {
+        Debug.Log("Repopulating RemainingCards");
         instance.remainingCards = instance.DeckList.ToList();
     }
 }

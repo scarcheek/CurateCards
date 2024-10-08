@@ -6,7 +6,7 @@ using UnityEngine;
 public class mainCameraScript : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-    private List<PlayingCardScript> remainingCards;
+    private List<PlayingCardScript> remainingCards = new();
     private PlayingCardScript currentlyPresenting;
     private void Start()
     {
@@ -17,7 +17,7 @@ public class mainCameraScript : MonoBehaviour
     private void OnSubmitCards(List<PlayingCardScript> cards)
     {
         anim.SetTrigger("Present");
-        remainingCards = new List<PlayingCardScript>(cards);
+        remainingCards = new(cards);
         anim.SetBool("AreCardsLeft", true);
     }
 

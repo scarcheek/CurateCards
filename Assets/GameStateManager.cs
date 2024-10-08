@@ -7,21 +7,24 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] private TextMeshProUGUI availableCoinsText;
     [SerializeField] private TextMeshProUGUI AttackCounterText;
     [SerializeField] private TextMeshProUGUI DefenceCounterText;
     [SerializeField] private TextMeshProUGUI VirusCounterText;
-    [SerializeField] private float StartingCoinAmount = 500;
     [SerializeField] private GameObject Shop;
     [SerializeField] private GameObject CardZones;
-    [Range(0f, 1f)][SerializeField] private float initialScoreFactor;
+    [Header("Properties")]
+    [SerializeField] private float StartingCoinAmount = 500;
+    public static float AttackCounterChange = 1.2f;
+    public static float DefenceCounterChange = 0.83f;
+    [Header("DEBUG")]
+    private static float _availableCoins;
     public int activeAttackCounters = 0;
     public int activeDefenceCounters = 0;
     public int activeVirusCounters = 0;
+
     public static GameStateManager instance;
-    public static float AttackCounterChange = 1.2f;
-    public static float DefenceCounterChange = 0.83f;
-    private static float _availableCoins;
     public static float AvailableCoins
     {
         get => _availableCoins;
