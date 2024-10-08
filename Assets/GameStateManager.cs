@@ -49,7 +49,15 @@ public class GameStateManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         defaultCoinColor = availableCoinsText.color;
 

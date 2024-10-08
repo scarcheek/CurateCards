@@ -1,17 +1,10 @@
-using Cinemachine;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class CardSlotsScript : MonoBehaviour
 {
     [SerializeField] private GameObject cardSlotPrefab;
     [Header("DEBUG")]
-    [SerializeField] private int DebugStartCardSlots;
     [SerializeField] private Vector2 targetPos;
     [SerializeField] private float scrollOffset = 0;
 
@@ -34,7 +27,7 @@ public class CardSlotsScript : MonoBehaviour
             EventManager.EmitRunFailed("There are no cards left in the deck! :(");
             return;
         }
-        for (int i = 0; i < DebugStartCardSlots; i++)
+        for (int i = 0; i < DeckManager.instance.StartCardAmount; i++)
         {
             DrawCard();
         }
@@ -52,7 +45,34 @@ public class CardSlotsScript : MonoBehaviour
     private void Update()
     {
         //TODO: Make this function substract some money
-        if (Input.GetKeyDown(ConfigManagerScript.instance.DrawCard)) DrawCard();
+        if (Input.GetKeyDown(ConfigManagerScript.instance.DrawCard)) ManualDrawCard();
+    }
+
+    private void ManualDrawCard()
+    {
+        if (DeckManager.instance.remainingCards.Count > 0)
+        {
+            GameStateManager.AvailableCoins -= DeckManager.instance.CardDrawCost;
+
+            if (lowestCost > GameStateManager.AvailableCoins)
+            {
+                EventManager.EmitRunFailed("That was one card too much...");
+                return;
+            }
+
+            DrawCard();
+        }
+        else
+        {
+            GameStateManager.AvailableCoins -= DeckManager.instance.DeckRefreshCost;
+
+            DeckManager.RepopulateRemainingCards();
+            if (GameStateManager.AvailableCoins <= 0)
+            {
+                EventManager.EmitRunFailed("You couldnt afford that reshuffle...");
+                return;
+            }
+        }
     }
 
     public void SetScrollOffset(float offset)
