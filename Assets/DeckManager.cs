@@ -22,17 +22,7 @@ public class DeckManager : MonoBehaviour
     public static DeckManager instance;
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject);
+        instance = this;
 
         DeckList.AddRange(GetRandomCardsOfAllTypes());
         remainingCards = DeckList.ToList();

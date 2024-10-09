@@ -18,6 +18,7 @@ public class DayScoreManager : MonoBehaviour
     private void Start()
     {
         instance = this;
+
         CurrentDay = 0;
         defaultScoreTextColor = scoreText.color;
         EventManager.CurationDone += OnCurationDone;

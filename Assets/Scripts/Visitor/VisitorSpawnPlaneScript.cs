@@ -19,6 +19,7 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
     void Start()
     {
         instance = this;
+
         standArea = GetComponent<BoxCollider>();
         SpawnVisitorAmount(visitorAmountToSpawn);
     }
