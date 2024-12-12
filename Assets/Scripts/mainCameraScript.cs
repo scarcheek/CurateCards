@@ -19,6 +19,7 @@ public class mainCameraScript : MonoBehaviour
         anim.SetTrigger("Present");
         remainingCards = new List<PlayingCardScript>(cards);
         anim.SetBool("AreCardsLeft", true);
+        AudioManager.instance.PlaySong("score", true);
     }
 
     public void OnPresent()
@@ -41,6 +42,8 @@ public class mainCameraScript : MonoBehaviour
     public void OnCurationDone()
     {
         EventManager.EmitCurationDone();
+        Debug.Log("end of presentation");
+        AudioManager.instance.PlaySong("thinking", true);
     }
 
     /// <summary>

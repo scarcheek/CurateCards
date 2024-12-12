@@ -145,4 +145,5 @@ public class PlayingCardScript : MonoBehaviour
             isHovered = false;
         }
     }
+
 }

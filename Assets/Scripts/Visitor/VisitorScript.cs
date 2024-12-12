@@ -114,6 +114,8 @@ public class VisitorScript : MonoBehaviour
             return 0; 
         }
 
+        currentMotivation += motivationChange;
+
         GameStateManager instance = GameStateManager.instance;
         motivationChange += instance.activeVirusCounters;
         motivationChange *= math.pow(GameStateManager.AttackCounterChange, instance.activeAttackCounters);
@@ -142,6 +144,7 @@ public class VisitorScript : MonoBehaviour
     {
         isLeaving = true;
         
+        transform.SetParent(null);
 
         if (beenHit)
         {
@@ -176,9 +179,9 @@ public class VisitorScript : MonoBehaviour
             Debug.Log("collision with artpiece");
             beenHit = true;
             animController.anim.SetTrigger("falloverback");
+            animController.ThudSound();
 
             // detracting the score if artpiece has been score already
-            
             EventManager.EmitAddBaseValueToGamestate(-calculatedScore);
             scoreVisualizer.showScore(System.Math.Round(-calculatedScore), 0);
         }
