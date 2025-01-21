@@ -30,9 +30,11 @@ public class MoveAndShake : MonoBehaviour
         Debug.Log("movemnt list: " + movement.Count);
         Debug.Log("color list: " + endColor.Count);
         Debug.Log("bodypart list: " + bodypart.Count);
+
+        radius = (radius/1920) * Screen.width;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 mPos = Input.mousePosition;
         double distance = Vector3.Distance(mPos, bPos);
