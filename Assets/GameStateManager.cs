@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -22,6 +24,11 @@ public class GameStateManager : MonoBehaviour
     public static float AttackCounterChange = 1.2f;
     public static float DefenceCounterChange = 0.83f;
     private static float _availableCoins;
+
+    [Header("DEBUG")]
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private AudioManager audioManager;
+    private bool isPaused = false;
     public static float AvailableCoins
     {
         get => _availableCoins;
@@ -38,9 +45,9 @@ public class GameStateManager : MonoBehaviour
 
     private Color defaultCoinColor;
 
-    // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("gamestate manager start");
         EventManager.EmitStartDay();
     }
 
@@ -65,6 +72,7 @@ public class GameStateManager : MonoBehaviour
 
     private void OnStartDay()
     {
+        Debug.Log("gamestate manager OnStartDay");
         AvailableCoins += StartingCoinAmount;
         UpdateCounterText();
         EventManager.EmitStartTurn();
@@ -169,12 +177,33 @@ public class GameStateManager : MonoBehaviour
         }
     }
     #endregion
+
+    public void Pause(){
+        if (isPaused){
+                pauseMenu.SetActive(false);
+                isPaused = false;
+                audioManager.HighPitch();
+            }
+            else{
+                pauseMenu.SetActive(true);
+                isPaused = true;
+                audioManager.LowPitch();
+            }
+    }
+
+    public void ToTitle(){
+        SceneManager.LoadScene("StartScreen");
+        
+        if (isPaused){
+                audioManager.HighPitch();
+            }
+    }
     void Update()
     {
-        if (Input.GetKeyDown("escape"))
-        {
-            Application.Quit();
+        if (Input.GetButtonDown("Cancel")){
+            Pause();
         }
+        
     }
 
 }

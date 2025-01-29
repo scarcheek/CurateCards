@@ -72,7 +72,6 @@ public class AudioManager : MonoBehaviour
     
     public void PlaySong(string name, bool fade)  
     {
-        Debug.Log("does at least try");
         Sound s = sounds[name];
         if (s == null || s == playing)
         {
@@ -144,4 +143,15 @@ public class AudioManager : MonoBehaviour
         }
         yield break;
     }
+
+    public void LowPitch(){
+        //mixer.SetFloat("pitch", 0.82f);
+        mixer.SetFloat("cutoff", 200.00f);
+    }
+
+    public void HighPitch(){
+        //mixer.SetFloat("pitch",1f);
+        mixer.SetFloat("cutoff", 22000.00f);
+    }
+
 }

@@ -27,10 +27,6 @@ public class MoveAndShake : MonoBehaviour
             startPos.Add(g.transform.localPosition);
         }
 
-        Debug.Log("movemnt list: " + movement.Count);
-        Debug.Log("color list: " + endColor.Count);
-        Debug.Log("bodypart list: " + bodypart.Count);
-
         radius = (radius/1920) * Screen.width;
     }
 

@@ -48,12 +48,5 @@ public class ArtworkSpawner : MonoBehaviour
         CardList.Remove(CardList[rand]);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown("escape")){
-            Debug.Log("spawn");
-            spawn();
-        }
-    }
 
 }
