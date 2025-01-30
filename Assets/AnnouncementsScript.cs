@@ -39,4 +39,10 @@ public class AnnouncementsScript : MonoBehaviour
     {
         EventManager.EmitStartShopping();
     }
+
+    private void OnDestroy()
+    {
+        EventManager.CelebrateDayComplete -= OnCelebrateDayComplete;
+        EventManager.RunFailed -= OnRunFailed;
+    }
 }

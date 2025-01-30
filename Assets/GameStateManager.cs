@@ -51,9 +51,13 @@ public class GameStateManager : MonoBehaviour
         EventManager.EmitStartDay();
     }
 
-    private void Awake()
+    
+
+    private void OnEnable()
     {
         instance = this;
+        AvailableCoins = 0;
+
 
         defaultCoinColor = availableCoinsText.color;
 
@@ -74,7 +78,7 @@ public class GameStateManager : MonoBehaviour
     {
         Debug.Log("gamestate manager OnStartDay");
         AvailableCoins += StartingCoinAmount;
-        UpdateCounterText();
+        //UpdateCounterText();
         EventManager.EmitStartTurn();
     }
 
@@ -192,7 +196,7 @@ public class GameStateManager : MonoBehaviour
     }
 
     public void ToTitle(){
-        SceneManager.LoadScene("StartScreen");
+        SceneManager.LoadSceneAsync("StartScreen");
         
         if (isPaused){
                 audioManager.HighPitch();
@@ -204,6 +208,19 @@ public class GameStateManager : MonoBehaviour
             Pause();
         }
         
+    }
+
+    private void OnDestroy()
+    {
+
+        instance = null;
+
+
+        EventManager.AddCounter -= OnAddCounter;
+        EventManager.RemoveCounter -= OnRemoveCounter;
+        EventManager.StartShopping -= StartShopping;
+        EventManager.StartDay -= OnStartDay;
+        EventManager.RunFailed -= OnRunFailed;
     }
 
 }

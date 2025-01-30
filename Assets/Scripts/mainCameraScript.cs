@@ -59,4 +59,9 @@ public class mainCameraScript : MonoBehaviour
     {
         EventManager.EmitCheckThrow();
     }
+
+    private void OnDestroy()
+    {
+        EventManager.submitCards -= OnSubmitCards;
+    }
 }

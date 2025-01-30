@@ -14,7 +14,7 @@ public class MenuController : MonoBehaviour
     }
 
     public void Play(){
-        SceneManager.LoadScene(mainScene);
+        SceneManager.LoadSceneAsync(mainScene);
     }
 
     public void Options(){
@@ -26,6 +26,4 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
-    void Update(){
-    }
 }

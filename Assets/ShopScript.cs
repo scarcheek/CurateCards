@@ -152,4 +152,9 @@ public class ShopScript : MonoBehaviour
         spentCoinsText.gameObject.SetActive(spentCoins < 0);
         spentCoinsText.text = spentCoins.ToString();
     }
+
+    private void OnDestroy()
+    {
+        EventManager.StartShopping -= OnStartShopping;
+    }
 }

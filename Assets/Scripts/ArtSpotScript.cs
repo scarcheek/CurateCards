@@ -58,4 +58,11 @@ public class ArtSpotScript : MonoBehaviour
         artPiece = null;
         smokeEffect.Play();
     }
+
+    private void OnDestroy()
+    {
+        EventManager.PresentCard -= OnPresent;
+        EventManager.AnimationVisitorDone -= OnShowVisitorDone;
+        EventManager.CheckThrow -= OnCheckThrow;
+    }
 }

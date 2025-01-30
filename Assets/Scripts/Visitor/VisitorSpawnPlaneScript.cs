@@ -81,4 +81,11 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
             Random.Range(bounds.min.z, bounds.max.z)
         );
     }
+
+    private void OnDestroy()
+    {
+        instance = null;
+        EventManager.CurationDone -= CheckVisitorAmount;
+        EventManager.StartDay -= OnStartDay;
+    }
 }

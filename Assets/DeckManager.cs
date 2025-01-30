@@ -66,4 +66,10 @@ public class DeckManager : MonoBehaviour
     {
         instance.remainingCards = instance.DeckList.ToList();
     }
+
+    private void OnDestroy()
+    {
+        instance = null;
+        EventManager.StartDay -= RepopulateRemainingCards;
+    }
 }

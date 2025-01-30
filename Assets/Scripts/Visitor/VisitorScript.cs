@@ -33,6 +33,13 @@ public class VisitorScript : MonoBehaviour
     private bool beenHit = false;
     VisitorSpawnPlaneScript planeScript;
 
+    private void Awake()
+    {
+        EventManager.ScoreCard += OnScoreCard;
+        EventManager.RandomizePreferences += OnRandomizePreferences;
+        EventManager.PresentCard += ResetCalculatedScore;
+    }
+
 
     void Start()
     {
@@ -40,9 +47,7 @@ public class VisitorScript : MonoBehaviour
         clothingManager = GameStateManager.instance.GetComponent<ClothingManager>();
 
         animController = GetComponentInChildren<VisitorAnimationController>();
-        EventManager.ScoreCard += OnScoreCard;
-        EventManager.RandomizePreferences += OnRandomizePreferences;
-        EventManager.PresentCard += ResetCalculatedScore;
+        
 
         currentMotivation = initialMotivation;
         OnRandomizePreferences();
@@ -185,5 +190,12 @@ public class VisitorScript : MonoBehaviour
             EventManager.EmitAddBaseValueToGamestate(-calculatedScore);
             scoreVisualizer.showScore(System.Math.Round(-calculatedScore), 0);
         }
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.ScoreCard -= OnScoreCard;
+        EventManager.RandomizePreferences -= OnRandomizePreferences;
+        EventManager.PresentCard -= ResetCalculatedScore;
     }
 }

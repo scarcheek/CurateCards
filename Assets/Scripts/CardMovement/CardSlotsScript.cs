@@ -80,4 +80,14 @@ public class CardSlotsScript : MonoBehaviour
         CardSlotsManager.ClearCardSlots(cardSlots);
         DeckManager.RepopulateRemainingCards();
     }
+
+    private void OnDestroy()
+    {
+        EventManager.DropCardInPlayZone -= RemoveCard;
+        EventManager.DropCardOutsidePlayZone -= AddCardSlot;
+        EventManager.OnSwapComplete -= SortCardSlots;
+        EventManager.submitCards -= OnSubmitCards;
+        EventManager.CurationDone -= OnCurationDone;
+        EventManager.StartTurn -= PopulateHand;
+    }
 }

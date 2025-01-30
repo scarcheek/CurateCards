@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
+
     public static event Action<GameObject> DropCardInPlayZone;
     public static event Action<GameObject> DropCardOutsidePlayZone;
     public static event Action<GameObject> OnSwapComplete;
