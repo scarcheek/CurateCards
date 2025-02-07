@@ -1,16 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] GameObject options, main;
+    [SerializeField] GameObject options, main, credits;
     [SerializeField] string mainScene;
+
+    private Animator anim;
+
     public void Start(){
+        anim = GetComponent<Animator>();
         main.SetActive(true);
         options.SetActive(false);
+        credits.SetActive(false);
+    }
+
+    public void Reset(){
+        main.SetActive(true);
+        options.SetActive(false);
+        credits.SetActive(false);
+        anim.SetTrigger("Stop");
     }
 
     public void Play(){
@@ -20,6 +33,12 @@ public class MenuController : MonoBehaviour
     public void Options(){
         main.SetActive(false);
         options.SetActive(true);
+    }
+
+    public void Credits(){
+        main.SetActive(false);
+        credits.SetActive(true);
+        anim.SetTrigger("Play");
     }
 
     public void Quit(){
