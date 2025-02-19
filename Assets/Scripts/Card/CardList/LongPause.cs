@@ -5,6 +5,7 @@ using UnityEngine;
 public class LongPause : CardBehaviour
 {
     float appliedDiscount = 0f;
+
     internal override bool OnAddToPlayZone()
     {
         if(!base.OnAddToPlayZone()) return false;

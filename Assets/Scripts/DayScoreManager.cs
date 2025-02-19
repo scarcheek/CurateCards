@@ -70,4 +70,13 @@ public class DayScoreManager : MonoBehaviour
         SetScoreText();
         //Debug.Log("Current Score: " + CurrentScore);
     }
+
+    private void OnDestroy()
+    {
+        instance = null;
+        CurrentDay = 0;
+        EventManager.CurationDone -= OnCurationDone;
+        EventManager.AddBaseValueToGamestate -= addBaseValue;
+        EventManager.StartShopping -= OnStartShopping;
+    }
 }

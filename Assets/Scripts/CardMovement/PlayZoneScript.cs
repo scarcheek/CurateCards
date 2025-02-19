@@ -22,6 +22,11 @@ public class PlayZoneScript : MonoBehaviour
     {
         button.SetActive(false);
         targetPos = transform.localPosition;
+        
+    }
+
+    private void Awake()
+    {
         EventManager.DropCardInPlayZone += AddCardToPlayZone;
         EventManager.DropCardOutsidePlayZone += RemoveCardFromPlayZone;
         EventManager.OnSwapComplete += SortCardSlots;
@@ -107,5 +112,10 @@ public class PlayZoneScript : MonoBehaviour
     internal void SetScrollOffset(float offset)
     {
         scrollOffset += offset;
+    private void OnDestroy()
+    {
+        EventManager.DropCardInPlayZone -= AddCardToPlayZone;
+        EventManager.DropCardOutsidePlayZone -= removeCardFromPlayZone;
+        EventManager.OnSwapComplete -= SortCardSlots;
     }
 }

@@ -33,6 +33,13 @@ public class VisitorScript : MonoBehaviour
     private bool beenHit = false;
     VisitorSpawnPlaneScript planeScript;
 
+    private void Awake()
+    {
+        EventManager.ScoreCard += OnScoreCard;
+        EventManager.RandomizePreferences += OnRandomizePreferences;
+        EventManager.PresentCard += ResetCalculatedScore;
+    }
+
 
     void Start()
     {
@@ -40,9 +47,7 @@ public class VisitorScript : MonoBehaviour
         clothingManager = GameStateManager.instance.GetComponent<ClothingManager>();
 
         animController = GetComponentInChildren<VisitorAnimationController>();
-        EventManager.ScoreCard += OnScoreCard;
-        EventManager.RandomizePreferences += OnRandomizePreferences;
-        EventManager.PresentCard += ResetCalculatedScore;
+        
 
         currentMotivation = initialMotivation;
         OnRandomizePreferences();
@@ -114,6 +119,8 @@ public class VisitorScript : MonoBehaviour
             return 0; 
         }
 
+        currentMotivation += motivationChange;
+
         GameStateManager instance = GameStateManager.instance;
         motivationChange += instance.activeVirusCounters;
         motivationChange *= math.pow(GameStateManager.AttackCounterChange, instance.activeAttackCounters);
@@ -142,6 +149,7 @@ public class VisitorScript : MonoBehaviour
     {
         isLeaving = true;
         
+        transform.SetParent(null);
 
         if (beenHit)
         {
@@ -175,11 +183,18 @@ public class VisitorScript : MonoBehaviour
             Debug.Log("collision with artpiece");
             beenHit = true;
             animController.anim.SetTrigger("falloverback");
+            animController.ThudSound();
 
             // detracting the score if artpiece has been score already
-            
             EventManager.EmitAddBaseValueToGamestate(-calculatedScore);
             scoreVisualizer.showScore(System.Math.Round(-calculatedScore), 0);
         }
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.ScoreCard -= OnScoreCard;
+        EventManager.RandomizePreferences -= OnRandomizePreferences;
+        EventManager.PresentCard -= ResetCalculatedScore;
     }
 }

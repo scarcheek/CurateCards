@@ -82,6 +82,7 @@ public class CardBehaviour : MonoBehaviour
 
     internal void DisplayCardStats()
     {
+        Debug.Log(cardProps.name);
         parentScript.DisplayCardStats(cardCost, cardValue, guaranteedCrit);
     }
 

@@ -26,7 +26,7 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
 
     private void CheckVisitorAmount()
     {
-        if (visitors.Count == 0)
+        if (transform.childCount == 0)
             EventManager.EmitRunFailed("All visitors left the park :(");
     }
 
@@ -88,5 +88,12 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
             height,
             Random.Range(bounds.min.z, bounds.max.z)
         );
+    }
+
+    private void OnDestroy()
+    {
+        instance = null;
+        EventManager.CurationDone -= CheckVisitorAmount;
+        EventManager.StartDay -= OnStartDay;
     }
 }
