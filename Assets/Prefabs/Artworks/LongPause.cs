@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MuteOnAwake : MonoBehaviour
 {
-    void Awake()
+    void Start()
     {
-        Debug.Log("Long pasue");
-        AudioManager.instance.muteSong();
+        Debug.Log("mute");
+        AudioManager.instance.MuteSong();
     }
 }

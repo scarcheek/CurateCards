@@ -43,4 +43,9 @@ public class VisitorSounds : MonoBehaviour
     {
         return thud[Random.Range(0, thud.Length)];
     }
+
+    private void OnDestroy()
+    {
+        instance = null;
+    }
 }

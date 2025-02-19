@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI AttackCounterText;
     [SerializeField] private TextMeshProUGUI DefenceCounterText;
     [SerializeField] private TextMeshProUGUI VirusCounterText;
-    [SerializeField] private float StartingCoinAmount = 500;
+    [SerializeField] private float StartingCoinAmount = 200;
     [SerializeField] private GameObject Shop;
     [SerializeField] private GameObject CardZones;
     [Range(0f, 1f)][SerializeField] private float initialScoreFactor;
@@ -22,6 +24,11 @@ public class GameStateManager : MonoBehaviour
     public static float AttackCounterChange = 1.2f;
     public static float DefenceCounterChange = 0.83f;
     private static float _availableCoins;
+
+    [Header("DEBUG")]
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private AudioManager audioManager;
+    private bool isPaused = false;
     public static float AvailableCoins
     {
         get => _availableCoins;
@@ -38,15 +45,19 @@ public class GameStateManager : MonoBehaviour
 
     private Color defaultCoinColor;
 
-    // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("gamestate manager start");
         EventManager.EmitStartDay();
     }
 
-    private void Awake()
+    
+
+    private void OnEnable()
     {
         instance = this;
+        AvailableCoins = 300;
+
 
         defaultCoinColor = availableCoinsText.color;
 
@@ -65,8 +76,8 @@ public class GameStateManager : MonoBehaviour
 
     private void OnStartDay()
     {
+        Debug.Log("gamestate manager OnStartDay");
         AvailableCoins += StartingCoinAmount;
-        UpdateCounterText();
         EventManager.EmitStartTurn();
     }
 
@@ -169,12 +180,46 @@ public class GameStateManager : MonoBehaviour
         }
     }
     #endregion
+
+    public void Pause(){
+        if (isPaused){
+                pauseMenu.SetActive(false);
+                isPaused = false;
+                audioManager.HighPitch();
+            }
+            else{
+                pauseMenu.SetActive(true);
+                isPaused = true;
+                audioManager.LowPitch();
+            }
+    }
+
+    public void ToTitle(){
+        SceneManager.LoadSceneAsync("StartScreen");
+        
+        if (isPaused){
+                audioManager.HighPitch();
+            }
+    }
     void Update()
     {
-        if (Input.GetKeyDown("escape"))
-        {
-            Application.Quit();
+        if (Input.GetButtonDown("Cancel")){
+            Pause();
         }
+        
+    }
+
+    private void OnDestroy()
+    {
+
+        instance = null;
+
+
+        EventManager.AddCounter -= OnAddCounter;
+        EventManager.RemoveCounter -= OnRemoveCounter;
+        EventManager.StartShopping -= StartShopping;
+        EventManager.StartDay -= OnStartDay;
+        EventManager.RunFailed -= OnRunFailed;
     }
 
 }

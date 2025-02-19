@@ -57,5 +57,13 @@ public class ArtSpotScript : MonoBehaviour
         if (artPiece != null) Destroy(artPiece);
         artPiece = null;
         smokeEffect.Play();
+        AudioManager.instance.Unmute();
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.PresentCard -= OnPresent;
+        EventManager.AnimationVisitorDone -= OnShowVisitorDone;
+        EventManager.CheckThrow -= OnCheckThrow;
     }
 }
