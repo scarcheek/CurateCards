@@ -1250,7 +1250,7 @@ MonoBehaviour:
   AttackCounterText: {fileID: 949821692}
   DefenceCounterText: {fileID: 108673545}
   VirusCounterText: {fileID: 967269474}
-  StartingCoinAmount: 500
+  StartingCoinAmount: 0
   Shop: {fileID: 1556377503}
   CardZones: {fileID: 1570739775}
   initialScoreFactor: 0
@@ -1334,7 +1334,7 @@ MonoBehaviour:
   - {fileID: -6791305997529696879, guid: 02f0cde6f4c3e294abe57e1c3c8226d0, type: 3}
   - {fileID: 9096479823000558163, guid: b32a7908da854674f8bbe8d32d89278a, type: 3}
   DeckList:
-  - {fileID: -1697989433240245131, guid: 9541880d6009d664aaf09386366f40bf, type: 3}
+  - {fileID: -5930778902498119305, guid: e44e5cc9f05739447a976bf02cd861fb, type: 3}
   remainingCards: []
 --- !u!114 &249896234
 MonoBehaviour:
@@ -2429,13 +2429,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songs:
   - name: thinking
-    clip: {fileID: 8300000, guid: 5ff726c0d43429241a97be0aabcdc9cb, type: 3}
+    clip: {fileID: 8300000, guid: 807543b1f1f04914cad4db5fda56b3d7, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: score
-    clip: {fileID: 8300000, guid: 9a756fbad705a4548aae6392b2060074, type: 3}
+    clip: {fileID: 8300000, guid: 9d1fac5722f01a64cb2b59a4dadd2291, type: 3}
     volume: 1
     pitch: 1
     loop: 1

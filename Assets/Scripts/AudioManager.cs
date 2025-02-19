@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
     public AudioMixerGroup uiGroup;
     public AudioMixerGroup playingCardGroup;
 
-    private Coroutine fading;
+    private Coroutine fading, fadingAway;
     private bool muted = false;
 
     [SerializeField] private float SongVolume;
@@ -41,7 +41,6 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        EventManager.PresentCard += OnPresent;
 
         foreach (Sound s in songs)
         {
@@ -86,7 +85,7 @@ public class AudioManager : MonoBehaviour
         {
             mixer.SetFloat("EndingVolume", 0);
             ending.source.outputAudioMixerGroup = endGroup;
-            StartCoroutine(StartFade(mixer, "EndingVolume", fadeTime, 0)); 
+            fadingAway = StartCoroutine(StartFade(mixer, "EndingVolume", fadeTime, 0)); 
         }
 
         mixer.SetFloat("PlayingVolume", -80);
@@ -97,7 +96,7 @@ public class AudioManager : MonoBehaviour
         fading = StartCoroutine(StartFade(mixer, "PlayingVolume", fadeTime, 100));
     }
 
-    public void muteSong()
+    public void MuteSong()
     {
         StopCoroutine(fading);
         fading = StartCoroutine(StartFade(mixer, "PlayingVolume", fadeTime/3, 0));
@@ -105,11 +104,11 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    private void OnPresent(PlayingCardScript card)
-    { 
+    public void Unmute(){
         if(muted) 
         { 
             fading = StartCoroutine(StartFade(mixer, "PlayingVolume", fadeTime/3, 100));
+            muted = false;
         }
     }
 

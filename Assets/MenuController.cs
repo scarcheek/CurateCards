@@ -23,7 +23,7 @@ public class MenuController : MonoBehaviour
         main.SetActive(true);
         options.SetActive(false);
         credits.SetActive(false);
-        anim.SetTrigger("Stop");
+        anim.Play("Idle", -1, 0f);
     }
 
     public void Play(){
@@ -38,7 +38,7 @@ public class MenuController : MonoBehaviour
     public void Credits(){
         main.SetActive(false);
         credits.SetActive(true);
-        anim.SetTrigger("Play");
+        anim.Play("Credits", -1, 0f);
     }
 
     public void Quit(){

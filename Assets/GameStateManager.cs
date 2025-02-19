@@ -13,7 +13,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI AttackCounterText;
     [SerializeField] private TextMeshProUGUI DefenceCounterText;
     [SerializeField] private TextMeshProUGUI VirusCounterText;
-    [SerializeField] private float StartingCoinAmount = 500;
+    [SerializeField] private float StartingCoinAmount = 200;
     [SerializeField] private GameObject Shop;
     [SerializeField] private GameObject CardZones;
     [Range(0f, 1f)][SerializeField] private float initialScoreFactor;
@@ -56,7 +56,7 @@ public class GameStateManager : MonoBehaviour
     private void OnEnable()
     {
         instance = this;
-        AvailableCoins = 0;
+        AvailableCoins = 300;
 
 
         defaultCoinColor = availableCoinsText.color;
@@ -78,7 +78,6 @@ public class GameStateManager : MonoBehaviour
     {
         Debug.Log("gamestate manager OnStartDay");
         AvailableCoins += StartingCoinAmount;
-        //UpdateCounterText();
         EventManager.EmitStartTurn();
     }
 

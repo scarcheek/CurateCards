@@ -14,7 +14,7 @@ public class DeckManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        DeckList.AddRange(GetRandomCardsOfAllTypes());
+        //DeckList.AddRange(GetRandomCardsOfAllTypes());
         remainingCards = DeckList.ToList();
         EventManager.StartDay += RepopulateRemainingCards;
     }
