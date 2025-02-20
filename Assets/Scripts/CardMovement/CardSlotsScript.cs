@@ -1,16 +1,12 @@
-using Cinemachine;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardSlotsScript : MonoBehaviour
 {
-    [SerializeField] private int DebugStartCardSlots = 4;
     [SerializeField] private GameObject cardSlotPrefab;
+    [Header("DEBUG")]
     [SerializeField] private Vector2 targetPos;
+    [SerializeField] private float scrollOffset = 0;
 
     [HideInInspector] public List<GameObject> cardSlots = new();
     float lowestCost = float.MinValue;
@@ -31,12 +27,12 @@ public class CardSlotsScript : MonoBehaviour
             EventManager.EmitRunFailed("There are no cards left in the deck! :(");
             return;
         }
-        for (int i = 0; i < DebugStartCardSlots; i++)
+        for (int i = 0; i < DeckManager.instance.StartCardAmount; i++)
         {
             DrawCard();
         }
 
-        if (lowestCost > GameStateManager.AvailableCoins) 
+        if (lowestCost > GameStateManager.AvailableCoins)
             EventManager.EmitRunFailed("You can't afford running another curation...");
     }
 
@@ -86,13 +82,12 @@ public class CardSlotsScript : MonoBehaviour
 
     private void DrawCard()
     {
-        //TODO: Do card handling
         CreateAndAddNewCardSlot();
     }
 
     private void CreateAndAddNewCardSlot()
     {
-        List<CardBehaviour> remainingCards = DeckManager.instance.remainingCards;
+        List<CardBehaviour> remainingCards = DeckManager.instance?.remainingCards;
         if (remainingCards.Count == 0) return;
 
         GameObject cardSlot = Instantiate(cardSlotPrefab, transform);
@@ -117,7 +112,7 @@ public class CardSlotsScript : MonoBehaviour
     private void OnSubmitCards(List<PlayingCardScript> cards)
     {
         CardSlotsManager.ClearCardSlots(cardSlots);
-        DeckManager.RepopulateRemainingCards();
+
     }
 
     private void OnDestroy()

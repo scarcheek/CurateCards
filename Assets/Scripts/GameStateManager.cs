@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] private TextMeshProUGUI availableCoinsText;
     [SerializeField] private TextMeshProUGUI AttackCounterText;
     [SerializeField] private TextMeshProUGUI DefenceCounterText;
@@ -25,6 +26,7 @@ public class GameStateManager : MonoBehaviour
     public int activeAttackCounters = 0;
     public int activeDefenceCounters = 0;
     public int activeVirusCounters = 0;
+
     public static GameStateManager instance;
 
     [Header("DEBUG")]
@@ -57,8 +59,10 @@ public class GameStateManager : MonoBehaviour
 
     private void OnEnable()
     {
+
         instance = this;
         AvailableCoins = 300;
+
 
 
         defaultCoinColor = availableCoinsText.color;
@@ -111,7 +115,7 @@ public class GameStateManager : MonoBehaviour
         }
         else
         {
-            availableCoinsText.color = Color.blue;
+            availableCoinsText.color = ConfigManagerScript.instance.negativeColor;
         }
     }
 

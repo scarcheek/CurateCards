@@ -50,7 +50,7 @@ public class PlayingCardScript : MonoBehaviour
 
         if (crits)
         {
-            BaseValueText.color = Color.yellow;
+            BaseValueText.color = ConfigManagerScript.instance.posEffectColor;
         }
         else
         {
@@ -59,7 +59,7 @@ public class PlayingCardScript : MonoBehaviour
 
         if (card.cardProps.cost > cardCost)
         {
-            CostText.color = Color.yellow;
+            CostText.color = ConfigManagerScript.instance.posEffectColor;
         }
         else if (card.cardProps.cost == cardCost)
         {
@@ -67,7 +67,7 @@ public class PlayingCardScript : MonoBehaviour
         }
         else
         {
-            CostText.color = Color.blue;
+            CostText.color = ConfigManagerScript.instance.negativeColor;
         }
     }
 

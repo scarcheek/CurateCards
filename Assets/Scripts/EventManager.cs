@@ -46,6 +46,9 @@ public class EventManager : MonoBehaviour
     public static void EmitRunFailed(string reason) => RunFailed?.Invoke(reason);
     public static void EmitStartShopping() => StartShopping?.Invoke();
     public static void EmitStartTurn() => StartTurn?.Invoke();
+    /// <summary>
+    /// Is only used when the shop closes and when GameStateManager gets loaded
+    /// </summary>
     public static void EmitStartDay() => StartDay?.Invoke();
     public static void EmitCheckThrow() => CheckThrow?.Invoke();
 

@@ -19,6 +19,7 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
     void Start()
     {
         instance = this;
+
         standArea = GetComponent<BoxCollider>();
         SpawnVisitorAmount(visitorAmountToSpawn);
     }
@@ -60,6 +61,13 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
         visitors.Add(visitor);
     }
 
+    public void RemoveVisitor(GameObject visitor)
+    {
+        if (!visitors.Contains(visitor))
+            return;
+        visitors.Remove(visitor);
+        Destroy(gameObject);
+    }
     public Vector3 RandomPointOutBounds() => RandomPointOutBounds(standArea.bounds, transform.position.y + verticalOffset);
     public static Vector3 RandomPointOutBounds(Bounds bounds, float height)
     {

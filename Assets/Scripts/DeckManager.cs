@@ -6,6 +6,15 @@ using UnityEngine;
 public class DeckManager : MonoBehaviour
 {
     public List<CardBehaviour> CardList = new();
+    [SerializeField] private float _CardDrawCost;
+    public float CardDrawCost { get { return _CardDrawCost; } }
+
+    [SerializeField] private float _DeckRefreshCost;
+    public float DeckRefreshCost { get { return _DeckRefreshCost; } }
+
+    [SerializeField] private int _StartCardAmount;
+    public int StartCardAmount { get { return _StartCardAmount; } }
+
     [Header("DEBUG")]
     public List<CardBehaviour> DeckList = new();
     public List<CardBehaviour> remainingCards = new();
@@ -14,7 +23,8 @@ public class DeckManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        //DeckList.AddRange(GetRandomCardsOfAllTypes());
+
+        DeckList.AddRange(GetRandomCardsOfAllTypes());
         remainingCards = DeckList.ToList();
         EventManager.StartDay += RepopulateRemainingCards;
     }
@@ -59,11 +69,16 @@ public class DeckManager : MonoBehaviour
     public static void RemoveCardFromDeckListAtIndex(int index)
     {
         instance.DeckList.RemoveAt(index);
-        RepopulateRemainingCards();
+    }
+
+    public static void RefreshDeck()
+    {
+
     }
 
     internal static void RepopulateRemainingCards()
     {
+        Debug.Log("Repopulating RemainingCards");
         instance.remainingCards = instance.DeckList.ToList();
     }
 

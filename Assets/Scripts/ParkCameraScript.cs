@@ -15,12 +15,12 @@ public class ParkCameraScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(ConfigManagerScript.instance.StopVisitorAnimation))
         {
             forceShowVisitors = true;
             anim.SetBool("showVisitors", forceShowVisitors);
         }
-        else if (Input.GetKeyUp(KeyCode.Tab))
+        else if (Input.GetKeyUp(ConfigManagerScript.instance.StopVisitorAnimation))
         {
             forceShowVisitors = false;
             anim.SetBool("showVisitors", forceShowVisitors);

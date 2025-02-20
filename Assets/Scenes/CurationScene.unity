@@ -1254,6 +1254,7 @@ MonoBehaviour:
   StartingCoinAmount: 0
   Shop: {fileID: 1556377503}
   CardZones: {fileID: 1570739775}
+  initialScoreFactor: 0
   activeAttackCounters: 0
   activeDefenceCounters: 0
   activeVirusCounters: 0
@@ -5934,9 +5935,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116062b4f55d9dc4bad782712712d24d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugStartCardSlots: 5
   cardSlotPrefab: {fileID: 5765090287824418254, guid: e93587bab58f12249805e005cca5965f, type: 3}
   targetPos: {x: 0, y: 0}
+  scrollOffset: 0
   cardSlots: []
 --- !u!222 &1476087255
 CanvasRenderer:
@@ -6234,10 +6235,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1992437036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1541666963
 MonoBehaviour:
@@ -6284,7 +6285,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 50}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6295,7 +6296,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 960, y: 318.91025}
+  m_Size: {x: 960, y: 320}
   m_EdgeRadius: 0
 --- !u!1 &1556377503
 GameObject:
@@ -6393,6 +6394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1570739776}
+  - component: {fileID: 1570739777}
   m_Layer: 5
   m_Name: CardZones
   m_TagString: Untagged
@@ -6422,6 +6424,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1570739777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570739775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6205be2652de5247be6137b8323f4b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1593184378
 GameObject:
   m_ObjectHideFlags: 0
@@ -6575,7 +6589,7 @@ GameObject:
   - component: {fileID: 1631858444}
   - component: {fileID: 1631858443}
   m_Layer: 5
-  m_Name: Button
+  m_Name: PlayHandButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
