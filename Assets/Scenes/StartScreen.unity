@@ -784,7 +784,7 @@ MonoBehaviour:
   options: {fileID: 761114328}
   main: {fileID: 206761717}
   credits: {fileID: 1421387886}
-  mainScene: SampleScene
+  mainScene: CurationScene
 --- !u!95 &286499549
 Animator:
   serializedVersion: 5

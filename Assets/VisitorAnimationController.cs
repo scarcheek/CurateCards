@@ -59,7 +59,6 @@ public class VisitorAnimationController : MonoBehaviour
         {
             anim.SetTrigger("startmoving");
         }
-    
     }
     internal void ReactToScore(float threshhold, float score)
     {

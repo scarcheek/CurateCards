@@ -1227,6 +1227,7 @@ GameObject:
   - component: {fileID: 249896232}
   - component: {fileID: 249896233}
   - component: {fileID: 249896234}
+  - component: {fileID: 249896235}
   m_Layer: 0
   m_Name: GameStateManager
   m_TagString: Untagged
@@ -1253,7 +1254,6 @@ MonoBehaviour:
   StartingCoinAmount: 0
   Shop: {fileID: 1556377503}
   CardZones: {fileID: 1570739775}
-  initialScoreFactor: 0
   activeAttackCounters: 0
   activeDefenceCounters: 0
   activeVirusCounters: 0
@@ -1333,6 +1333,9 @@ MonoBehaviour:
   - {fileID: 654521266959840061, guid: 36ce1042404590441a716ae8a06805ce, type: 3}
   - {fileID: -6791305997529696879, guid: 02f0cde6f4c3e294abe57e1c3c8226d0, type: 3}
   - {fileID: 9096479823000558163, guid: b32a7908da854674f8bbe8d32d89278a, type: 3}
+  _CardDrawCost: 20
+  _DeckRefreshCost: 80
+  _StartCardAmount: 3
   DeckList:
   - {fileID: -5930778902498119305, guid: e44e5cc9f05739447a976bf02cd861fb, type: 3}
   remainingCards: []
@@ -1367,6 +1370,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b1b434443d9b324d87a7c4ed57f2f65, type: 2}
   - {fileID: 11400000, guid: 0fb470a68ff329f45a1add18400b18b8, type: 2}
   randomizeClothes: 1
+--- !u!114 &249896235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249896229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d5c7f7b6f6ca742a8f5b11908d4994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardPanSpeed: 5
+  QuitGame: 27
+  StopVisitorAnimation: 9
+  DrawCard: 32
+  posEffectColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  negativeColor: {r: 0, g: 0, b: 1, a: 1}
+  positiveColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &293787459
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,6 +2800,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 293787460}
+  - {fileID: 803650741}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &803650740
@@ -2786,19 +2809,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 788321429}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2
+      value: -1.2620351
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.59
+      value: 4.3552527
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.5898457
+      value: 8.392711
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2806,7 +2829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2814,7 +2837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2844,6 +2867,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 657734424}
   m_SourcePrefab: {fileID: 100100000, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
+--- !u!4 &803650741 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d54cf7529ebf4ee49839a2b0bec2ee27, type: 3}
+  m_PrefabInstance: {fileID: 803650740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &849745606
 GameObject:
   m_ObjectHideFlags: 0
@@ -8062,6 +8090,7 @@ MonoBehaviour:
   animator: {fileID: 1992437038}
   playZoneSlotName: PlaySlot
   button: {fileID: 1631858441}
+  scrollOffset: 0
 --- !u!1001 &2062935001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8567,5 +8596,4 @@ SceneRoots:
   - {fileID: 1093480438}
   - {fileID: 788321429}
   - {fileID: 1963686494}
-  - {fileID: 803650740}
   - {fileID: 249896231}

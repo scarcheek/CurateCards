@@ -13,7 +13,7 @@ public class CardSlotsScript : MonoBehaviour
     [SerializeField] private Vector2 targetPos;
 
     [HideInInspector] public List<GameObject> cardSlots = new();
-    float lowestCost = float.MaxValue;
+    float lowestCost = float.MinValue;
     private void Awake()
     {
         EventManager.DropCardInPlayZone += RemoveCard;
@@ -43,6 +43,45 @@ public class CardSlotsScript : MonoBehaviour
     private void FixedUpdate()
     {
         CardSlotsManager.moveToAndRecalculateTargetPos(ref targetPos, transform, cardSlots.Count);
+        scrollOffset = CardSlotsManager.moveToAndRecalculateTargetPos(ref targetPos, transform, cardSlots.Count, scrollOffset);
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(ConfigManagerScript.instance.DrawCard)) ManualDrawCard();
+    }
+
+    private void ManualDrawCard()
+    {
+        if (DeckManager.instance.remainingCards.Count > 0)
+        {
+            GameStateManager.AvailableCoins -= DeckManager.instance.CardDrawCost;
+
+            if (lowestCost > GameStateManager.AvailableCoins)
+            {
+                EventManager.EmitRunFailed("That was one card too much...");
+                return;
+            }
+
+            DrawCard();
+        }
+        else
+        {
+            GameStateManager.AvailableCoins -= DeckManager.instance.DeckRefreshCost;
+
+            DeckManager.RepopulateRemainingCards();
+            if (GameStateManager.AvailableCoins <= 0)
+            {
+                EventManager.EmitRunFailed("You couldnt afford that reshuffle...");
+                return;
+            }
+        }
+    }
+
+    public void SetScrollOffset(float offset)
+    {
+        scrollOffset += offset;
     }
 
     private void DrawCard()
