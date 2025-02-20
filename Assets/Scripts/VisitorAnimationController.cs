@@ -26,7 +26,7 @@ public class VisitorAnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             anim.SetTrigger("backflip");
@@ -60,7 +60,9 @@ public class VisitorAnimationController : MonoBehaviour
         {
             anim.SetTrigger("startmoving");
         }
+    #endif
     }
+    
     internal void ReactToScore(float threshhold, float score)
     {
         if (score < -threshhold)
