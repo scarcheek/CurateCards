@@ -17,8 +17,8 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private float StartingCoinAmount = 200;
     [SerializeField] private GameObject Shop;
     [SerializeField] private GameObject CardZones;
+    [Range(0f, 1f)][SerializeField] private float initialScoreFactor;
     [Header("Properties")]
-    [SerializeField] private float StartingCoinAmount = 500;
     public static float AttackCounterChange = 1.2f;
     public static float DefenceCounterChange = 0.83f;
     [Header("DEBUG")]
@@ -28,9 +28,6 @@ public class GameStateManager : MonoBehaviour
     public int activeVirusCounters = 0;
 
     public static GameStateManager instance;
-    public static float AttackCounterChange = 1.2f;
-    public static float DefenceCounterChange = 0.83f;
-    private static float _availableCoins;
 
     [Header("DEBUG")]
     [SerializeField] private GameObject pauseMenu;

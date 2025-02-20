@@ -9,7 +9,7 @@ public class CardSlotsScript : MonoBehaviour
     [SerializeField] private float scrollOffset = 0;
 
     [HideInInspector] public List<GameObject> cardSlots = new();
-    float lowestCost = float.MaxValue;
+    float lowestCost = float.MinValue;
     private void Awake()
     {
         EventManager.DropCardInPlayZone += RemoveCard;
@@ -38,13 +38,13 @@ public class CardSlotsScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        CardSlotsManager.moveToAndRecalculateTargetPos(ref targetPos, transform, cardSlots.Count);
         scrollOffset = CardSlotsManager.moveToAndRecalculateTargetPos(ref targetPos, transform, cardSlots.Count, scrollOffset);
 
     }
 
     private void Update()
     {
-        //TODO: Make this function substract some money
         if (Input.GetKeyDown(ConfigManagerScript.instance.DrawCard)) ManualDrawCard();
     }
 
