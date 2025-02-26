@@ -23,6 +23,7 @@ public class AnnouncementsScript : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+
     private void OnCelebrateDayComplete()
     {
         CelebrationParticles.Play();

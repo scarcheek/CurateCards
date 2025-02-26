@@ -212,13 +212,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songs:
   - name: thinking
-    clip: {fileID: 8300000, guid: 5ff726c0d43429241a97be0aabcdc9cb, type: 3}
+    clip: {fileID: 8300000, guid: 841d6ae19004c624ab677be8eb1191ae, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: score
-    clip: {fileID: 8300000, guid: 9a756fbad705a4548aae6392b2060074, type: 3}
+    clip: {fileID: 8300000, guid: ad57f8a4d2c8a1c4ca645f1ab9cd8ddb, type: 3}
     volume: 1
     pitch: 1
     loop: 1
@@ -577,11 +577,15 @@ MonoBehaviour:
 
     Music:
 
-    Song1
-    by Name1
+    "Thinking
+    about my mom while she is reading how to deal with her stupid child" by Sona
+    Tomatiko
 
-    Song2 by Name2
+    "Presenting my not finished work because i cant be bothered anymore"
+    by Sona Tomatiko
 
+
+    (Im sorry if you are reading this :) )
 
 
 
@@ -1327,7 +1331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &761114329
 Transform:
   m_ObjectHideFlags: 0
@@ -2125,7 +2129,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "This was originally a university project which we decided to put some
-    additional effort into :) \n\nMaybe we will add more content and ballance the
+    additional effort into :) \n\nMaybe we will add more content and balance the
     game if there is enough demand xD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac07de16baf224f4b85386044f931422, type: 2}
@@ -2519,7 +2523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1421387887
 Transform:
   m_ObjectHideFlags: 0
@@ -2552,6 +2556,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 993222993319238437, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
+      propertyPath: m_MinValue
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 993222993319238437, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 761114330}
@@ -2561,15 +2569,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4103359344397875870, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4103359344397875870, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4103359344397875870, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4863610317411816794, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_Pivot.x
@@ -2653,11 +2661,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5501171961272859956, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5501171961272859956, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6336204818028725428, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_Name
@@ -2762,8 +2770,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 761114329}
     m_Modifications:
     - target: {fileID: 993222993319238437, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
+      propertyPath: m_Value
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 993222993319238437, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_MaxValue
-      value: 0
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 993222993319238437, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
+      propertyPath: m_MinValue
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 993222993319238437, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2775,15 +2791,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4103359344397875870, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4103359344397875870, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4103359344397875870, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4863610317411816794, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_Pivot.x
@@ -2867,11 +2883,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5501171961272859956, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5501171961272859956, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6336204818028725428, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_Name
@@ -3784,20 +3800,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 761114329}
     m_Modifications:
     - target: {fileID: 993222993319238437, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
+      propertyPath: m_MaxValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 993222993319238437, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 761114330}
     - target: {fileID: 4103359344397875870, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4103359344397875870, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4103359344397875870, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4863610317411816794, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_Pivot.x
@@ -3881,11 +3901,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5501171961272859956, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5501171961272859956, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6336204818028725428, guid: 1cb30e20c70c1a24791b154f180a5596, type: 3}
       propertyPath: m_Name

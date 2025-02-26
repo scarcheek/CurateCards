@@ -26,10 +26,8 @@ public class DeckManager : MonoBehaviour
 
         DeckList.AddRange(GetRandomCardsOfAllTypes());
         remainingCards = DeckList.ToList();
-        EventManager.StartDay += RepopulateRemainingCards;
+        EventManager.StartTurn += RepopulateRemainingCards;
     }
-
-
     public static List<CardBehaviour> GetRandomCardsOfAllTypes()
     {
         List<CardBehaviour> retCards = new()
@@ -71,11 +69,6 @@ public class DeckManager : MonoBehaviour
         instance.DeckList.RemoveAt(index);
     }
 
-    public static void RefreshDeck()
-    {
-
-    }
-
     internal static void RepopulateRemainingCards()
     {
         Debug.Log("Repopulating RemainingCards");
@@ -85,6 +78,6 @@ public class DeckManager : MonoBehaviour
     private void OnDestroy()
     {
         instance = null;
-        EventManager.StartDay -= RepopulateRemainingCards;
+        EventManager.StartTurn -= RepopulateRemainingCards;
     }
 }

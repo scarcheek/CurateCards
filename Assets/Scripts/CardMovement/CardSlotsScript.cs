@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CardSlotsScript : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class CardSlotsScript : MonoBehaviour
     [Header("DEBUG")]
     [SerializeField] private Vector2 targetPos;
     [SerializeField] private float scrollOffset = 0;
+    [SerializeField] private TextMeshProUGUI price;
 
     [HideInInspector] public List<GameObject> cardSlots = new();
     float lowestCost = float.MinValue;
@@ -38,9 +40,7 @@ public class CardSlotsScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CardSlotsManager.moveToAndRecalculateTargetPos(ref targetPos, transform, cardSlots.Count);
-        scrollOffset = CardSlotsManager.moveToAndRecalculateTargetPos(ref targetPos, transform, cardSlots.Count, scrollOffset);
-
+        scrollOffset = CardSlotsManager.moveToAndRecalculateTargetPos(ref targetPos, transform, cardSlots.Count, scrollOffset, 50f, 4);
     }
 
     private void Update()
@@ -48,7 +48,7 @@ public class CardSlotsScript : MonoBehaviour
         if (Input.GetKeyDown(ConfigManagerScript.instance.DrawCard)) ManualDrawCard();
     }
 
-    private void ManualDrawCard()
+    public void ManualDrawCard()
     {
         if (DeckManager.instance.remainingCards.Count > 0)
         {
@@ -61,6 +61,9 @@ public class CardSlotsScript : MonoBehaviour
             }
 
             DrawCard();
+            if(DeckManager.instance.remainingCards.Count < 1){
+                price.text = DeckManager.instance.DeckRefreshCost.ToString();
+            }
         }
         else
         {
@@ -72,7 +75,9 @@ public class CardSlotsScript : MonoBehaviour
                 EventManager.EmitRunFailed("You couldnt afford that reshuffle...");
                 return;
             }
+            price.text = DeckManager.instance.CardDrawCost.ToString();
         }
+            
     }
 
     public void SetScrollOffset(float offset)

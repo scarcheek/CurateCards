@@ -7,8 +7,7 @@ public static class CardSlotsManager
     public static float targetSpaceBetweenCards = 150f;
     public static float handReAdjustmentSpeed = 500f;
     public static float verticalSpacing = 50f;
-    public static float OffsetFactor = 75f;
-    public static int OffsetStartingCount = 6;
+
 
     /// <summary>
     /// Calculated the targetPosition based on cardslotscount, with respect to the in-class targetSpaceBetweenCards and a transform with the handReAdjustmentSpeed
@@ -16,8 +15,10 @@ public static class CardSlotsManager
     /// <param name="targetPos">the reference to the targetPosition in the SlotsScript</param>
     /// <param name="transform">transform to take the localposition of</param>
     /// <param name="cardSlotsCount">How often to apply targetSpaceBetweenCards (Should always be CardSlots.Count)</param>
+    /// <param name="OffsetFactor">the amount for each card to be offset default is for 16:9</param>
+    /// <paramref name="OffsetStartingCount">at this card amount boundry checks are made</param>
     /// <returns>The applied offset</returns>
-    public static float moveToAndRecalculateTargetPos(ref Vector2 targetPos, Transform transform, int cardSlotsCount, float scrollOffset = 0)
+    public static float moveToAndRecalculateTargetPos(ref Vector2 targetPos, Transform transform, int cardSlotsCount, float scrollOffset = 0, float OffsetFactor = 75f, int OffsetStartingCount = 6)
     {
         float appliedOffset = scrollOffset;
         // This is done to allow dynamic resizing of the cardslots

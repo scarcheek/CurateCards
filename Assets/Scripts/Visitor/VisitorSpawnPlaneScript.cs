@@ -66,7 +66,7 @@ public class VisitorSpawnPlaneScript : MonoBehaviour
         if (!visitors.Contains(visitor))
             return;
         visitors.Remove(visitor);
-        Destroy(gameObject);
+        Destroy(visitor);
     }
     public Vector3 RandomPointOutBounds() => RandomPointOutBounds(standArea.bounds, transform.position.y + verticalOffset);
     public static Vector3 RandomPointOutBounds(Bounds bounds, float height)
